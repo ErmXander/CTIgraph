@@ -1,0 +1,591 @@
+{
+    "pods": [
+        {
+            "label": "p1",
+            "networkProperties": {
+                "service": {
+                    "name": "ps1",
+                    "protocol": "TCP",
+                    "port": 80,
+                    "artifacts": [
+                        {"id": "art1"},
+                        {"id": "art2"}
+                    ]
+                },
+                "restrictions": {
+                    "enforcement_behavior": "default-allow",
+                    "rules": []
+                }
+            },
+            "libraries": [
+                {
+                    "name": "lib1",
+                    "version": "lib1_ver1",
+                    "artifacts": [
+                        {"id": "art3"}
+                    ],
+                    "vulnerabilities": [
+                        {
+                            "id": "vul1",
+                            "cvss3.x": 5.0,
+                            "description": "vul1_desc"
+                        }
+                    ]
+                },
+                {
+                    "name": "lib2",
+                    "version": "lib2_ver1",
+                    "artifacts": [
+                        {"id": "art4"}
+                    ],
+                    "vulnerabilities": [
+                        {
+                            "id": "vul2",
+                            "cvss3.x": 6.5,
+                            "description": "vul2_desc"
+                        }
+                    ]
+                }
+            ],
+            "serviceDependencies": [
+                {"label": "p3"},
+                {"label": "p4"},
+                {"label": "p5"}
+            ]
+        },
+        {
+            "label": "p2",
+            "networkProperties": {
+                "service": {
+                    "name": "ps2",
+                    "protocol": "TCP",
+                    "port": 8080,
+                    "artifacts": [
+                        {"id": "art1"}
+                    ]
+                },
+                "restrictions": {
+                    "enforcement_behavior": "default-allow",
+                    "rules": [
+                        {
+                            "direction": "Egress",
+                            "action": "deny",
+                            "proto": ["TCP"],
+                            "port": [60],
+                            "type": "pod",
+                            "label": "p6"
+                        }
+                    ]
+                }
+            },
+            "libraries": [
+                {
+                    "name": "lib1",
+                    "version": "lib1_ver2",
+                    "artifacts": [
+                        {"id": "art3"}
+                    ],
+                    "vulnerabilities": [
+                        {
+                            "id": "vul1",
+                            "cvss3.x": 5.0,
+                            "description": "vul1_desc"
+                        }
+                    ]
+                }
+            ],
+            "serviceDependencies": [
+                {"label": "p5"},
+                {"label": "p6"}
+            ]
+        },
+        {
+            "label": "p3",
+            "networkProperties": {
+                "service": {
+                    "name": "ps3",
+                    "protocol": "TCP",
+                    "port": 3030,
+                    "artifacts": [
+                        {"id": "art4"},
+                        {"id": "art5"}
+                    ]
+                },
+                "restrictions": {
+                    "enforcement_behavior": "default-deny",
+                    "rules": [
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [80],
+                            "type": "pod",
+                            "label": "p1"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [3030],
+                            "type": "pod",
+                            "label": "p1"
+                        }
+                    ]
+                }
+            },
+            "libraries": [
+                {
+                    "name": "lib3",
+                    "version": "lib3_ver1",
+                    "artifacts": [
+                        {"id": "art6"}
+                    ],
+                    "vulnerabilities": [
+                        {
+                            "id": "vul3",
+                            "cvss3.x": 7.0,
+                            "description": "vul3_desc"
+                        }
+                    ]
+                }
+            ],
+            "serviceDependencies": [
+            ]
+        },
+        {
+            "label": "p4",
+            "networkProperties": {
+                "service": {
+                    "name": "ps4",
+                    "protocol": "TCP",
+                    "port": 4040,
+                    "artifacts": [
+                        {"id": "art4"}
+                    ]
+                },
+                "restrictions": {
+                    "enforcement_behavior": "default-deny",
+                    "rules": [
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [80],
+                            "type": "pod",
+                            "label": "p1"
+                        },
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [7070],
+                            "type": "pod",
+                            "label": "p7"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [4040],
+                            "type": "pod",
+                            "label": "p7"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [4040],
+                            "type": "pod",
+                            "label": "p1"
+                        }
+                    ]
+                }
+            },
+            "libraries": [
+                {
+                    "name": "lib3",
+                    "version": "lib3_ver1",
+                    "artifacts": [
+                        {"id": "art6"}
+                    ],
+                    "vulnerabilities": [
+                        {
+                            "id": "vul3",
+                            "cvss3.x": 7.0,
+                            "description": "vul3_desc"
+                        }
+                    ]
+                }
+            ],
+            "serviceDependencies": [
+                {"label": "p7"}
+            ],
+            "misconfigurations": [{"type": "privileged"}, {"type": "runAsRoot"}]
+        },
+        {
+            "label": "p5",
+            "networkProperties": {
+                "service": {
+                    "name": "ps5",
+                    "protocol": "TCP",
+                    "port": 5050,
+                    "artifacts": [
+                        {"id": "art7"},
+                        {"id": "art8"}
+                    ]
+                },
+                "restrictions": {
+                    "enforcement_behavior": "default-deny",
+                    "rules": [
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [80],
+                            "type": "pod",
+                            "label": "p1"
+                        },
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [7070],
+                            "type": "pod",
+                            "label": "p7"
+                        },
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [8888],
+                            "type": "pod",
+                            "label": "p8"
+                        },
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [8080],
+                            "type": "pod",
+                            "label": "p2"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [5050],
+                            "type": "pod",
+                            "label": "p7"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [5050],
+                            "type": "pod",
+                            "label": "p1"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [5050],
+                            "type": "pod",
+                            "label": "p8"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [5050],
+                            "type": "pod",
+                            "label": "p2"
+                        }
+                    ]
+                }
+            },
+            "libraries": [
+                {
+                    "name": "lib4",
+                    "version": "lib4_ver1",
+                    "artifacts": [
+                        {"id": "art9"}
+                    ],
+                    "vulnerabilities": [
+                        {
+                            "id": "vul4",
+                            "cvss3.x": 6.0,
+                            "description": "vul4_desc"
+                        }
+                    ]
+                }
+            ],
+            "serviceDependencies": [
+                {"label": "p7"},
+                {"label": "p8"}
+            ],
+            "misconfigurations": [{"type": "hostPathMount"}],
+            "mounts": [{"type": "hostPath", "path": "/some/path"}]
+        },
+        {
+            "label": "p6",
+            "networkProperties": {
+                "service": {
+                    "name": "ps6",
+                    "protocol": "TCP",
+                    "port": 6060,
+                    "artifacts": [
+                        {"id": "art5"}
+                    ]
+                },
+                "restrictions": {
+                    "enforcement_behavior": "default-deny",
+                    "rules": [
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [8080],
+                            "type": "pod",
+                            "label": "p2"
+                        },
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [9090],
+                            "type": "pod",
+                            "label": "p9"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [6060],
+                            "type": "pod",
+                            "label": "p2"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [6060],
+                            "type": "pod",
+                            "label": "p9"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [60],
+                            "type": "pod",
+                            "label": "p2"
+                        }
+                    ]
+                }
+            },
+            "libraries": [
+                {
+                    "name": "lib5",
+                    "version": "lib5_ver1",
+                    "artifacts": [
+                        {"id": "art10"}
+                    ],
+                    "vulnerabilities": [
+                    ]
+                }
+            ],
+            "serviceDependencies": [
+                {"label": "p9"}
+            ]
+        },
+        {
+            "label": "p7",
+            "networkProperties": {
+                "service": {
+                    "name": "ps7",
+                    "protocol": "TCP",
+                    "port": 7070,
+                    "artifacts": [
+                        {"id": "art10"},
+                        {"id": "art11"}
+                    ]
+                },
+                "restrictions": {
+                    "enforcement_behavior": "default-deny",
+                    "rules": [
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [4040],
+                            "type": "pod",
+                            "label": "p4"
+                        },
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [5050],
+                            "type": "pod",
+                            "label": "p5"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [7070],
+                            "type": "pod",
+                            "label": "p4"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [7070],
+                            "type": "pod",
+                            "label": "p5"
+                        }
+                    ]
+                }
+            },
+            "libraries": [
+                {
+                    "name": "lib5",
+                    "version": "lib5_ver2",
+                    "artifacts": [
+                        {"id": "art10"}
+                    ],
+                    "vulnerabilities": [
+                        {
+                            "id": "vul5",
+                            "cvss3.x": 5.5,
+                            "description": "vul5_desc"
+                        }
+                    ]
+                }
+            ],
+            "serviceDependencies": [
+            ]
+        },
+        {
+            "label": "p8",
+            "networkProperties": {
+                "service": {
+                    "name": "ps8",
+                    "protocol": "TCP",
+                    "port": 8888,
+                    "artifacts": [
+                        {"id": "art12"}
+                    ]
+                },
+                "restrictions": {
+                    "enforcement_behavior": "default-deny",
+                    "rules": [
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [5050],
+                            "type": "pod",
+                            "label": "p5"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [8888],
+                            "type": "pod",
+                            "label": "p5"
+                        }
+                    ]
+                }
+            },
+            "libraries": [
+                {
+                    "name": "lib6",
+                    "version": "lib6_ver1",
+                    "artifacts": [
+                        {"id": "art13"}
+                    ],
+                    "vulnerabilities": [
+                    ]
+                }
+            ],
+            "serviceDependencies": [
+            ]
+        },
+        {
+            "label": "p9",
+            "networkProperties": {
+                "service": {
+                    "name": "ps9",
+                    "protocol": "TCP",
+                    "port": 9090,
+                    "artifacts": [
+                        {"id": "art4"}
+                    ]
+                },
+                "restrictions": {
+                    "enforcement_behavior": "default-deny",
+                    "rules": [
+                        {
+                            "direction": "Egress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [6060],
+                            "type": "pod",
+                            "label": "p6"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "allow",
+                            "proto": ["TCP"],
+                            "port": [9090],
+                            "type": "pod",
+                            "label": "p6"
+                        }
+                    ]
+                }
+            },
+            "libraries": [
+                {
+                    "name": "lib3",
+                    "version": "lib3_ver1",
+                    "artifacts": [
+                        {"id": "art6"}
+                    ],
+                    "vulnerabilities": [
+                        {
+                            "id": "vul3",
+                            "cvss3.x": 7.0,
+                            "description": "vul3_desc"
+                        }
+                    ]
+                },
+                {
+                    "name": "lib7",
+                    "version": "lib7_ver1",
+                    "artifacts": [
+                        {"id": "art10"}
+                    ],
+                    "vulnerabilities": [
+                        {
+                            "id": "vul6",
+                            "cvss3.x": 9.0,
+                            "description": "vul6_desc"
+                        },
+                        {
+                            "id": "vul7",
+                            "cvss3.x": 5.5,
+                            "description": "vul7_desc"
+                        }
+                    ]
+                }
+            ],
+            "serviceDependencies": [
+            ],
+            "imageTrustLevel": "external"
+        }
+    ] 
+}

@@ -1,0 +1,95 @@
+/******************************************************/
+/****         Predicates Declaration              *****/
+/******************************************************/
+
+primitive(vulExists(_host, _vulID, _program)).
+primitive(hacl(_src, _dst, _prot, _port)).
+primitive(attackerLocated(_host)).
+primitive(dependsOn(_h, _program, _library)).
+primitive(vulExists(_machine,_vulID,_program,_range,_consequence)).
+
+
+derived(execCode(_host, _user)).
+derived(netAccess(_machine,_protocol,_port)).
+derived(canAccessHost(_host)).
+derived(accessFile(_machine,_access,_filepath)).
+derived(accessMaliciousInput(_host, _principal, _program)).
+derived(principalCompromised(_victim)).
+derived(dos(_host)).
+derived(logInService(_host, _protocol, _port)).
+
+meta(attackGoal(_)).
+meta(advances(_, _)).interaction_rule(
+	(techniqueTargets(t1, Pod) :-
+		techniqueArtifact(t1, ArtId),
+		hasArtifact(Pod, ArtId),
+		vulExists(Pod, v1),
+		reachable(Pod, _, _)),
+	ruleDesc('t1',
+	0.0)).
+interaction_rule(
+	(compromised(Pod, codeExec) :-
+		techniqueTargets(t1, Pod)),
+	ruleDesc('Pod compromised: Code Execution',
+	0.0)).
+interaction_rule(
+	(techniqueTargets(t2, Pod) :-
+		techniqueArtifact(t2, ArtId),
+		hasArtifact(Pod, ArtId),
+		reachable(Pod, _, _),
+		privilege(Pod, root)),
+	ruleDesc('t2',
+	0.0)).
+interaction_rule(
+	(compromised(Pod, codeExec) :-
+		techniqueTargets(t2, Pod)),
+	ruleDesc('Pod compromised: Code Execution',
+	0.0)).
+interaction_rule(
+	(techniqueTargets(t3, Pod) :-
+		techniqueArtifact(t3, ArtId),
+		hasArtifact(Pod, ArtId),
+		reachable(Pod, _, _),
+		credentialAccess(admin)),
+	ruleDesc('t3',
+	0.0)).
+interaction_rule(
+	(compromised(Pod, codeExec) :-
+		techniqueTargets(t3, Pod)),
+	ruleDesc('Pod compromised: Code Execution',
+	0.0)).
+interaction_rule(
+	(techniqueTargets(t14, Pod) :-
+		techniqueArtifact(t14, ArtId),
+		hasArtifact(Pod, ArtId),
+		codeExec(Pod),
+		mounts(Pod, hostpath, _)),
+	ruleDesc('t14',
+	0.0)).
+interaction_rule(
+	(compromised(Pod, remoteAccess) :-
+		techniqueTargets(t14, Pod)),
+	ruleDesc('Pod compromised: Remote Access',
+	0.0)).
+interaction_rule(
+	(techniqueTargets(t15, Pod) :-
+		techniqueArtifact(t15, ArtId),
+		hasArtifact(Pod, ArtId),
+		fileAccess(Pod, read),
+		misconfiguration(Pod, hostPathMount)),
+	ruleDesc('t15',
+	0.0)).
+
+interaction_rule(
+	(techniqueTargets(t18, Pod) :-
+		techniqueArtifact(t18, ArtId),
+		hasArtifact(Pod, ArtId),
+		codeExec(Pod)
+		hasTrustLevel(Pod, untrusted)),
+	ruleDesc('t18',
+	0.0)).
+interaction_rule(
+	(compromised(Pod, dos) :-
+		techniqueTargets(t18, Pod)),
+	ruleDesc('Pod compromised: Denial of Service',
+	0.0)).
