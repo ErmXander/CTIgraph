@@ -21,14 +21,14 @@ the pod's image has a given trust level
 Below are the consequences that a technique could result in:
 - **compromised(pod, remoteAccess)** <br>
 - **compromised(pod, codeExec)** <br>
-- **compromised(pod, fileAccess, perm)** <br>
+- **compromisedFile(pod, fileAccess, file, perm)** <br>
 - **compromised(pod, dos)** <br>
 the attacker could cause Denial of Service to a given pod with an *Impact* technique or by causing dos to one of its dependencies.
 - **compromised(pod, persistence)** <br>
 the attacker could achieve persistence on a pod through a *Persistence* technique.
 - **compromised(pod, dataManipulation)** <br>
 the attacker could manipulate data stored.
-- **compromised(pod, privEscalation, level)** <br>
+- **compromisedPrivilege(pod, privEscalation, level)** <br>
 the attacker can obtain a certain privilege level through a *Privilege Escalation* technique.
 - **credentialAccess(account)** <br>
 the attacker can obtain the credentials for an account through a *Credential Access* technique.

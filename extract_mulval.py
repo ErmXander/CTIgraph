@@ -12,17 +12,32 @@ def extract_technique_inputs(technique_list):
 
     technique_facts = []
     technique_rules = []
+    goals = set()
     for t in technique_list:
+        # if the technique is not in the kb skip it
         if t["id"] not in [technique["id"] for technique in techniques]:
             continue
-        # Extracting preconditions
+
+        # table the derived technique rule
+        technique_rules.append(f"derived({t['id']}_attack_step(_pod)).")
+        technique_rules.append(f":- table {t['id']}_attack_step/1.")
+
+        rule = f"interaction_rule(\n\t({t['id']}_attack_step(Pod) :-"
         for artid, tids in a2t.items():
             if t["id"] in tids:
+                # extract technique artifacts
                 technique_facts.append(f"techniqueArtifact({t['id']}, {artid}).")
-        rule = f"interaction_rule(\n\t(techniqueTargets({t['id']}, Pod) :-\n\t\ttechniqueArtifact({t['id']}, ArtId),\n\t\thasArtifact(Pod, ArtId)"
         if "vulns" in t:
             for v in t["vulns"]:
-                rule += f",\n\t\tvulExists(Pod, {v})"
+                # extract techique exploited vulnerabilities
+                technique_facts.append(f"techniqueExploits({t['id']}, {v}).")
+            if t["vulns"]:
+                rule += f"\n\t\tpodExploitable(Pod, {t['id']})"  # add condition on artifacts+vulns if vulns present
+            else: 
+                rule += f"\n\t\tpodTargetable(Pod, {t['id']})"
+        else:
+            rule += f"\n\t\tpodTargetable(Pod, {t['id']})"  # else consider only artifacts
+        # extract the various preconditions
         for pre in t_pre[t["id"]]:
             if pre["type"] == "reachable":
                 port = "_" if "port" not in pre or pre["port"] == "*" else pre["port"]
@@ -32,7 +47,8 @@ def extract_technique_inputs(technique_list):
                 rule += f",\n\t\tcodeExec(Pod)"
             if pre["type"] == "fileAccess":
                 perm = "_" if "perm" not in pre or pre["perm"] == "*" else pre["perm"].lower()
-                rule += f",\n\t\tfileAccess(Pod, {perm})"
+                file = "_" if "file" not in pre or pre["file"] == "*" else f'\"{pre["file"].lower()}\"'
+                rule += f",\n\t\tfileAccess(Pod, {file}, {perm})"
             if pre["type"] == "privilege":
                 level = "_" if "level" not in pre or pre["level"] == "*" else pre["level"].lower()
                 rule += f",\n\t\tprivilege(Pod, {level})"
@@ -43,36 +59,47 @@ def extract_technique_inputs(technique_list):
                 rule += f",\n\t\tmisconfiguration(Pod, {pre['kind']})"
             if pre["type"] == "mounts":
                 kind = "_" if "kind" not in pre or pre["kind"] == "*" else pre["kind"].lower()
-                path = "_" if "path" not in pre or pre["path"] == "*" else pre["path"].lower()
+                path = "_" if "path" not in pre or pre["path"] == "*" else f"\"{pre['path'].lower()}\""
                 rule += f",\n\t\tmounts(Pod, {kind}, {path})"
             if pre["type"] == "imageTrustLevel":
-                rule += f"\n\t\thasTrustLevel(Pod, {pre['trustLevel']})"
-        rule += f"),\n\truleDesc('{t['id']}',\n\t0.0))."
+                rule += f",\n\t\thasTrustLevel(Pod, {pre['trustLevel']})"
+        rule += f"),\n\trule_desc('TECHNIQUE {t['id']}',\n\t0.0)).\n"
         technique_rules.append(rule)
+
         # Extracting postconditions
         rule = ""
-        for post in t_post[t["id"]]:
+        for post in t_post[t["id"]]:           
             if post["type"] == "remoteAccess":
-                rule = f"interaction_rule(\n\t(compromised(Pod, remoteAccess) :-\n\t\ttechniqueTargets({t['id']}, Pod)),\n\truleDesc('Pod compromised: Remote Access',\n\t0.0))."
+                goals.add(f"attackGoal(remoteAccess(_)).")
+                rule = f"interaction_rule(\n\t(remoteAccess(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Remote Access',\n\t0.0))."
             if post["type"] == "codeExec":
-                rule = f"interaction_rule(\n\t(compromised(Pod, codeExec) :-\n\t\ttechniqueTargets({t['id']}, Pod)),\n\truleDesc('Pod compromised: Code Execution',\n\t0.0))."
+                goals.add(f"attackGoal(codeExec(_)).")
+                rule = f"interaction_rule(\n\t(codeExec(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Code Execution',\n\t0.0))."
             if post["type"] == "fileAccess":
+                goals.add(f"attackGoal(fileAccess(_, _, _)).")
                 perm = "_" if "perm" not in post or post["perm"] == "*" else post["perm"].lower()
-                rule = f"interaction_rule(\n\t(compromised(Pod, fileAccess, {perm}) :-\n\t\ttechniqueTargets({t['id']}, Pod)),\n\truleDesc('Pod compromised: File Access',\n\t0.0))."
+                file = "_" if "file" not in post or post["file"] == "*" else f'\"{post["file"].lower()}\"'
+                ruleDesc = "COMPROMISED - fileAccess" if perm != "_" else f"COMPROMISED - fileAccess ({perm})"
+                rule = f"interaction_rule(\n\t(fileAccess(Pod, {file}, {perm}) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('{ruleDesc}',\n\t0.0))."
             if post["type"] == "dos":
-                rule = f"interaction_rule(\n\t(compromised(Pod, dos) :-\n\t\ttechniqueTargets({t['id']}, Pod)),\n\truleDesc('Pod compromised: Denial of Service',\n\t0.0))."
+                goals.add(f"attackGoal(dos(_)).")
+                rule = f"interaction_rule(\n\t(dos(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Denial of Service',\n\t0.0))."
             if post["type"] == "persistence":
-                rule = f"interaction_rule(\n\t(compromised(Pod, persistence) :-\n\t\ttechniqueTargets({t['id']}, Pod)),\n\truleDesc('Pod compromised: Persistence achieved',\n\t0.0))."
+                goals.add(f"attackGoal(persistence(_)).")
+                rule = f"interaction_rule(\n\t(persistence(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - achieved Persistence',\n\t0.0))."
             if post["type"] == "dataManipulation":
-                rule = f"interaction_rule(\n\t(compromised(Pod, dataManipulation) :-\n\t\ttechniqueTargets({t['id']}, Pod)),\n\truleDesc('Pod compromised: Data Manipulation',\n\t0.0))."
+                goals.add(f"attackGoal(dataManipulation(_)).")
+                rule = f"interaction_rule(\n\t(dataManipulation(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Data Manipulation',\n\t0.0))."
             if post["type"] == "privEscalation":
+                goals.add(f"attackGoal(privilege(_, _)).")
                 level = "_" if "level" not in post or post["level"] == "*" else post["level"].lower()
-                rule = f"interaction_rule(\n\t(compromised(Pod, privEscalation, {level}) :-\n\t\ttechniqueTargets({t['id']}, Pod)),\n\truleDesc('Pod compromised: Privilege Escalation',\n\t0.0))."
+                rule = f"interaction_rule(\n\t(privilege(Pod, {level}) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Privilege Esclation',\n\t0.0))."
             if post["type"] == "credentialAccess":
+                goals.add(f"attackGoal(credentialAccess(_)).")
                 account = "_" if "account" not in post or post["account"] == "*" else post["account"].lower()
-                rule = f"interaction_rule(\n\t(credentialAccess({account}) :-\n\t\ttechniqueTargets({t['id']}, Pod)),\n\truleDesc('Credentials compromised for {account}',\n\t0.0))."
+                rule = f"interaction_rule(\n\t(credentialAccess({account}) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Credential Access',\n\t0.0))."
         technique_rules.append(rule)
-    return technique_facts, technique_rules
+    return technique_facts, technique_rules, goals
 
 def extract_network_info(pods):
     '''
@@ -153,7 +180,7 @@ def extract_infrastructure_inputs(infrastructure_path):
                                 facts.append(f'hasArtifact({lib["name"].lower()}, {art["id"].replace(":","-").lower()}).')
                         if "vulnerabilities" in lib:
                             for vul in lib["vulnerabilities"]:
-                                facts.append(f'vulExists({lib["name"].lower()}, {lib["version"]}, {vul["id"].lower()})')
+                                facts.append(f'vulExists({lib["name"].lower()}, {lib["version"]}, {vul["id"].lower()}).')
                 if "serviceDependencies" in pod:
                     for dep in pod["serviceDependencies"]:
                         facts.append(f'dependsOn({pod["label"].lower()}, {dep["label"].lower()}).')
@@ -169,7 +196,7 @@ def extract_infrastructure_inputs(infrastructure_path):
                         facts.append(f'misconfiguration({pod["label"].lower()}, {m["type"].lower()}).')
                 if "mounts" in pod:
                     for m in pod["mounts"]:
-                        facts.append(f'mounts({pod["label"].lower()}, {m["type"].lower()}, {m["path"]}).')
+                        facts.append(f'mounts({pod["label"].lower()}, {m["type"].lower()}, \"{m["path"]}\").')
                 if "trustLevel" in pod:
                     facts.append(f'hasTrustLevel({pod["label"].lower(), pod["trustLevel"].lower()}).')
 
@@ -192,29 +219,29 @@ def main():
     parser.add_argument("-o", "--out", help="specify an output directory")
     args = parser.parse_args()
 
-    techniques = [{"id": "t1", "vulns":["v1"]}, {"id": "t2"}, {"id": "t3"}, {"id": "t14"}, {"id": "t15"}, {"id": "t18"}]
+    techniques = [{"id": "t1", "vulns":["vul1"]}, {"id": "t2"}, {"id": "t3"}, {"id": "t14"}, {"id": "t15"}, {"id": "t18"}, {"id": "t6"}]
     
     infrastructure_path = os.path.join(os.getcwd(), args.infrastructure_path)
     out_dir = os.path.join(os.getcwd(), args.out) if args.out else os.getcwd()
     out_facts_path = os.path.join(out_dir, "extracted_facts.P")
     out_rules_path = os.path.join(out_dir, "extracted_rules.P")
-    technique_facts, technique_rules = extract_technique_inputs(techniques)
 
     attackerLocation = args.location if args.location else "internet"
     infrastructure_facts = extract_infrastructure_inputs(infrastructure_path)
-    technique_facts, technique_rules = extract_technique_inputs(techniques)
+    technique_facts, technique_rules, attack_goals = extract_technique_inputs(techniques)
     
     os.makedirs(out_dir, exist_ok=True)
     if infrastructure_facts:
         with open(out_facts_path, "w") as outfile:
             outfile.write(f"attackerLocated({attackerLocation}).\n")
+            outfile.writelines([f"{goal}\n" for goal in attack_goals])
             outfile.writelines([f"{fact}\n" for fact in infrastructure_facts])
             outfile.writelines([f"{fact}\n" for fact in technique_facts])          
     else:
         print("No MulVAL inputs extracted from the infrastructure.")
     shutil.copyfile(os.path.join(os.path.dirname(__file__), "base_ruleset.P"), out_rules_path)
     with open(out_rules_path, "+a") as outfile:
-        outfile.writelines([f"{rule}\n" for rule in technique_rules]) 
+        outfile.writelines([f"{rule}\n\n" for rule in technique_rules]) 
 
 
 

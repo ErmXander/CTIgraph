@@ -1,58 +1,75 @@
 attackerLocated(internet).
+attackGoal(codeExec(_)).
+attackGoal(privilege(_, _)).
+attackGoal(dos(_)).
+attackGoal(remoteAccess(_)).
 hasLibrary(p1, lib1, lib1_ver1).
 hasArtifact(lib1, art3).
-vulExists(lib1, lib1_ver1, vul1)
+vulExists(lib1, lib1_ver1, vul1).
 hasLibrary(p1, lib2, lib2_ver1).
 hasArtifact(lib2, art4).
-vulExists(lib2, lib2_ver1, vul2)
+vulExists(lib2, lib2_ver1, vul2).
 dependsOn(p1, p3).
 dependsOn(p1, p4).
 dependsOn(p1, p5).
 exposesService(p1, ps1, tcp, 80).
+hasArtifact(ps1, art1).
+hasArtifact(ps1, art2).
 hasLibrary(p2, lib1, lib1_ver2).
 hasArtifact(lib1, art3).
-vulExists(lib1, lib1_ver2, vul1)
+vulExists(lib1, lib1_ver2, vul1).
 dependsOn(p2, p5).
 dependsOn(p2, p6).
 exposesService(p2, ps2, tcp, 8080).
+hasArtifact(ps2, art1).
 hasLibrary(p3, lib3, lib3_ver1).
 hasArtifact(lib3, art6).
-vulExists(lib3, lib3_ver1, vul3)
+vulExists(lib3, lib3_ver1, vul3).
 exposesService(p3, ps3, tcp, 3030).
+hasArtifact(ps3, art4).
+hasArtifact(ps3, art5).
 hasLibrary(p4, lib3, lib3_ver1).
 hasArtifact(lib3, art6).
-vulExists(lib3, lib3_ver1, vul3)
+vulExists(lib3, lib3_ver1, vul3).
 dependsOn(p4, p7).
 exposesService(p4, ps4, tcp, 4040).
+hasArtifact(ps4, art4).
 misconfiguration(p4, privileged).
 misconfiguration(p4, runasroot).
 hasLibrary(p5, lib4, lib4_ver1).
 hasArtifact(lib4, art9).
-vulExists(lib4, lib4_ver1, vul4)
+vulExists(lib4, lib4_ver1, vul4).
 dependsOn(p5, p7).
 dependsOn(p5, p8).
 exposesService(p5, ps5, tcp, 5050).
+hasArtifact(ps5, art7).
+hasArtifact(ps5, art8).
 misconfiguration(p5, hostpathmount).
-mounts(p5, hostpath, /some/path).
+mounts(p5, hostpath, "/some/path").
 hasLibrary(p6, lib5, lib5_ver1).
 hasArtifact(lib5, art10).
 dependsOn(p6, p9).
 exposesService(p6, ps6, tcp, 6060).
+hasArtifact(ps6, art5).
 hasLibrary(p7, lib5, lib5_ver2).
 hasArtifact(lib5, art10).
-vulExists(lib5, lib5_ver2, vul5)
+vulExists(lib5, lib5_ver2, vul5).
 exposesService(p7, ps7, tcp, 7070).
+hasArtifact(ps7, art10).
+hasArtifact(ps7, art11).
 hasLibrary(p8, lib6, lib6_ver1).
 hasArtifact(lib6, art13).
 exposesService(p8, ps8, tcp, 8888).
+hasArtifact(ps8, art12).
 hasLibrary(p9, lib3, lib3_ver1).
 hasArtifact(lib3, art6).
-vulExists(lib3, lib3_ver1, vul3)
+vulExists(lib3, lib3_ver1, vul3).
 hasLibrary(p9, lib7, lib7_ver1).
 hasArtifact(lib7, art10).
-vulExists(lib7, lib7_ver1, vul6)
-vulExists(lib7, lib7_ver1, vul7)
+vulExists(lib7, lib7_ver1, vul6).
+vulExists(lib7, lib7_ver1, vul7).
 exposesService(p9, ps9, tcp, 9090).
+hasArtifact(ps9, art4).
 netRule(p1, internet, _, _, ingress).
 netRule(p1, internet, _, _, egress).
 netRule(p2, internet, _, _, ingress).
@@ -84,5 +101,7 @@ netRule(p8, p5, tcp, 8888, ingress).
 netRule(p9, p6, tcp, 6060, egress).
 netRule(p9, p6, tcp, 9090, ingress).
 techniqueArtifact(t1, art1).
+techniqueExploits(t1, vul1).
 techniqueArtifact(t2, art1).
 techniqueArtifact(t3, art1).
+techniqueArtifact(t6, art2).

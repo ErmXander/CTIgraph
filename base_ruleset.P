@@ -13,20 +13,30 @@ primitive(mounts(_pod, _type, _path)).
 primitive(dependsOn(_pod1, _pod2)).
 primitive(hasTrustLevel(_pod, _trustLevel)).
 primitive(netRule(_pod1, _pod2, _proto, _port, _direction)).
-primitive(techniqueArtifact(_tID, _artID)).
 
+primitive(techniqueArtifact(_tID, _artID)).
+primitive(techniqueExploits(_tID, _vulID)).
+
+primitive(unachievable(_literal)).
 
 derived(hacl(_src, _dst, _prot, _port)).
 derived(vulExists(_pod, _vulID)).
-derived(hasArtifact(_pod, _artID)).
-derived(techniqueTargets(_tID, _pod)).
-derived(compromised(_pod, _type)).
-derived(compromised(_pod, _type, _level)).
+derived(podArtifact(_pod, _artID)).
 derived(reachable(_pod, _protocol, _port)).
+
+derived(podTargetable(_pod, _tID)).
+derived(podExploitable(_pod, _tID)).
+
+
+
+derived(dos(_pod)).
 derived(codeExec(_pod)).
-derived(credentialAccess(_account)).
 derived(fileAccess(_pod, _file, _perm)).
 derived(privilege(_pod, _level)).
+derived(credentialAccess(_acc)).
+derived(remoteAccess(_pod)).
+derived(persistence(_pod)).
+derived(dataManipulation(_pod)).
 
 meta(attackGoal(_)).
 meta(advances(_, _)).
@@ -39,15 +49,20 @@ meta(advances(_, _)).
 
 :- table hacl/4.
 :- table vulExists/2.
-:- table hasArtifact/2.
-:- table techniqueTargets/2.
-:- table compromised/2.
-:- table compromised/1.
-:- table reachable/1.
+:- table podArtifact/2.
+
+:- table reachable/3.
+:- table podTargetable/2.
+:- table podExploitable/2.
+
+:- table dos/1.
 :- table codeExec/1.
-:- table credentialAccess/1.
 :- table fileAccess/3.
 :- table privilege/2.
+:- table credentialAccess/1.
+:- table remoteAccess/1.
+:- table persistence/1.
+:- table dataManipulation/1.
 
 
 /******************************************************/
@@ -61,21 +76,21 @@ interaction_rule(
   (vulExists(Pod, VulID) :-
 	vulExists(Lib, LibVer, VulID),
 	hasLibrary(Pod, Lib, LibVer)),
-  rule_desc('',
+  rule_desc('pod vulnerable',
   0.0)).
 
 
 /******** Section artifact ********/
 
 interaction_rule(
-  (hasArtifact(Pod, ArtID) :-
+  (podArtifact(Pod, ArtID) :-
 	hasLibrary(Pod, Lib, LibVer),
     hasArtifact(Lib, ArtID)),
   rule_desc('',
   0.0)).
 
 interaction_rule(
-  (hasArtifact(Pod, ArtID) :-
+  (podArtifact(Pod, ArtID) :-
 	exposesService(Pod, ServName, Proto, Port),
     hasArtifact(ServName, ArtID)),
   rule_desc('',
@@ -86,7 +101,7 @@ interaction_rule(
 
 interaction_rule(
   (hacl(Psrc, Pdst, Protocol, Port) :-
-	netRule(PSrc, Pdst, Protocol, Port, egress),
+	netRule(Psrc, Pdst, Protocol, Port, egress),
 	netRule(Pdst, Psrc, Protocol, Port, ingress)),
   rule_desc('',
   0.0)).
@@ -105,46 +120,98 @@ interaction_rule(
 
 interaction_rule(
   (reachable(P, Protocol, Port) :-
-    attackerLocated(Zone),
+  attackerLocated(Zone),
 	hacl(Zone, P, Protocol, Port)),
-  rule_desc('',
+  rule_desc('directly reachable',
+  0.0)).
+
+interaction_rule(
+  (reachable(P, _, _) :-
+  attackerLocated(P)),
+  rule_desc('attacker in pod',
   0.0)).
 
 interaction_rule(
   (reachable(P2, Protocol, Port) :-
 	codeExec(P1),
-	advances(P1, P2),
-      hacl(P1, P2, Protocol, Port)),
+  hacl(P1, P2, Protocol, Port)),
+  rule_desc('pod reached via multi-hop',
+  0.0)).
+
+
+/******** Section technique applicability ********/
+
+interaction_rule(
+  (podExploitable(P, TID) :-
+  podArtifact(P, ArtID),
+  techniqueArtifact(TID, ArtID),
+  vulExists(P, VulID),
+  techniqueExploits(TID, VulID)),
+  rule_desc('compatible art+vuln',
+  0.0)).
+
+interaction_rule(
+  (podTargetable(P, TID) :-
+  podArtifact(P, ArtID),
+  techniqueArtifact(TID, ArtID)),
+  rule_desc('compatible artifact',
+  0.0)).
+
+
+/******** Section compromised ********/
+
+interaction_rule(
+  (dos(P) :-
+	dos(Dependency),
+  dependsOn(P, Dependency)),
+  rule_desc('DoS on pod dependency',
+  0.0)).
+
+interaction_rule(
+  (codeExec(P) :-
+	unachievable(P)),
+  rule_desc('',
+  0.0)).
+
+interaction_rule(
+  (fileAccess(P, F, Perm) :-
+	unachievable(P),
+  unachievable(F),
+  unachievable(Perm)),
+  rule_desc('',
+  0.0)).
+
+interaction_rule(
+  (privilege(P, L) :-
+	unachievable(P),
+  unachievable(L)),
+  rule_desc('',
+  0.0)).
+
+interaction_rule(
+  (credentialAccess(A) :-
+	unachievable(A)),
+  rule_desc('',
+  0.0)).
+
+interaction_rule(
+  (remoteAccess(P) :-
+	unachievable(P)),
+  rule_desc('',
+  0.0)).
+
+interaction_rule(
+  (persistence(P) :-
+	unachievable(P)),
+  rule_desc('',
+  0.0)).
+
+interaction_rule(
+  (dataManipulation(P) :-
+	unachievable(P)),
   rule_desc('',
   0.0)).
 
 
-/******** Section compromission ********/
+/******** Extracted rules and tabled predicates ********/
 
-interaction_rule(
-  (codeExec(Pod) :-
-	compromised(Pod, codeExec)),
-  rule_desc('',
-  0.0)).
-
-interaction_rule(
-  (fileAccess(Pod, File, Perm) :-
-	compromised(Pod, fileAccess, Perm)),
-  rule_desc('',
-  0.0)).
-
-interaction_rule(
-  (privilege(Pod, Level) :-
-	compromised(Pod, privEscalation, Level)),
-  rule_desc('',
-  0.0)).
-
-interaction_rule(
-  (compromised(Pod, dos) :-
-	compromised(Dependency, dos)
-    dependsOn(Pod, Dependency)),
-  rule_desc('Pod compromised: DoS on Pod dependency',
-  0.0)).
-
-
-/******** Extracted rules ********/
