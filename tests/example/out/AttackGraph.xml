@@ -270,7 +270,7 @@
 </vertex>
 <vertex>
 <id>4</id>
-<fact>RULE 19 (TECHNIQUE t1)</fact>
+<fact>RULE 19 (TECHNIQUE t1 - technique1)</fact>
 <metric>0</metric>
 <type>AND</type>
 </vertex>
@@ -408,7 +408,7 @@
 </vertex>
 <vertex>
 <id>27</id>
-<fact>RULE 19 (TECHNIQUE t1)</fact>
+<fact>RULE 19 (TECHNIQUE t1 - technique1)</fact>
 <metric>0</metric>
 <type>AND</type>
 </vertex>
@@ -528,7 +528,7 @@
 </vertex>
 <vertex>
 <id>47</id>
-<fact>RULE 30 (TECHNIQUE t6)</fact>
+<fact>RULE 30 (TECHNIQUE t6 - technique6)</fact>
 <metric>0</metric>
 <type>AND</type>
 </vertex>

@@ -1,0 +1,256 @@
+{
+    "type": "bundle",
+    "id": "bundle--9c79e1cc-7073-421e-ac63-e5ce8701d503",
+    "objects": [
+        {
+            "type": "threat-actor",
+            "spec_version": "2.1",
+            "id": "threat-actor--a82b902d-3600-4485-8a53-a432cef97a45",
+            "created": "2025-05-11T08:18:08.054065Z",
+            "modified": "2025-05-11T08:18:08.054065Z",
+            "name": "some threat actor",
+            "description": "very bad guys"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--c214e77e-bb8f-4b28-88e3-001a90b5642c",
+            "created": "2025-05-11T08:18:08.054508Z",
+            "modified": "2025-05-11T08:18:08.054508Z",
+            "name": "technique1",
+            "description": "definition for technique1",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "Execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "t1"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--d5c08fe5-66e5-4da2-a5cd-b76320e90a58",
+            "created": "2025-05-11T08:18:08.055902Z",
+            "modified": "2025-05-11T08:18:08.055902Z",
+            "name": "technique2",
+            "description": "definition for technique2",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "Execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "t2"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a99808ff-1f70-44be-9dd0-f029610f3da2",
+            "created": "2025-05-11T08:18:08.056434Z",
+            "modified": "2025-05-11T08:18:08.056434Z",
+            "name": "technique3",
+            "description": "definition for technique3",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "Execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "t3"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--6b889cf9-eab5-4f0b-a066-4515feadfb7f",
+            "created": "2025-05-11T08:18:08.056848Z",
+            "modified": "2025-05-11T08:18:08.056848Z",
+            "name": "technique14",
+            "description": "definition for technique14",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "Lateral Movement"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "t14"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--38f1cd31-bf79-4c95-8041-541d0d91d4f6",
+            "created": "2025-05-11T08:18:08.057258Z",
+            "modified": "2025-05-11T08:18:08.057258Z",
+            "name": "technique15",
+            "description": "definition for technique15",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "Collection"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "t15"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--dc124d91-e2ce-4d19-9e68-d95e92b5fdf9",
+            "created": "2025-05-11T08:18:08.057672Z",
+            "modified": "2025-05-11T08:18:08.057672Z",
+            "name": "technique18",
+            "description": "definition for technique18",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "Impact"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "t18"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--70e87e8c-794f-4269-be39-07f54fe9b5a1",
+            "created": "2025-05-11T08:18:08.058073Z",
+            "modified": "2025-05-11T08:18:08.058073Z",
+            "name": "technique6",
+            "description": "definition for technique6",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "Privilege Escalation"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "t6"
+                }
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--2d7c770f-af8f-485b-96c1-74edffb25cc8",
+            "created": "2025-05-11T08:18:08.055467Z",
+            "modified": "2025-05-11T08:18:08.055467Z",
+            "name": "vul1",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "vul1"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2a23998f-0803-493c-988d-58ce8ca14389",
+            "created": "2025-05-11T08:18:08.054994Z",
+            "modified": "2025-05-11T08:18:08.054994Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--a82b902d-3600-4485-8a53-a432cef97a45",
+            "target_ref": "attack-pattern--c214e77e-bb8f-4b28-88e3-001a90b5642c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1a6e39be-d6ac-4eaa-950c-80d6a91c5569",
+            "created": "2025-05-11T08:18:08.055629Z",
+            "modified": "2025-05-11T08:18:08.055629Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--c214e77e-bb8f-4b28-88e3-001a90b5642c",
+            "target_ref": "vulnerability--2d7c770f-af8f-485b-96c1-74edffb25cc8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a2e916c9-d29e-4d85-b8ed-35a7fd04d223",
+            "created": "2025-05-11T08:18:08.056056Z",
+            "modified": "2025-05-11T08:18:08.056056Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--a82b902d-3600-4485-8a53-a432cef97a45",
+            "target_ref": "attack-pattern--d5c08fe5-66e5-4da2-a5cd-b76320e90a58"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e9940e2a-0ebf-451a-a928-74ef0bc7bd95",
+            "created": "2025-05-11T08:18:08.056587Z",
+            "modified": "2025-05-11T08:18:08.056587Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--a82b902d-3600-4485-8a53-a432cef97a45",
+            "target_ref": "attack-pattern--a99808ff-1f70-44be-9dd0-f029610f3da2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--aa9b86a6-af9e-49ff-ad7b-cad4b792052e",
+            "created": "2025-05-11T08:18:08.056995Z",
+            "modified": "2025-05-11T08:18:08.056995Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--a82b902d-3600-4485-8a53-a432cef97a45",
+            "target_ref": "attack-pattern--6b889cf9-eab5-4f0b-a066-4515feadfb7f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--066f6b99-a09d-478c-8b56-62ce93e0e2a7",
+            "created": "2025-05-11T08:18:08.057405Z",
+            "modified": "2025-05-11T08:18:08.057405Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--a82b902d-3600-4485-8a53-a432cef97a45",
+            "target_ref": "attack-pattern--38f1cd31-bf79-4c95-8041-541d0d91d4f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7f0b6560-71f4-43a7-8737-a99ee76a8166",
+            "created": "2025-05-11T08:18:08.057816Z",
+            "modified": "2025-05-11T08:18:08.057816Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--a82b902d-3600-4485-8a53-a432cef97a45",
+            "target_ref": "attack-pattern--dc124d91-e2ce-4d19-9e68-d95e92b5fdf9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1c80def8-4eac-4067-b7c6-5cc02233dc99",
+            "created": "2025-05-11T08:18:08.058261Z",
+            "modified": "2025-05-11T08:18:08.058261Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--a82b902d-3600-4485-8a53-a432cef97a45",
+            "target_ref": "attack-pattern--70e87e8c-794f-4269-be39-07f54fe9b5a1"
+        }
+    ]
+}

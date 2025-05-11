@@ -223,7 +223,7 @@ interaction_rule(
 	(t1_attack_step(Pod) :-
 		podExploitable(Pod, t1),
 		reachable(Pod, _, _)),
-	rule_desc('TECHNIQUE t1',
+	rule_desc('TECHNIQUE t1 - technique1',
 	0.0)).
 
 
@@ -242,7 +242,7 @@ interaction_rule(
 		podTargetable(Pod, t2),
 		reachable(Pod, _, _),
 		privilege(Pod, root)),
-	rule_desc('TECHNIQUE t2',
+	rule_desc('TECHNIQUE t2 - technique2',
 	0.0)).
 
 
@@ -261,7 +261,7 @@ interaction_rule(
 		podTargetable(Pod, t3),
 		reachable(Pod, _, _),
 		credentialAccess(admin)),
-	rule_desc('TECHNIQUE t3',
+	rule_desc('TECHNIQUE t3 - technique3',
 	0.0)).
 
 
@@ -280,7 +280,7 @@ interaction_rule(
 		podTargetable(Pod, t14),
 		codeExec(Pod),
 		mounts(Pod, hostpath, _)),
-	rule_desc('TECHNIQUE t14',
+	rule_desc('TECHNIQUE t14 - technique14',
 	0.0)).
 
 
@@ -299,7 +299,7 @@ interaction_rule(
 		podTargetable(Pod, t15),
 		fileAccess(Pod, _, read),
 		misconfiguration(Pod, hostPathMount)),
-	rule_desc('TECHNIQUE t15',
+	rule_desc('TECHNIQUE t15 - technique15',
 	0.0)).
 
 
@@ -314,7 +314,7 @@ interaction_rule(
 		podTargetable(Pod, t18),
 		codeExec(Pod),
 		hasTrustLevel(Pod, untrusted)),
-	rule_desc('TECHNIQUE t18',
+	rule_desc('TECHNIQUE t18 - technique18',
 	0.0)).
 
 
@@ -332,7 +332,7 @@ interaction_rule(
 	(t6_attack_step(Pod) :-
 		podTargetable(Pod, t6),
 		codeExec(Pod)),
-	rule_desc('TECHNIQUE t6',
+	rule_desc('TECHNIQUE t6 - technique6',
 	0.0)).
 
 

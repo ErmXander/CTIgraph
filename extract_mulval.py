@@ -3,13 +3,86 @@ import traceback
 import os
 import argparse
 import shutil
+import stix2
+import subprocess
 
 from kb.artifacts import artifacts, artifacts_to_technique as a2t, artifacts_to_countermeasure as a2c
 from kb.techniques import techniques, technique_postconditions as t_post, technique_preconditions as t_pre
 
 
-def extract_technique_inputs(technique_list):
 
+def parse_cti(bundle_path):
+    '''
+    Parse a STIX2.x bundle looking for attack-pattern objects that represent a MITRE ATT&CK Technique and any 
+    vulnerability object with related to them.
+
+    args:
+        bundle_path: path to the STIX2.x bundle
+    returns:
+        list of parsed ATT&CK Techniques in the form:
+        [{'id': tid, 
+        'name': technique_name
+        'vulns': [cve_id1, cve_id2, ...]}, ...]
+    '''
+    techniques = []
+    try:
+        with open(bundle_path, "r") as f:
+            bundle = json.load(f)
+        bundle = stix2.parse(bundle)
+        attack_patterns = [o for o in bundle.objects if isinstance(o, stix2.AttackPattern)]
+        relationships = [o for o in bundle.objects if isinstance(o, stix2.Relationship)]
+        vulnerabilities = [o for o in bundle.objects if isinstance(o, stix2.Vulnerability)]
+        for ap in attack_patterns:
+            t = {}
+            references = ap["external_references"]
+            # find the External Reference linked to ATT&CK
+            for r in references:
+                if r["source_name"] == "mitre-attack":
+                    t["id"] = r["external_id"]
+                    break
+            # if no reference is to ATT&CK ignore the attack-pattern
+            if "id" not in t:
+                continue
+            t["name"] = ap["name"]
+            # find the vulnerabilities target by the attack-pattern
+            related_objs = [r["target_ref"] for r in relationships if r["source_ref"]==ap["id"]]
+            vulns = [v["name"] for v in vulnerabilities if v["id"] in related_objs]
+            if vulns:
+                t["vulns"] = vulns
+            techniques.append(t)   
+    except Exception as e:
+        print(f"Error during CTI parsing: {e}")
+        return []
+    
+    return techniques
+
+
+def extract_technique_inputs(technique_list):
+    '''
+    Extract MulVAL facts and rules from a a list of techniques with their exploited vulnerabilities.
+    A fact is extracted for each artifact of the technique (techniqueArtifact(tid, artid)) and each exploited
+    vulnerability (techniqueExploits(tid, vulid)).
+    A rule is created for each technique (tid_attack_step(Pod)) representing the execution of a specific
+    technqiue on a pod; the rule is tabled and initialized.
+    The rule is satisfied if the pod and technique have compatible artifacts (podTargetable(Pod, TID))
+    or in addition, if the technique targets one or more vulnerabilities, if the pod has one of the exploited
+    vulnerabilities (podExploitable(Pod, TID)); in addition other predicates are added to the rule based on the
+    technique preconditions.
+    For each of the technique postconditions a rule is created representing that the execution of a technique on
+    a pod causes a specific consequence.
+    Attack goals are extracted from the possible ways in which pods could be compromised given the techiques'
+    postconditions.
+
+    args:
+        technique_list: list of techniques in the form:
+        [{'id': tid, 
+        'name': technique_name
+        'vulns': [cve_id1, cve_id2, ...]}, ...]
+    returns:
+        technique_facts: MulVAL facts extracted from the techniques
+        technique_rules: MulVAL rules extracted from the techniques
+        goals: MulVAL facts representing the possible goals for the given set of techniques
+    '''
     technique_facts = []
     technique_rules = []
     goals = set()
@@ -63,7 +136,7 @@ def extract_technique_inputs(technique_list):
                 rule += f",\n\t\tmounts(Pod, {kind}, {path})"
             if pre["type"] == "imageTrustLevel":
                 rule += f",\n\t\thasTrustLevel(Pod, {pre['trustLevel']})"
-        rule += f"),\n\trule_desc('TECHNIQUE {t['id']}',\n\t0.0)).\n"
+        rule += f"),\n\trule_desc('TECHNIQUE {t['id']} - {t['name']}',\n\t0.0)).\n"
         technique_rules.append(rule)
 
         # Extracting postconditions
@@ -101,6 +174,7 @@ def extract_technique_inputs(technique_list):
         technique_rules.append(rule)
     return technique_facts, technique_rules, goals
 
+
 def extract_network_info(pods):
     '''
     Extracts facts about the network policies of the Kubernetes infrastructure.
@@ -115,7 +189,7 @@ def extract_network_info(pods):
     args:
         pods: a list containing objects representing the pods of the Kubernetes infrastructure
     returns:
-        netRules: a list containing MulVAL facts describing the allowed traffic between 
+        list containing MulVAL facts describing the allowed traffic between 
         the pods of the infrastructure
     '''
     netRules = []
@@ -160,7 +234,7 @@ def extract_infrastructure_inputs(infrastructure_path):
         infrastructure_path: path to the JSON file describing the Kubernetes infrastructure.
         following the corresponding data model
     returns:
-        facts: extracted MulVAL facts describing the Kubernetes infrastructure.
+        extracted MulVAL facts describing the Kubernetes infrastructure.
     '''
     facts = []
     try:
@@ -215,16 +289,19 @@ def extract_infrastructure_inputs(infrastructure_path):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("infrastructure_path", help="path to the JSON infrastructure representation")
+    parser.add_argument("cti_path", help="path to STIX2.x Bundle")
     parser.add_argument("-l", "--location", help="allows to specify the label of a pod in which the attacker is located. By default the attackerLocated(internet)")
     parser.add_argument("-o", "--out", help="specify an output directory")
+    parser.add_argument("-g", "--graph", action="store_true", help="generate attack graph from extracted inputs using MulVAL")
     args = parser.parse_args()
-
-    techniques = [{"id": "t1", "vulns":["vul1"]}, {"id": "t2"}, {"id": "t3"}, {"id": "t14"}, {"id": "t15"}, {"id": "t18"}, {"id": "t6"}]
     
     infrastructure_path = os.path.join(os.getcwd(), args.infrastructure_path)
+    cti_path = os.path.join(os.getcwd(), args.cti_path)
     out_dir = os.path.join(os.getcwd(), args.out) if args.out else os.getcwd()
     out_facts_path = os.path.join(out_dir, "extracted_facts.P")
     out_rules_path = os.path.join(out_dir, "extracted_rules.P")
+
+    techniques = parse_cti(cti_path)
 
     attackerLocation = args.location if args.location else "internet"
     infrastructure_facts = extract_infrastructure_inputs(infrastructure_path)
@@ -242,6 +319,10 @@ def main():
     shutil.copyfile(os.path.join(os.path.dirname(__file__), "base_ruleset.P"), out_rules_path)
     with open(out_rules_path, "+a") as outfile:
         outfile.writelines([f"{rule}\n\n" for rule in technique_rules]) 
+
+    if args.graph:
+        p = subprocess.Popen(["graph_gen.sh", "extracted_facts.P", "-r", "extracted_rules.P", "-v", "-p"], cwd=out_dir)
+        p.wait()
 
 
 

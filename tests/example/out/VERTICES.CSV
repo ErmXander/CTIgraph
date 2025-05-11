@@ -1,7 +1,7 @@
 1,"codeExec(p1)","OR",0
 2,"RULE 20 (COMPROMISED - Code Execution)","AND",0
 3,"t1_attack_step(p1)","OR",0
-4,"RULE 19 (TECHNIQUE t1)","AND",0
+4,"RULE 19 (TECHNIQUE t1 - technique1)","AND",0
 5,"reachable(p1,_,_)","OR",0
 6,"RULE 6 (directly reachable)","AND",0
 7,"hacl(internet,p1,_,_)","OR",0
@@ -24,7 +24,7 @@
 24,"codeExec(p2)","OR",0
 25,"RULE 20 (COMPROMISED - Code Execution)","AND",0
 26,"t1_attack_step(p2)","OR",0
-27,"RULE 19 (TECHNIQUE t1)","AND",0
+27,"RULE 19 (TECHNIQUE t1 - technique1)","AND",0
 28,"reachable(p2,_,_)","OR",0
 29,"RULE 6 (directly reachable)","AND",0
 30,"hacl(internet,p2,_,_)","OR",0
@@ -44,7 +44,7 @@
 44,"privilege(p1,root)","OR",0
 45,"RULE 31 (COMPROMISED - Privilege Esclation)","AND",0
 46,"t6_attack_step(p1)","OR",0
-47,"RULE 30 (TECHNIQUE t6)","AND",0
+47,"RULE 30 (TECHNIQUE t6 - technique6)","AND",0
 48,"podTargetable(p1,t6)","OR",0
 49,"RULE 10 (compatible artifact)","AND",0
 50,"techniqueArtifact(t6,art2)","LEAF",1

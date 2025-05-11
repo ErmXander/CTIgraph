@@ -2,7 +2,7 @@ digraph G {
 	1 [label="1:codeExec(p1):0",shape=diamond];
 	2 [label="2:RULE 20 (COMPROMISED - Code Execution):0",shape=ellipse];
 	3 [label="3:t1_attack_step(p1):0",shape=diamond];
-	4 [label="4:RULE 19 (TECHNIQUE t1):0",shape=ellipse];
+	4 [label="4:RULE 19 (TECHNIQUE t1 - technique1):0",shape=ellipse];
 	5 [label="5:reachable(p1,_,_):0",shape=diamond];
 	6 [label="6:RULE 6 (directly reachable):0",shape=ellipse];
 	7 [label="7:hacl(internet,p1,_,_):0",shape=diamond];
@@ -25,7 +25,7 @@ digraph G {
 	24 [label="24:codeExec(p2):0",shape=diamond];
 	25 [label="25:RULE 20 (COMPROMISED - Code Execution):0",shape=ellipse];
 	26 [label="26:t1_attack_step(p2):0",shape=diamond];
-	27 [label="27:RULE 19 (TECHNIQUE t1):0",shape=ellipse];
+	27 [label="27:RULE 19 (TECHNIQUE t1 - technique1):0",shape=ellipse];
 	28 [label="28:reachable(p2,_,_):0",shape=diamond];
 	29 [label="29:RULE 6 (directly reachable):0",shape=ellipse];
 	30 [label="30:hacl(internet,p2,_,_):0",shape=diamond];
@@ -45,7 +45,7 @@ digraph G {
 	44 [label="44:privilege(p1,root):0",shape=diamond];
 	45 [label="45:RULE 31 (COMPROMISED - Privilege Esclation):0",shape=ellipse];
 	46 [label="46:t6_attack_step(p1):0",shape=diamond];
-	47 [label="47:RULE 30 (TECHNIQUE t6):0",shape=ellipse];
+	47 [label="47:RULE 30 (TECHNIQUE t6 - technique6):0",shape=ellipse];
 	48 [label="48:podTargetable(p1,t6):0",shape=diamond];
 	49 [label="49:RULE 10 (compatible artifact):0",shape=ellipse];
 	50 [label="50:techniqueArtifact(t6,art2):1",shape=box];

@@ -1,28 +1,28 @@
-:-(dynamic(attackerLocated(_h6459))).
+:-(dynamic(attackerLocated(_h6436))).
 
-:-(dynamic(vulExists(_h6459,_h6460,_h6461))).
+:-(dynamic(vulExists(_h6436,_h6437,_h6438))).
 
-:-(dynamic(hasLibrary(_h6459,_h6460,_h6461))).
+:-(dynamic(hasLibrary(_h6436,_h6437,_h6438))).
 
-:-(dynamic(hasArtifact(_h6459,_h6460))).
+:-(dynamic(hasArtifact(_h6436,_h6437))).
 
-:-(dynamic(exposesService(_h6459,_h6460,_h6461,_h6462))).
+:-(dynamic(exposesService(_h6436,_h6437,_h6438,_h6439))).
 
-:-(dynamic(misconfiguration(_h6459,_h6460))).
+:-(dynamic(misconfiguration(_h6436,_h6437))).
 
-:-(dynamic(mounts(_h6459,_h6460,_h6461))).
+:-(dynamic(mounts(_h6436,_h6437,_h6438))).
 
-:-(dynamic(dependsOn(_h6459,_h6460))).
+:-(dynamic(dependsOn(_h6436,_h6437))).
 
-:-(dynamic(hasTrustLevel(_h6459,_h6460))).
+:-(dynamic(hasTrustLevel(_h6436,_h6437))).
 
-:-(dynamic(netRule(_h6459,_h6460,_h6461,_h6462,_h6463))).
+:-(dynamic(netRule(_h6436,_h6437,_h6438,_h6439,_h6440))).
 
-:-(dynamic(techniqueArtifact(_h6459,_h6460))).
+:-(dynamic(techniqueArtifact(_h6436,_h6437))).
 
-:-(dynamic(techniqueExploits(_h6459,_h6460))).
+:-(dynamic(techniqueExploits(_h6436,_h6437))).
 
-:-(dynamic(unachievable(_h6459))).
+:-(dynamic(unachievable(_h6436))).
 
-:-(dynamic(trace_step(_h6403,_h6404))).
+:-(dynamic(trace_step(_h6380,_h6381))).
 
