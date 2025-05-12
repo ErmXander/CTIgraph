@@ -6,9 +6,60 @@ import shutil
 import stix2
 import subprocess
 
+import networkx
+from networkx.drawing.nx_agraph import read_dot, write_dot
+
 from kb.artifacts import artifacts, artifacts_to_technique as a2t, artifacts_to_countermeasure as a2c
 from kb.techniques import techniques, technique_postconditions as t_post, technique_preconditions as t_pre
 
+
+
+
+def gen_graph(output_dir, prune=False):
+    """
+    Generate the attack graph from the extracted inputs and optionally prune it.
+    
+    args:
+        output_dir: directory containing the extracted MulVAL inputs and in which to store the AttackGraph
+        prune: whether to prune the graph or not. 
+            If pruning only the nodes representing technique executions, compromised pods or techniques preconditions
+            and consequences will be kept.
+    """
+    def rec_pruning(n, in_n, nodes_to_keep, edges):
+        for _, out_n in AG.out_edges(n):
+            if out_n not in nodes_to_keep:
+                rec_pruning(out_n, in_n, nodes_to_keep, edges)
+            else:
+                edges.append((in_n, out_n))
+
+
+    if not prune:
+        p = subprocess.Popen(["graph_gen.sh", "extracted_facts.P", "-r", "extracted_rules.P", "-v", "-p"], 
+                            cwd=output_dir, 
+                            stdout=subprocess.DEVNULL)
+        p.wait()
+    if prune:
+        keep_labels = ["TECHNIQUE", "COMPROMISED", "attack_step", "attackerLocated", "vulExists",
+                       "reachable", "codeExec", "fileAccess", "privilege", "credentialAccess",
+                       "misconfiguration", "mounts", "imageTrustLevel",
+                       "remoteAccess", "codeExec", "dos", "persistence"]
+        p = subprocess.Popen(["graph_gen.sh", "extracted_facts.P", "-r", "extracted_rules.P", "-v", "-p", "--nopdf"], 
+                            cwd=output_dir, 
+                            stdout=subprocess.DEVNULL)
+        p.wait()
+        ag_path = os.path.join(output_dir, "AttackGraph.dot")
+        AG = read_dot(ag_path)
+        nodes_to_keep = [n[0] for n in AG.nodes.data() if any(map(n[1]["label"].__contains__, keep_labels))]
+        pruned_edges = []
+        for n in nodes_to_keep:
+            rec_pruning(n, n, nodes_to_keep, pruned_edges)
+        AG.remove_nodes_from([n for n in AG.nodes if n not in nodes_to_keep])
+        AG.clear_edges()
+        AG.add_edges_from(pruned_edges)
+        write_dot(AG, ag_path)
+        p = subprocess.Popen(["dot", "-Tpdf", "AttackGraph.dot", "-o", "AttackGraph.pdf"],
+                       cwd=output_dir)
+        p.wait()
 
 
 def parse_cti(bundle_path):
@@ -287,12 +338,16 @@ def extract_infrastructure_inputs(infrastructure_path):
 
 
 def main():
-    parser = argparse.ArgumentParser()
+    desc = "Parse the JSON reprsentation on the Kubernetes infrastructure and" \
+        "a STIX2.X bundle containing one or more ATT&CK Techniques to generate MulVAL inputs.\n" \
+        "Optionally use those inputs to generate an Attack Graph."
+    parser = argparse.ArgumentParser(description="parse a json representa")
     parser.add_argument("infrastructure_path", help="path to the JSON infrastructure representation")
     parser.add_argument("cti_path", help="path to STIX2.x Bundle")
     parser.add_argument("-l", "--location", help="allows to specify the label of a pod in which the attacker is located. By default the attackerLocated(internet)")
     parser.add_argument("-o", "--out", help="specify an output directory")
     parser.add_argument("-g", "--graph", action="store_true", help="generate attack graph from extracted inputs using MulVAL")
+    parser.add_argument("-p", "--prune", action="store_true")
     args = parser.parse_args()
     
     infrastructure_path = os.path.join(os.getcwd(), args.infrastructure_path)
@@ -321,9 +376,9 @@ def main():
         outfile.writelines([f"{rule}\n\n" for rule in technique_rules]) 
 
     if args.graph:
-        p = subprocess.Popen(["graph_gen.sh", "extracted_facts.P", "-r", "extracted_rules.P", "-v", "-p"], cwd=out_dir)
-        p.wait()
-
+        gen_graph(out_dir,args.prune)
+    if not args.graph and args.prune:
+        parser.error("Cannot use \"-p\" \"--prune\" without \"-g\" \"--graph\"")
 
 
 if __name__ == "__main__":

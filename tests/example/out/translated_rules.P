@@ -1,64 +1,64 @@
-:-(mvTrc(vulExists(_h7126,_h7127,0)),','(vulExists(_h7132,_h7133,_h7127),','(hasLibrary(_h7126,_h7132,_h7133),assert_trace(because(0,rule_desc('pod vulnerable',0.0),vulExists(_h7126,_h7127),[hasLibrary(_h7126,_h7132,_h7133),vulExists(_h7132,_h7133,_h7127)]))))).
+:-(mvTrc(vulExists(_h7141,_h7142,0)),','(vulExists(_h7147,_h7148,_h7142),','(hasLibrary(_h7141,_h7147,_h7148),assert_trace(because(0,rule_desc('pod vulnerable',0.0),vulExists(_h7141,_h7142),[hasLibrary(_h7141,_h7147,_h7148),vulExists(_h7147,_h7148,_h7142)]))))).
 
-:-(mvTrc(podArtifact(_h7126,_h7127,1)),','(hasLibrary(_h7126,_h7133,_h7134),','(hasArtifact(_h7133,_h7127),assert_trace(because(1,rule_desc('',0.0),podArtifact(_h7126,_h7127),[hasArtifact(_h7133,_h7127),hasLibrary(_h7126,_h7133,_h7134)]))))).
+:-(mvTrc(podArtifact(_h7141,_h7142,1)),','(hasLibrary(_h7141,_h7148,_h7149),','(hasArtifact(_h7148,_h7142),assert_trace(because(1,rule_desc('',0.0),podArtifact(_h7141,_h7142),[hasArtifact(_h7148,_h7142),hasLibrary(_h7141,_h7148,_h7149)]))))).
 
-:-(mvTrc(podArtifact(_h7126,_h7127,2)),','(exposesService(_h7126,_h7133,_h7134,_h7135),','(hasArtifact(_h7133,_h7127),assert_trace(because(2,rule_desc('',0.0),podArtifact(_h7126,_h7127),[hasArtifact(_h7133,_h7127),exposesService(_h7126,_h7133,_h7134,_h7135)]))))).
+:-(mvTrc(podArtifact(_h7141,_h7142,2)),','(exposesService(_h7141,_h7148,_h7149,_h7150),','(hasArtifact(_h7148,_h7142),assert_trace(because(2,rule_desc('',0.0),podArtifact(_h7141,_h7142),[hasArtifact(_h7148,_h7142),exposesService(_h7141,_h7148,_h7149,_h7150)]))))).
 
-:-(mvTrc(hacl(_h7126,_h7127,_h7128,_h7129,3)),','(netRule(_h7126,_h7127,_h7128,_h7129,egress),','(netRule(_h7127,_h7126,_h7128,_h7129,ingress),assert_trace(because(3,rule_desc('',0.0),hacl(_h7126,_h7127,_h7128,_h7129),[netRule(_h7127,_h7126,_h7128,_h7129,ingress),netRule(_h7126,_h7127,_h7128,_h7129,egress)]))))).
+:-(mvTrc(hacl(_h7141,_h7142,_h7143,_h7144,3)),','(netRule(_h7141,_h7142,_h7143,_h7144,egress),','(netRule(_h7142,_h7141,_h7143,_h7144,ingress),assert_trace(because(3,rule_desc('',0.0),hacl(_h7141,_h7142,_h7143,_h7144),[netRule(_h7142,_h7141,_h7143,_h7144,ingress),netRule(_h7141,_h7142,_h7143,_h7144,egress)]))))).
 
-:-(mvTrc(hacl(_h7126,internet,_h7128,_h7129,4)),','(netRule(_h7126,internet,_h7128,_h7129,egress),assert_trace(because(4,rule_desc('',0.0),hacl(_h7126,internet,_h7128,_h7129),[netRule(_h7126,internet,_h7128,_h7129,egress)])))).
+:-(mvTrc(hacl(_h7141,internet,_h7143,_h7144,4)),','(netRule(_h7141,internet,_h7143,_h7144,egress),assert_trace(because(4,rule_desc('',0.0),hacl(_h7141,internet,_h7143,_h7144),[netRule(_h7141,internet,_h7143,_h7144,egress)])))).
 
-:-(mvTrc(hacl(internet,_h7127,_h7128,_h7129,5)),','(netRule(_h7127,internet,_h7128,_h7129,ingress),assert_trace(because(5,rule_desc('',0.0),hacl(internet,_h7127,_h7128,_h7129),[netRule(_h7127,internet,_h7128,_h7129,ingress)])))).
+:-(mvTrc(hacl(internet,_h7142,_h7143,_h7144,5)),','(netRule(_h7142,internet,_h7143,_h7144,ingress),assert_trace(because(5,rule_desc('',0.0),hacl(internet,_h7142,_h7143,_h7144),[netRule(_h7142,internet,_h7143,_h7144,ingress)])))).
 
-:-(mvTrc(reachable(_h7126,_h7127,_h7128,6)),','(attackerLocated(_h7133),','(mvTrc(hacl(_h7133,_h7126,_h7127,_h7128,_h7186)),assert_trace(because(6,rule_desc('directly reachable',0.0),reachable(_h7126,_h7127,_h7128),[hacl(_h7133,_h7126,_h7127,_h7128),attackerLocated(_h7133)]))))).
+:-(mvTrc(reachable(_h7141,_h7142,_h7143,6)),','(attackerLocated(_h7148),','(mvTrc(hacl(_h7148,_h7141,_h7142,_h7143,_h7201)),assert_trace(because(6,rule_desc('directly reachable',0.0),reachable(_h7141,_h7142,_h7143),[hacl(_h7148,_h7141,_h7142,_h7143),attackerLocated(_h7148)]))))).
 
-:-(mvTrc(reachable(_h7126,_h7127,_h7128,7)),','(attackerLocated(_h7126),assert_trace(because(7,rule_desc('attacker in pod',0.0),reachable(_h7126,_h7127,_h7128),[attackerLocated(_h7126)])))).
+:-(mvTrc(reachable(_h7141,_h7142,_h7143,7)),','(attackerLocated(_h7141),assert_trace(because(7,rule_desc('attacker in pod',0.0),reachable(_h7141,_h7142,_h7143),[attackerLocated(_h7141)])))).
 
-:-(mvTrc(reachable(_h7126,_h7127,_h7128,8)),','(mvTrc(codeExec(_h7133,_h7172)),','(mvTrc(hacl(_h7133,_h7126,_h7127,_h7128,_h7205)),assert_trace(because(8,rule_desc('pod reached via multi-hop',0.0),reachable(_h7126,_h7127,_h7128),[hacl(_h7133,_h7126,_h7127,_h7128),codeExec(_h7133)]))))).
+:-(mvTrc(reachable(_h7141,_h7142,_h7143,8)),','(mvTrc(codeExec(_h7148,_h7187)),','(mvTrc(hacl(_h7148,_h7141,_h7142,_h7143,_h7220)),assert_trace(because(8,rule_desc('pod reached via multi-hop',0.0),reachable(_h7141,_h7142,_h7143),[hacl(_h7148,_h7141,_h7142,_h7143),codeExec(_h7148)]))))).
 
-:-(mvTrc(podExploitable(_h7126,_h7127,9)),','(mvTrc(podArtifact(_h7126,_h7133,_h7182)),','(techniqueArtifact(_h7127,_h7133),','(mvTrc(vulExists(_h7126,_h7145,_h7216)),','(techniqueExploits(_h7127,_h7145),assert_trace(because(9,rule_desc('compatible art+vuln',0.0),podExploitable(_h7126,_h7127),[techniqueExploits(_h7127,_h7145),vulExists(_h7126,_h7145),techniqueArtifact(_h7127,_h7133),podArtifact(_h7126,_h7133)]))))))).
+:-(mvTrc(podExploitable(_h7141,_h7142,9)),','(mvTrc(podArtifact(_h7141,_h7148,_h7197)),','(techniqueArtifact(_h7142,_h7148),','(mvTrc(vulExists(_h7141,_h7160,_h7231)),','(techniqueExploits(_h7142,_h7160),assert_trace(because(9,rule_desc('compatible art+vuln',0.0),podExploitable(_h7141,_h7142),[techniqueExploits(_h7142,_h7160),vulExists(_h7141,_h7160),techniqueArtifact(_h7142,_h7148),podArtifact(_h7141,_h7148)]))))))).
 
-:-(mvTrc(podTargetable(_h7126,_h7127,10)),','(mvTrc(podArtifact(_h7126,_h7133,_h7170)),','(techniqueArtifact(_h7127,_h7133),assert_trace(because(10,rule_desc('compatible artifact',0.0),podTargetable(_h7126,_h7127),[techniqueArtifact(_h7127,_h7133),podArtifact(_h7126,_h7133)]))))).
+:-(mvTrc(podTargetable(_h7141,_h7142,10)),','(mvTrc(podArtifact(_h7141,_h7148,_h7185)),','(techniqueArtifact(_h7142,_h7148),assert_trace(because(10,rule_desc('compatible artifact',0.0),podTargetable(_h7141,_h7142),[techniqueArtifact(_h7142,_h7148),podArtifact(_h7141,_h7148)]))))).
 
-:-(mvTrc(dos(_h7126,11)),','(mvTrc(dos(_h7131,_h7168)),','(dependsOn(_h7126,_h7131),assert_trace(because(11,rule_desc('DoS on pod dependency',0.0),dos(_h7126),[dependsOn(_h7126,_h7131),dos(_h7131)]))))).
+:-(mvTrc(dos(_h7141,11)),','(mvTrc(dos(_h7146,_h7183)),','(dependsOn(_h7141,_h7146),assert_trace(because(11,rule_desc('DoS on pod dependency',0.0),dos(_h7141),[dependsOn(_h7141,_h7146),dos(_h7146)]))))).
 
-:-(mvTrc(codeExec(_h7126,12)),','(unachievable(_h7126),assert_trace(because(12,rule_desc('',0.0),codeExec(_h7126),[unachievable(_h7126)])))).
+:-(mvTrc(codeExec(_h7141,12)),','(unachievable(_h7141),assert_trace(because(12,rule_desc('',0.0),codeExec(_h7141),[unachievable(_h7141)])))).
 
-:-(mvTrc(fileAccess(_h7126,_h7127,_h7128,13)),','(unachievable(_h7126),','(unachievable(_h7127),','(unachievable(_h7128),assert_trace(because(13,rule_desc('',0.0),fileAccess(_h7126,_h7127,_h7128),[unachievable(_h7128),unachievable(_h7127),unachievable(_h7126)])))))).
+:-(mvTrc(fileAccess(_h7141,_h7142,_h7143,13)),','(unachievable(_h7141),','(unachievable(_h7142),','(unachievable(_h7143),assert_trace(because(13,rule_desc('',0.0),fileAccess(_h7141,_h7142,_h7143),[unachievable(_h7143),unachievable(_h7142),unachievable(_h7141)])))))).
 
-:-(mvTrc(privilege(_h7126,_h7127,14)),','(unachievable(_h7126),','(unachievable(_h7127),assert_trace(because(14,rule_desc('',0.0),privilege(_h7126,_h7127),[unachievable(_h7127),unachievable(_h7126)]))))).
+:-(mvTrc(privilege(_h7141,_h7142,14)),','(unachievable(_h7141),','(unachievable(_h7142),assert_trace(because(14,rule_desc('',0.0),privilege(_h7141,_h7142),[unachievable(_h7142),unachievable(_h7141)]))))).
 
-:-(mvTrc(credentialAccess(_h7126,15)),','(unachievable(_h7126),assert_trace(because(15,rule_desc('',0.0),credentialAccess(_h7126),[unachievable(_h7126)])))).
+:-(mvTrc(credentialAccess(_h7141,15)),','(unachievable(_h7141),assert_trace(because(15,rule_desc('',0.0),credentialAccess(_h7141),[unachievable(_h7141)])))).
 
-:-(mvTrc(remoteAccess(_h7126,16)),','(unachievable(_h7126),assert_trace(because(16,rule_desc('',0.0),remoteAccess(_h7126),[unachievable(_h7126)])))).
+:-(mvTrc(remoteAccess(_h7141,16)),','(unachievable(_h7141),assert_trace(because(16,rule_desc('',0.0),remoteAccess(_h7141),[unachievable(_h7141)])))).
 
-:-(mvTrc(persistence(_h7126,17)),','(unachievable(_h7126),assert_trace(because(17,rule_desc('',0.0),persistence(_h7126),[unachievable(_h7126)])))).
+:-(mvTrc(persistence(_h7141,17)),','(unachievable(_h7141),assert_trace(because(17,rule_desc('',0.0),persistence(_h7141),[unachievable(_h7141)])))).
 
-:-(mvTrc(dataManipulation(_h7126,18)),','(unachievable(_h7126),assert_trace(because(18,rule_desc('',0.0),dataManipulation(_h7126),[unachievable(_h7126)])))).
+:-(mvTrc(dataManipulation(_h7141,18)),','(unachievable(_h7141),assert_trace(because(18,rule_desc('',0.0),dataManipulation(_h7141),[unachievable(_h7141)])))).
 
-:-(mvTrc(t1_attack_step(_h7126,19)),','(mvTrc(podExploitable(_h7126,t1,_h7170)),','(mvTrc(reachable(_h7126,_h7135,_h7136,_h7208)),assert_trace(because(19,rule_desc('TECHNIQUE t1 - technique1',0.0),t1_attack_step(_h7126),[reachable(_h7126,_h7135,_h7136),podExploitable(_h7126,t1)]))))).
+:-(mvTrc(t1_attack_step(_h7141,19)),','(mvTrc(podExploitable(_h7141,t1,_h7185)),','(mvTrc(reachable(_h7141,_h7150,_h7151,_h7223)),assert_trace(because(19,rule_desc('TECHNIQUE t1 - technique1',0.0),t1_attack_step(_h7141),[reachable(_h7141,_h7150,_h7151),podExploitable(_h7141,t1)]))))).
 
-:-(mvTrc(codeExec(_h7126,20)),','(mvTrc(t1_attack_step(_h7126,_h7171)),assert_trace(because(20,rule_desc('COMPROMISED - Code Execution',0.0),codeExec(_h7126),[t1_attack_step(_h7126)])))).
+:-(mvTrc(codeExec(_h7141,20)),','(mvTrc(t1_attack_step(_h7141,_h7186)),assert_trace(because(20,rule_desc('COMPROMISED - Code Execution',0.0),codeExec(_h7141),[t1_attack_step(_h7141)])))).
 
-:-(mvTrc(t2_attack_step(_h7126,21)),','(mvTrc(podTargetable(_h7126,t2,_h7176)),','(mvTrc(reachable(_h7126,_h7138,_h7139,_h7205)),','(mvTrc(privilege(_h7126,root,_h7248)),assert_trace(because(21,rule_desc('TECHNIQUE t2 - technique2',0.0),t2_attack_step(_h7126),[privilege(_h7126,root),reachable(_h7126,_h7138,_h7139),podTargetable(_h7126,t2)])))))).
+:-(mvTrc(t2_attack_step(_h7141,21)),','(mvTrc(podTargetable(_h7141,t2,_h7191)),','(mvTrc(reachable(_h7141,_h7153,_h7154,_h7220)),','(mvTrc(privilege(_h7141,root,_h7263)),assert_trace(because(21,rule_desc('TECHNIQUE t2 - technique2',0.0),t2_attack_step(_h7141),[privilege(_h7141,root),reachable(_h7141,_h7153,_h7154),podTargetable(_h7141,t2)])))))).
 
-:-(mvTrc(codeExec(_h7126,22)),','(mvTrc(t2_attack_step(_h7126,_h7171)),assert_trace(because(22,rule_desc('COMPROMISED - Code Execution',0.0),codeExec(_h7126),[t2_attack_step(_h7126)])))).
+:-(mvTrc(codeExec(_h7141,22)),','(mvTrc(t2_attack_step(_h7141,_h7186)),assert_trace(because(22,rule_desc('COMPROMISED - Code Execution',0.0),codeExec(_h7141),[t2_attack_step(_h7141)])))).
 
-:-(mvTrc(t3_attack_step(_h7126,23)),','(mvTrc(podTargetable(_h7126,t3,_h7175)),','(mvTrc(reachable(_h7126,_h7138,_h7139,_h7204)),','(mvTrc(credentialAccess(admin,_h7247)),assert_trace(because(23,rule_desc('TECHNIQUE t3 - technique3',0.0),t3_attack_step(_h7126),[credentialAccess(admin),reachable(_h7126,_h7138,_h7139),podTargetable(_h7126,t3)])))))).
+:-(mvTrc(t3_attack_step(_h7141,23)),','(mvTrc(podTargetable(_h7141,t3,_h7190)),','(mvTrc(reachable(_h7141,_h7153,_h7154,_h7219)),','(mvTrc(credentialAccess(admin,_h7262)),assert_trace(because(23,rule_desc('TECHNIQUE t3 - technique3',0.0),t3_attack_step(_h7141),[credentialAccess(admin),reachable(_h7141,_h7153,_h7154),podTargetable(_h7141,t3)])))))).
 
-:-(mvTrc(codeExec(_h7126,24)),','(mvTrc(t3_attack_step(_h7126,_h7171)),assert_trace(because(24,rule_desc('COMPROMISED - Code Execution',0.0),codeExec(_h7126),[t3_attack_step(_h7126)])))).
+:-(mvTrc(codeExec(_h7141,24)),','(mvTrc(t3_attack_step(_h7141,_h7186)),assert_trace(because(24,rule_desc('COMPROMISED - Code Execution',0.0),codeExec(_h7141),[t3_attack_step(_h7141)])))).
 
-:-(mvTrc(t14_attack_step(_h7126,25)),','(mvTrc(podTargetable(_h7126,t14,_h7175)),','(mvTrc(codeExec(_h7126,_h7204)),','(mounts(_h7126,hostpath,_h7141),assert_trace(because(25,rule_desc('TECHNIQUE t14 - technique14',0.0),t14_attack_step(_h7126),[mounts(_h7126,hostpath,_h7141),codeExec(_h7126),podTargetable(_h7126,t14)])))))).
+:-(mvTrc(t14_attack_step(_h7141,25)),','(mvTrc(podTargetable(_h7141,t14,_h7190)),','(mvTrc(codeExec(_h7141,_h7219)),','(mounts(_h7141,hostpath,_h7156),assert_trace(because(25,rule_desc('TECHNIQUE t14 - technique14',0.0),t14_attack_step(_h7141),[mounts(_h7141,hostpath,_h7156),codeExec(_h7141),podTargetable(_h7141,t14)])))))).
 
-:-(mvTrc(remoteAccess(_h7126,26)),','(mvTrc(t14_attack_step(_h7126,_h7171)),assert_trace(because(26,rule_desc('COMPROMISED - Remote Access',0.0),remoteAccess(_h7126),[t14_attack_step(_h7126)])))).
+:-(mvTrc(remoteAccess(_h7141,26)),','(mvTrc(t14_attack_step(_h7141,_h7186)),assert_trace(because(26,rule_desc('COMPROMISED - Remote Access',0.0),remoteAccess(_h7141),[t14_attack_step(_h7141)])))).
 
-:-(mvTrc(t15_attack_step(_h7126,27)),','(mvTrc(podTargetable(_h7126,t15,_h7176)),','(mvTrc(fileAccess(_h7126,_h7138,read,_h7205)),','(misconfiguration(_h7126,hostPathMount),assert_trace(because(27,rule_desc('TECHNIQUE t15 - technique15',0.0),t15_attack_step(_h7126),[misconfiguration(_h7126,hostPathMount),fileAccess(_h7126,_h7138,read),podTargetable(_h7126,t15)])))))).
+:-(mvTrc(t15_attack_step(_h7141,27)),','(mvTrc(podTargetable(_h7141,t15,_h7191)),','(mvTrc(fileAccess(_h7141,_h7153,read,_h7220)),','(misconfiguration(_h7141,hostPathMount),assert_trace(because(27,rule_desc('TECHNIQUE t15 - technique15',0.0),t15_attack_step(_h7141),[misconfiguration(_h7141,hostPathMount),fileAccess(_h7141,_h7153,read),podTargetable(_h7141,t15)])))))).
 
-:-(mvTrc(t18_attack_step(_h7126,28)),','(mvTrc(podTargetable(_h7126,t18,_h7174)),','(mvTrc(codeExec(_h7126,_h7203)),','(hasTrustLevel(_h7126,untrusted),assert_trace(because(28,rule_desc('TECHNIQUE t18 - technique18',0.0),t18_attack_step(_h7126),[hasTrustLevel(_h7126,untrusted),codeExec(_h7126),podTargetable(_h7126,t18)])))))).
+:-(mvTrc(t18_attack_step(_h7141,28)),','(mvTrc(podTargetable(_h7141,t18,_h7189)),','(mvTrc(codeExec(_h7141,_h7218)),','(hasTrustLevel(_h7141,untrusted),assert_trace(because(28,rule_desc('TECHNIQUE t18 - technique18',0.0),t18_attack_step(_h7141),[hasTrustLevel(_h7141,untrusted),codeExec(_h7141),podTargetable(_h7141,t18)])))))).
 
-:-(mvTrc(dos(_h7126,29)),','(mvTrc(t18_attack_step(_h7126,_h7171)),assert_trace(because(29,rule_desc('COMPROMISED - Denial of Service',0.0),dos(_h7126),[t18_attack_step(_h7126)])))).
+:-(mvTrc(dos(_h7141,29)),','(mvTrc(t18_attack_step(_h7141,_h7186)),assert_trace(because(29,rule_desc('COMPROMISED - Denial of Service',0.0),dos(_h7141),[t18_attack_step(_h7141)])))).
 
-:-(mvTrc(t6_attack_step(_h7126,30)),','(mvTrc(podTargetable(_h7126,t6,_h7168)),','(mvTrc(codeExec(_h7126,_h7206)),assert_trace(because(30,rule_desc('TECHNIQUE t6 - technique6',0.0),t6_attack_step(_h7126),[codeExec(_h7126),podTargetable(_h7126,t6)]))))).
+:-(mvTrc(t6_attack_step(_h7141,30)),','(mvTrc(podTargetable(_h7141,t6,_h7183)),','(mvTrc(codeExec(_h7141,_h7221)),assert_trace(because(30,rule_desc('TECHNIQUE t6 - technique6',0.0),t6_attack_step(_h7141),[codeExec(_h7141),podTargetable(_h7141,t6)]))))).
 
-:-(mvTrc(privilege(_h7126,root,31)),','(mvTrc(t6_attack_step(_h7126,_h7172)),assert_trace(because(31,rule_desc('COMPROMISED - Privilege Esclation',0.0),privilege(_h7126,root),[t6_attack_step(_h7126)])))).
+:-(mvTrc(privilege(_h7141,root,31)),','(mvTrc(t6_attack_step(_h7141,_h7187)),assert_trace(because(31,rule_desc('COMPROMISED - Privilege Esclation',0.0),privilege(_h7141,root),[t6_attack_step(_h7141)])))).
 
