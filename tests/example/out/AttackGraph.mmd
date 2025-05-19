@@ -1,0 +1,21 @@
+flowchart TD
+	classDef attacker fill:#faa ,stroke:#f21,stroke-width:2px;
+	classDef technique fill:#fca ,stroke:#f81,stroke-width:2px;
+	classDef vulnerability fill:#fea ,stroke:#fd2,stroke-width:2px;
+	10:::attacker@{ shape: stadium, label: "ATTACKER<br>&ltinternet&gt" }
+	4:::technique@{ shape: rounded, label: "technique1<br>&ltt1&gt" }
+	47:::technique@{ shape: rounded, label: "technique6<br>&ltt6&gt" }
+	27:::technique@{ shape: rounded, label: "technique1<br>&ltt1&gt" }
+	14:::vulnerability@{ shape: circle, label: "vul1<br>&ltp1&gt" }
+	35:::vulnerability@{ shape: circle, label: "vul1<br>&ltp2&gt" }
+	2:::vulnerability@{ shape: stadium, label: "Code Execution<br>&ltp1&gt" }
+	45:::vulnerability@{ shape: stadium, label: "Privilege Esclation<br>&ltp1&gt" }
+	25:::vulnerability@{ shape: stadium, label: "Code Execution<br>&ltp2&gt" }
+10--->4
+4-->|compromise|2
+14-->4
+2--->47
+47-->|compromise|45
+10--->27
+27-->|compromise|25
+35-->27

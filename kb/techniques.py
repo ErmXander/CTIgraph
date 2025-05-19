@@ -104,10 +104,10 @@ technique_preconditions = {
     "t10": [{"type": "codeExec"},{"type": "privilege", "level": "root"}],
     "t13": [{"type": "codeExec"}],
     "t14": [{"type": "codeExec"}, {"type": "mounts", "kind": "hostPath", "path": "*"}],
-    "t15": [{"type": "fileAccess", "perm": "read"},{"type": "misconfiguration", "kind": "hostPathMount"}],
+    "t15": [{"type": "fileAccess", "perm": "read"}],
     "t16": [{"type": "reachable"}],
     "t17": [{"type": "fileAccess", "perm": "write"}],
-    "t18": [{"type": "codeExec"}, {"type": "imageTrustLevel", "trustLevel": "untrusted"}],
+    "t18": [{"type": "codeExec"}],
 }
 
 technique_postconditions = {
@@ -126,4 +126,9 @@ technique_postconditions = {
     "t15": [],
     "t17": [{"type": "dataManipulation"}],
     "t18": [{"type": "dos"}]
+}
+
+technique_mitigations = {
+    "t1": ["d1", "d7"],
+    "t2": ["d2"]
 }

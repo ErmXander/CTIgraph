@@ -10,12 +10,8 @@ the attacker has read or write access to files on the pod
 the attacker obtained a certain privilege level
 - **credentialAccess(account)** <br>
 the attacker obtained the credentials for an account
-- **misconfiguration(pod, kind)**
-the pod is misconfigured
 - **mounts(pod, kind, path)**
 the pod has a certain mounted volume
-- **imageTrustLevel(pod, trustLevel)**
-the pod's image has a given trust level
 
 **POSTCONDITIONS**<br>
 Below are the consequences that a technique could result in:

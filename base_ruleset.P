@@ -8,18 +8,18 @@ primitive(vulExists(_library, _libVer, _vulID)).
 primitive(hasLibrary(_pod, _library, _libVer)).
 primitive(hasArtifact(_component, _artID)).
 primitive(exposesService(_pod, _servName, _proto, _port)).
-primitive(misconfiguration(_pod, _type)).
 primitive(mounts(_pod, _type, _path)).
 primitive(dependsOn(_pod1, _pod2)).
 primitive(hasTrustLevel(_pod, _trustLevel)).
-primitive(netRule(_pod1, _pod2, _proto, _port, _direction)).
+primitive(netRule(_pod1, _pod2, _proto, _port, _direction, _action)).
+primitive(hasCountermeasure(_pod, _dID)).
 
 primitive(techniqueArtifact(_tID, _artID)).
 primitive(techniqueExploits(_tID, _vulID)).
 
 primitive(unachievable(_literal)).
 
-derived(hacl(_src, _dst, _prot, _port)).
+derived(allowedFlow(_src, _dst, _prot, _port)).
 derived(vulExists(_pod, _vulID)).
 derived(podArtifact(_pod, _artID)).
 derived(reachable(_pod, _protocol, _port)).
@@ -47,7 +47,7 @@ meta(advances(_, _)).
 /*   All derived predicates should be tabled          */
 /******************************************************/
 
-:- table hacl/4.
+:- table allowedFlow/4.
 :- table vulExists/2.
 :- table podArtifact/2.
 
@@ -100,28 +100,32 @@ interaction_rule(
 /******** Section network ********/
 
 interaction_rule(
-  (hacl(Psrc, Pdst, Protocol, Port) :-
-	netRule(Psrc, Pdst, Protocol, Port, egress),
-	netRule(Pdst, Psrc, Protocol, Port, ingress)),
+  (allowedFlow(Psrc, Pdst, Protocol, Port) :-
+	netRule(Psrc, Pdst, Protocol, Port, egress, allow),
+	netRule(Pdst, Psrc, Protocol, Port, ingress, allow),
+  not netRule(Psrc, Pdst, Protocol, Port, egress, deny),
+  not netRule(Pdst, Psrc, Protocol, Port, ingress, deny)),
   rule_desc('',
   0.0)).
 
 interaction_rule(
-  (hacl(P, internet, Protocol, Port) :-
-	netRule(P, internet, Protocol, Port, egress)),
+  (allowedFlow(P, internet, Protocol, Port) :-
+	netRule(P, internet, Protocol, Port, egress, allow),
+  not netRule(P, internet, Protocol, Port, egress, deny)),
   rule_desc('',
   0.0)).
 
 interaction_rule(
-  (hacl(internet, P, Protocol, Port) :-
-	netRule(P, internet, Protocol, Port, ingress)),
+  (allowedFlow(internet, P, Protocol, Port) :-
+	netRule(P, internet, Protocol, Port, ingress, allow),
+  not netRule(P, internet, Protocol, Port, ingress, deny)),
   rule_desc('',
   0.0)).
 
 interaction_rule(
   (reachable(P, Protocol, Port) :-
   attackerLocated(Zone),
-	hacl(Zone, P, Protocol, Port)),
+	allowedFlow(Zone, P, Protocol, Port)),
   rule_desc('directly reachable',
   0.0)).
 
@@ -134,7 +138,7 @@ interaction_rule(
 interaction_rule(
   (reachable(P2, Protocol, Port) :-
 	codeExec(P1),
-  hacl(P1, P2, Protocol, Port)),
+  allowedFlow(P1, P2, Protocol, Port)),
   rule_desc('pod reached via multi-hop',
   0.0)).
 

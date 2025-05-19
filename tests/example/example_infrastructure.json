@@ -14,7 +14,88 @@
                 },
                 "restrictions": {
                     "enforcement_behavior": "default-allow",
-                    "rules": []
+                    "rules": [
+                        {
+                            "direction": "Egress",
+                            "action": "deny",
+                            "proto": ["*"],
+                            "port": ["*"],
+                            "type": "pod",
+                            "label": "p2"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "deny",
+                            "proto": ["*"],
+                            "port": ["*"],
+                            "type": "pod",
+                            "label": "p2"
+                        },
+                        {
+                            "direction": "Egress",
+                            "action": "deny",
+                            "proto": ["*"],
+                            "port": ["*"],
+                            "type": "pod",
+                            "label": "p6"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "deny",
+                            "proto": ["*"],
+                            "port": ["*"],
+                            "type": "pod",
+                            "label": "p6"
+                        },
+                        {
+                            "direction": "Egress",
+                            "action": "deny",
+                            "proto": ["*"],
+                            "port": ["*"],
+                            "type": "pod",
+                            "label": "p7"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "deny",
+                            "proto": ["*"],
+                            "port": ["*"],
+                            "type": "pod",
+                            "label": "p7"
+                        },
+                        {
+                            "direction": "Egress",
+                            "action": "deny",
+                            "proto": ["*"],
+                            "port": ["*"],
+                            "type": "pod",
+                            "label": "p8"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "deny",
+                            "proto": ["*"],
+                            "port": ["*"],
+                            "type": "pod",
+                            "label": "p8"
+                        },
+                        {
+                            "direction": "Egress",
+                            "action": "deny",
+                            "proto": ["*"],
+                            "port": ["*"],
+                            "type": "pod",
+                            "label": "p9"
+                        },
+                        {
+                            "direction": "Ingress",
+                            "action": "deny",
+                            "proto": ["*"],
+                            "port": ["*"],
+                            "type": "pod",
+                            "label": "p9"
+                        }
+                    ]
                 }
             },
             "libraries": [
@@ -97,7 +178,8 @@
             "serviceDependencies": [
                 {"label": "p5"},
                 {"label": "p6"}
-            ]
+            ],
+            "countermeasures": []
         },
         {
             "label": "p3",
@@ -219,8 +301,7 @@
             ],
             "serviceDependencies": [
                 {"label": "p7"}
-            ],
-            "misconfigurations": [{"type": "privileged"}, {"type": "runAsRoot"}]
+            ]
         },
         {
             "label": "p5",
@@ -324,7 +405,6 @@
                 {"label": "p7"},
                 {"label": "p8"}
             ],
-            "misconfigurations": [{"type": "hostPathMount"}],
             "mounts": [{"type": "hostPath", "path": "/some/path"}]
         },
         {
@@ -584,8 +664,7 @@
                 }
             ],
             "serviceDependencies": [
-            ],
-            "imageTrustLevel": "external"
+            ]
         }
     ] 
 }
