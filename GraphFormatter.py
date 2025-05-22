@@ -66,7 +66,7 @@ _mmd_vulnClass = "\tclassDef vulnerability fill:#fea ,stroke:#fd2,stroke-width:2
 #----------
 
 
-class Formatter:
+class AGFormatter:
     """
     Allows to translate the Attack Graph to different formats
 
@@ -80,8 +80,11 @@ class Formatter:
         self.out_dir = out_dir
         if AttackGraph:
             self.AG = AttackGraph
-        else:
+        elif dot_path is not None:
             self.AG = nx_agraph.read_dot(dot_path)
+        else:
+            raise Exception("Cannot initialize the AttackGraph Formatter:\n" \
+            "No AttackGraph was provided")
 
     
     def to_flow(self):

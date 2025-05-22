@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "techniques": [
+    {
+      "id": "d1",
+      "name": "Countermeasure 1"
+    },
+    {
+      "id": "d2",
+      "name": "Countermeasure 2"
+    },
+    {
+      "id": "d3",
+      "name": "Countermeasure 3"
+    },
+    {
+      "id": "d4",
+      "name": "Countermeasure 4"
+    },
+    {
+      "id": "d5",
+      "name": "Countermeasure 5"
+    },
+    {
+      "id": "d6",
+      "name": "Countermeasure 6"
+    },
+    {
+      "id": "d7",
+      "name": "Countermeasure 7"
+    }
+  ]
+}

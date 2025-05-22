@@ -1,0 +1,144 @@
+{
+  "version": "1.0.0",
+  "techniques": [
+      {
+        "id": "t1",
+        "name": "technique1",
+        "definition": "definition for technique1",
+        "tactic": "Execution",
+        "countermeasures": [
+          "d1",
+          "d7"
+        ],
+        "preconditions": [{"type": "reachable"}],
+        "postconditions": [{"type": "codeExec"}]
+    },
+    {
+        "id": "t2",
+        "name": "technique2",
+        "definition": "definition for technique2",
+        "tactic": "Execution",
+        "countermeasures": [
+          "d2"
+        ],
+        "preconditions": [{"type": "reachable"},{"type": "privilege", "level": "root"}],
+        "postconditions": [{"type": "codeExec"}]
+    },
+    {
+        "id": "t3",
+        "name": "technique3",
+        "definition": "definition for technique3",
+        "tactic": "Execution",
+        "countermeasures": [],
+        "preconditions": [{"type": "reachable"},{"type": "credentialAccess", "account": "admin"}],
+        "postconditions": [{"type": "codeExec"}]
+    },
+    {
+        "id": "t4",
+        "name": "technique4",
+        "definition": "definition for technique4",
+        "tactic": "Persistence",
+        "countermeasures": [],
+        "preconditions": [{"type": "codeExec"},{"type": "privilege", "level": "root"}],
+        "postconditions": [{"type": "persistence"}]
+    },
+    {
+        "id": "t5",
+        "name": "technique5",
+        "definition": "definition for technique5",
+        "tactic": "Persistence",
+        "countermeasures": [],
+        "preconditions": [{"type": "fileAccess", "perm": "write"}],
+        "postconditions": [{"type": "persistence"}]
+    },
+    {
+        "id": "t6",
+        "name": "technique6",
+        "definition": "definition for technique6",
+        "tactic": "Privilege Escalation",
+        "countermeasures": ["d3", "d5"],
+        "preconditions": [{"type": "codeExec"}],
+        "postconditions": [{"type": "privEscalation", "level": "root"}]
+    },
+    {
+        "id": "t7",
+        "name": "technique7",
+        "definition": "definition for technique7",
+        "tactic": "Privilege Escalation",
+        "countermeasures": [],
+        "preconditions": [{"type": "reachable"},{"type": "credentialAccess", "account": "admin"}],
+        "postconditions": [{"type": "privEscalation", "level": "root"}]
+    }, 
+    {
+        "id": "t8",
+        "name": "technique8",
+        "definition": "definition for technique8",
+        "tactic": "Privilege Escalation",
+        "countermeasures": [],
+        "preconditions": [{"type": "fileAccess", "perm": "write"}],
+        "postconditions": [{"type": "privEscalation", "level": "root"}]
+    },
+    {
+        "id": "t9",
+        "name": "technique9",
+        "definition": "definition for technique9",
+        "tactic": "Credential Access",
+        "countermeasures": [],
+        "preconditions": [{"type": "fileAccess", "perm": "read"}],
+        "postconditions": [{"type": "credentialAccess", "account": "admin"}]
+    },
+    {
+        "id": "t10",
+        "name": "technique10",
+        "definition": "definition for technique10",
+        "tactic": "Credential Access",
+        "countermeasures": [],
+        "preconditions": [{"type": "codeExec"},{"type": "privilege", "level": "root"}],
+        "postconditions": [{"type": "credentialAccess", "account": "user"}]
+    },
+    {
+        "id": "t13",
+        "name": "technique13",
+        "definition": "definition for technique13",
+        "tactic": "Lateral Movement",
+        "countermeasures": [],
+        "preconditions": [{"type": "codeExec"}],
+        "postconditions": [{"type": "remoteAccess"}]
+    }, 
+    {
+        "id": "t14",
+        "name": "technique14",
+        "definition": "definition for technique14",
+        "tactic": "Lateral Movement",
+        "countermeasures": [],
+        "preconditions": [{"type": "codeExec"}, {"type": "mounts", "kind": "hostPath", "path": "*"}],
+        "postconditions": [{"type": "remoteAccess"}]
+    },
+    {
+        "id": "t15",
+        "name": "technique15",
+        "definition": "definition for technique15",
+        "tactic": "Collection",
+        "countermeasures": [],
+        "preconditions": [{"type": "fileAccess", "perm": "read"}]
+    },
+    {
+        "id": "t17",
+        "name": "technique17",
+        "definition": "definition for technique17",
+        "tactic": "Impact",
+        "countermeasures": [],
+        "preconditions": [{"type": "fileAccess", "perm": "write"}],
+        "postconditions": [{"type": "dataManipulation"}]
+    }, 
+        {
+        "id": "t18",
+        "name": "technique18",
+        "definition": "definition for technique18",
+        "tactic": "Impact",
+        "countermeasures": [],
+        "preconditions": [{"type": "codeExec"}],
+        "postconditions": [{"type": "dos"}]
+    }
+  ]
+}

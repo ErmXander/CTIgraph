@@ -1,8 +1,8 @@
 attackerLocated(internet).
-attackGoal(privilege(_, _)).
-attackGoal(remoteAccess(_)).
 attackGoal(codeExec(_)).
+attackGoal(remoteAccess(_)).
 attackGoal(dos(_)).
+attackGoal(privilege(_, _)).
 hasLibrary(p1, lib1, lib1_ver1).
 hasArtifact(lib1, art3).
 vulExists(lib1, lib1_ver1, vul1).
@@ -27,7 +27,7 @@ netRule(p1, p8, _, _, ingress, deny).
 netRule(p1, p9, _, _, egress, deny).
 netRule(p1, p9, _, _, ingress, deny).
 hasLibrary(p2, lib1, lib1_ver2).
-hasArtifact(lib1, art3).
+hasArtifact(lib1, art5).
 vulExists(lib1, lib1_ver2, vul1).
 dependsOn(p2, p5).
 dependsOn(p2, p6).

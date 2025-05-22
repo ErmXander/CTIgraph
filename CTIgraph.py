@@ -3,15 +3,10 @@ import shutil
 import subprocess
 import json
 import stix2
-
-from networkx import simple_cycles
 from networkx.drawing import nx_agraph
 
-from GraphFormatter import Formatter
-
-from kb.artifacts import artifacts, artifacts_to_technique as a2t, artifacts_to_countermeasure as a2c
-from kb.techniques import techniques, technique_postconditions as t_post, technique_preconditions as t_pre, technique_mitigations as t2c
-
+from GraphFormatter import AGFormatter
+from helper import decycle, prune_graph, get_attack_info, get_artifacts_info
 
 
 class MulValInputExtractor:
@@ -19,8 +14,7 @@ class MulValInputExtractor:
     Generates MulVAL facts and rules from JSON representation of the Kubernetes infrastructure
     and ATT&CK Techniques extracted from the CTI report
     """
-
-    def __init__(self, infrastructure_path, cti_path, output_dir=None, location=None):
+    def __init__(self, infrastructure_path, cti_path, output_dir=None, location=None, kb_path=None):
         """
         Initializes MulValInputExtractor.
 
@@ -35,6 +29,11 @@ class MulValInputExtractor:
         cwd = os.getcwd()
         self.output_dir = cwd if output_dir is None else os.path.join(cwd, output_dir)
         self.location = "internet" if location is None else location.lower()
+        kb_path = os.path.join(os.getcwd(), "kb") if kb_path is None else kb_path
+        self.techniques, self.t2c, self.t_pre, self.t_post = get_attack_info(kb_path)
+        self.a2t, _ = get_artifacts_info(kb_path)
+        if self.techniques is None or self.a2t is None:
+            raise Exception("Unable to initialize MulVAL Input Extractor:\nCould not read information from Knowledge Base")
 
 
     def _parse_cti(self):
@@ -48,7 +47,6 @@ class MulValInputExtractor:
             'name': technique_name
             'vulns': [cve_id1, cve_id2, ...]}, ...]
         '''
-
         techniques = []
         try:
             with open(self.cti_path, "r") as f:
@@ -105,14 +103,13 @@ class MulValInputExtractor:
             technique_rules: MulVAL rules extracted from the techniques
             goals: MulVAL facts representing the possible goals for the given set of techniques
         '''
-
         technique_facts = []
         technique_rules = []
         goals = set()
         technique_list = self._parse_cti()
         for t in technique_list:
             # if the technique is not in the kb skip it
-            if t["id"] not in [technique["id"] for technique in techniques]:
+            if t["id"] not in [technique["id"] for technique in self.techniques]:
                 continue
 
             # table the derived technique rule
@@ -120,7 +117,7 @@ class MulValInputExtractor:
             technique_rules.append(f":- table {t['id']}_attack_step/1.")
 
             rule = f"interaction_rule(\n\t({t['id']}_attack_step(Pod) :-"
-            for artid, tids in a2t.items():
+            for artid, tids in self.a2t.items():
                 if t["id"] in tids:
                     # extract technique artifacts
                     technique_facts.append(f"techniqueArtifact({t['id']}, {artid.replace(':','-').lower()}).")
@@ -135,67 +132,71 @@ class MulValInputExtractor:
             else:
                 rule += f"\n\t\tpodTargetable(Pod, {t['id']})"  # else consider only artifacts
             # require that the pod doesn't employ countermeasures against the technique
-            if t["id"] in t2c:
-                for dID in t2c[t["id"]]:
+            if t["id"] in self.t2c:
+                for dID in self.t2c[t["id"]]:
                     rule += f",\n\t\tnot hasCountermeasure(Pod, {dID.replace(':','-').lower()})"
             # extract the various preconditions
-            for pre in t_pre[t["id"]]:
-                if pre["type"] == "reachable":
-                    port = "_" if "port" not in pre or pre["port"] == "*" else pre["port"]
-                    proto = "_" if "proto" not in pre or pre["proto"] == "*" else pre["proto"].lower()
-                    rule += f",\n\t\treachable(Pod, {proto}, {port})"
-                if pre["type"] == "codeExec":
-                    rule += f",\n\t\tcodeExec(Pod)"
-                if pre["type"] == "fileAccess":
-                    perm = "_" if "perm" not in pre or pre["perm"] == "*" else pre["perm"].lower()
-                    file = "_" if "file" not in pre or pre["file"] == "*" else f'{pre["file"].lower()}'
-                    rule += f",\n\t\tfileAccess(Pod, {file}, {perm})"
-                if pre["type"] == "privilege":
-                    level = "_" if "level" not in pre or pre["level"] == "*" else pre["level"].lower()
-                    rule += f",\n\t\tprivilege(Pod, {level})"
-                if pre["type"] == "credentialAccess":
-                    account = "_" if "account" not in pre or pre["account"] == "*" else pre["account"].lower()
-                    rule += f",\n\t\tcredentialAccess({account})"
-                if pre["type"] == "mounts":
-                    kind = "_" if "kind" not in pre or pre["kind"] == "*" else pre["kind"].lower()
-                    path = "_" if "path" not in pre or pre["path"] == "*" else f"{pre['path'].replace('/','-')}"
-                    rule += f",\n\t\tmounts(Pod, {kind}, {path})"
+            if t["id"] in self.t_pre:
+                for pre in self.t_pre[t["id"]]:
+                    if pre["type"] == "reachable":
+                        port = "_" if "port" not in pre or pre["port"] == "*" else pre["port"]
+                        proto = "_" if "proto" not in pre or pre["proto"] == "*" else pre["proto"].lower()
+                        rule += f",\n\t\treachable(Pod, {proto}, {port})"
+                    if pre["type"] == "codeExec":
+                        rule += f",\n\t\tcodeExec(Pod)"
+                    if pre["type"] == "fileAccess":
+                        perm = "_" if "perm" not in pre or pre["perm"] == "*" else pre["perm"].lower()
+                        file = "_" if "file" not in pre or pre["file"] == "*" else f'{pre["file"].lower()}'
+                        rule += f",\n\t\tfileAccess(Pod, {file}, {perm})"
+                    if pre["type"] == "privilege":
+                        level = "_" if "level" not in pre or pre["level"] == "*" else pre["level"].lower()
+                        rule += f",\n\t\tprivilege(Pod, {level})"
+                    if pre["type"] == "credentialAccess":
+                        account = "_" if "account" not in pre or pre["account"] == "*" else pre["account"].lower()
+                        rule += f",\n\t\tcredentialAccess({account})"
+                    if pre["type"] == "mounts":
+                        kind = "_" if "kind" not in pre or pre["kind"] == "*" else pre["kind"].lower()
+                        path = "_" if "path" not in pre or pre["path"] == "*" else f"{pre['path'].replace('/','-')}"
+                        rule += f",\n\t\tmounts(Pod, {kind}, {path})"
+            else:
+                rule += f",\n\t\tunachievable({t['id']})"
             rule += f"),\n\trule_desc('TECHNIQUE {t['id']} - {t['name']}',\n\t0.0)).\n"
             technique_rules.append(rule)
 
             # Extracting postconditions
             # add each encountered compromission to 
             rule = ""
-            for post in t_post[t["id"]]:           
-                if post["type"] == "remoteAccess":
-                    goals.add(f"attackGoal(remoteAccess(_)).")
-                    rule = f"interaction_rule(\n\t(remoteAccess(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Remote Access',\n\t0.0))."
-                if post["type"] == "codeExec":
-                    goals.add(f"attackGoal(codeExec(_)).")
-                    rule = f"interaction_rule(\n\t(codeExec(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Code Execution',\n\t0.0))."
-                if post["type"] == "fileAccess":
-                    goals.add(f"attackGoal(fileAccess(_, _, _)).")
-                    perm = "_" if "perm" not in post or post["perm"] == "*" else post["perm"].lower()
-                    file = "_" if "file" not in post or post["file"] == "*" else f'{post["file"].replace("/","-")}'
-                    ruleDesc = "COMPROMISED - fileAccess" if perm != "_" else f"COMPROMISED - fileAccess ({perm})"
-                    rule = f"interaction_rule(\n\t(fileAccess(Pod, {file}, {perm}) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('{ruleDesc}',\n\t0.0))."
-                if post["type"] == "dos":
-                    goals.add(f"attackGoal(dos(_)).")
-                    rule = f"interaction_rule(\n\t(dos(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Denial of Service',\n\t0.0))."
-                if post["type"] == "persistence":
-                    goals.add(f"attackGoal(persistence(_)).")
-                    rule = f"interaction_rule(\n\t(persistence(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - achieved Persistence',\n\t0.0))."
-                if post["type"] == "dataManipulation":
-                    goals.add(f"attackGoal(dataManipulation(_)).")
-                    rule = f"interaction_rule(\n\t(dataManipulation(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Data Manipulation',\n\t0.0))."
-                if post["type"] == "privEscalation":
-                    goals.add(f"attackGoal(privilege(_, _)).")
-                    level = "_" if "level" not in post or post["level"] == "*" else post["level"].lower()
-                    rule = f"interaction_rule(\n\t(privilege(Pod, {level}) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Privilege Esclation',\n\t0.0))."
-                if post["type"] == "credentialAccess":
-                    goals.add(f"attackGoal(credentialAccess(_)).")
-                    account = "_" if "account" not in post or post["account"] == "*" else post["account"].lower()
-                    rule = f"interaction_rule(\n\t(credentialAccess({account}) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Credential Access',\n\t0.0))."
+            if t["id"] in self.t_post:
+                for post in self.t_post[t["id"]]:           
+                    if post["type"] == "remoteAccess":
+                        goals.add(f"attackGoal(remoteAccess(_)).")
+                        rule = f"interaction_rule(\n\t(remoteAccess(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Remote Access',\n\t0.0))."
+                    if post["type"] == "codeExec":
+                        goals.add(f"attackGoal(codeExec(_)).")
+                        rule = f"interaction_rule(\n\t(codeExec(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Code Execution',\n\t0.0))."
+                    if post["type"] == "fileAccess":
+                        goals.add(f"attackGoal(fileAccess(_, _, _)).")
+                        perm = "_" if "perm" not in post or post["perm"] == "*" else post["perm"].lower()
+                        file = "_" if "file" not in post or post["file"] == "*" else f'{post["file"].replace("/","-")}'
+                        ruleDesc = "COMPROMISED - fileAccess" if perm != "_" else f"COMPROMISED - fileAccess ({perm})"
+                        rule = f"interaction_rule(\n\t(fileAccess(Pod, {file}, {perm}) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('{ruleDesc}',\n\t0.0))."
+                    if post["type"] == "dos":
+                        goals.add(f"attackGoal(dos(_)).")
+                        rule = f"interaction_rule(\n\t(dos(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Denial of Service',\n\t0.0))."
+                    if post["type"] == "persistence":
+                        goals.add(f"attackGoal(persistence(_)).")
+                        rule = f"interaction_rule(\n\t(persistence(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - achieved Persistence',\n\t0.0))."
+                    if post["type"] == "dataManipulation":
+                        goals.add(f"attackGoal(dataManipulation(_)).")
+                        rule = f"interaction_rule(\n\t(dataManipulation(Pod) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Data Manipulation',\n\t0.0))."
+                    if post["type"] == "privEscalation":
+                        goals.add(f"attackGoal(privilege(_, _)).")
+                        level = "_" if "level" not in post or post["level"] == "*" else post["level"].lower()
+                        rule = f"interaction_rule(\n\t(privilege(Pod, {level}) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Privilege Esclation',\n\t0.0))."
+                    if post["type"] == "credentialAccess":
+                        goals.add(f"attackGoal(credentialAccess(_)).")
+                        account = "_" if "account" not in post or post["account"] == "*" else post["account"].lower()
+                        rule = f"interaction_rule(\n\t(credentialAccess({account}) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('COMPROMISED - Credential Access',\n\t0.0))."
             technique_rules.append(rule)
         return technique_facts, technique_rules, goals    
 
@@ -217,7 +218,6 @@ class MulValInputExtractor:
         returns:
             list of strings representing MulVAL facts modeling the Kubernetes infrastructure.
         """
-
         facts = []
         try:
             # Load infrastructure data from the JSON file
@@ -271,8 +271,11 @@ class MulValInputExtractor:
                                             proto = "_" if proto == "*" else proto.lower()
                                             port = "_" if port == "*" else port
                                             action = rule["action"].lower()
-                                            target = rule["label"].lower() 
-                                            facts.append(f'netRule({pod["label"].lower()}, {target}, {proto}, {port}, {dir}, {action}).')
+                                            if rule["type"].lower() == "pod":
+                                                target = rule["label"].lower() 
+                                                facts.append(f'netRule({pod["label"].lower()}, {target}, {proto}, {port}, {dir}, {action}).')
+                                            else: 
+                                                facts.append(f'netRule({pod["label"].lower()}, internet {proto}, {port}, {dir}, {action}).')
                     # Extract information about the mounted volumes
                     if "mounts" in pod:
                         for m in pod["mounts"]:
@@ -294,7 +297,6 @@ class MulValInputExtractor:
         """
         Extracts MulVAL facts and rules and outputs them in "extracted_facts.P" and "extracted_rules.P"
         """
-
         out_facts_path = os.path.join(self.output_dir, "extracted_facts.P")
         out_rules_path = os.path.join(self.output_dir, "extracted_rules.P")
         os.makedirs(self.output_dir, exist_ok=True)
@@ -314,7 +316,6 @@ class MulValInputExtractor:
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "base_ruleset.P"), out_rules_path)
         with open(out_rules_path, "+a") as outfile:
             outfile.writelines([f"{rule}\n\n" for rule in technique_rules]) 
-
 
 
 class AttackGraphGenerator:
@@ -339,42 +340,6 @@ class AttackGraphGenerator:
         self.output_dir = cwd if output_dir is None else os.path.join(cwd, output_dir)
 
 
-    def _decycle(self, AG):
-        """
-        Removes cycles from the graph
-        """
-        cycles = list(simple_cycles(AG))
-        if not cycles:
-            return
-        for cycle in cycles:
-            if cycle:
-                AG.remove_edge(cycle[0], cycle[1])
-
-
-    def _prune_graph(self, AG):
-        """
-        Prune the attack graph keeping only the most interesting nodes
-        """
-        keep_labels = ["TECHNIQUE", "COMPROMISED", "attack_step", "attackerLocated", "vulExists",
-                        "reachable", "codeExec", "fileAccess", "privilege", "credentialAccess", "mounts",
-                        "remoteAccess", "codeExec", "dos", "persistence"]
-        
-        def _rec_pruning(n, in_n, nodes_to_keep, edges):
-            for _, out_n in AG.out_edges(n):
-                if out_n not in nodes_to_keep:
-                    _rec_pruning(out_n, in_n, nodes_to_keep, edges)
-                else:
-                    edges.append((in_n, out_n))
-        
-        nodes_to_keep = [n[0] for n in AG.nodes.data() if any(map(n[1]["label"].__contains__, keep_labels))]
-        pruned_edges = []
-        for n in nodes_to_keep:
-            _rec_pruning(n, n, nodes_to_keep, pruned_edges)
-        AG.remove_nodes_from([n for n in AG.nodes if n not in nodes_to_keep])
-        AG.clear_edges()
-        AG.add_edges_from(pruned_edges)
-
-
     def _cleaner(self):
         """
         Removes useless MulVAL outputs
@@ -397,48 +362,51 @@ class AttackGraphGenerator:
             to_flow (bool): generate an ATTACK-FLOW-like representation of the graph (defaults to False).
             to_mermaid (bool): generate a mermaid representation of the graph (defaults to False).
             cleanup (bool): removes unnecessary output files from MulVAL (defaults to True).
-        """
 
+        Returns:
+            AG: NetworkX Graph representing the Attack Graph
+            None: if no graph was generated
+        """
+        ag_path = os.path.join(self.output_dir, "AttackGraph.dot")
         if no_prune:
             p = subprocess.Popen(["graph_gen.sh", "extracted_facts.P", "-r", "extracted_rules.P", "-v", "-p"], 
                                 cwd=self.output_dir, 
                                 stdout=subprocess.DEVNULL)
             p.wait()
-            AG = None
+            if not os.path.isfile(ag_path):
+                print("No Attack Graph was generated")
+                return
+            else:
+                AG = nx_agraph.read_dot(ag_path)
         else:
             p = subprocess.Popen(["graph_gen.sh", "extracted_facts.P", "-r", "extracted_rules.P", "-v", "-p", "--nopdf", "--nometric"], 
                                 cwd=self.output_dir, 
                                 stdout=subprocess.DEVNULL)
             p.wait()
-            ag_path = os.path.join(self.output_dir, "AttackGraph.dot")
-            AG = nx_agraph.read_dot(ag_path)
-            self._prune_graph(AG)
-            self._decycle(AG)
-            nx_agraph.write_dot(AG, ag_path)
-            p = subprocess.Popen(["dot", "-Tpdf", "AttackGraph.dot", "-o", "AttackGraph.pdf"],
-                        cwd=self.output_dir)
-            p.wait()
-
+            if not os.path.isfile(ag_path):
+                print("No Attack Graph was generated")
+                return
+            else:
+                AG = nx_agraph.read_dot(ag_path)
+                prune_graph(AG, inplace=True)
+                decycle(AG)
+                nx_agraph.write_dot(AG, ag_path)
+                p = subprocess.Popen(["dot", "-Tpdf", "AttackGraph.dot", "-o", "AttackGraph.pdf"],
+                            cwd=self.output_dir)
+                p.wait()
         if cleanup:
             # Remove MulVAL outputs
             self._cleaner()
-
         if to_flow:
-            if AG is None:
-                # Read and prune the graph to turn to FLOW
-                ag_path = os.path.join(self.output_dir, "AttackGraph.dot")
-                AG = nx_agraph.read_dot(ag_path)
-                self._prune_graph(AG)
-                self._decycle(AG)
-            formatter = Formatter(self.output_dir, AG)
+            # Read and prune the graph to turn to FLOW
+            G = prune_graph(AG)
+            decycle(G)
+            formatter = AGFormatter(self.output_dir, G)
             formatter.to_flow()
-
         if to_mermaid:
-            if AG is None:
-                # Read and prune the graph to turn to mermaid
-                ag_path = os.path.join(self.output_dir, "AttackGraph.dot")
-                AG = nx_agraph.read_dot(ag_path)
-                self._prune_graph(AG)
-                self._decycle(AG)
-            formatter = Formatter(self.output_dir, AG)
+            # Read and prune the graph to turn to mermaid
+            G = prune_graph(AG)
+            decycle(G)
+            formatter = AGFormatter(self.output_dir, G)
             formatter.to_mermaid()
+        return AG

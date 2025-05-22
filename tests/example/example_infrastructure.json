@@ -164,7 +164,7 @@
                     "name": "lib1",
                     "version": "lib1_ver2",
                     "artifacts": [
-                        {"id": "art3"}
+                        {"id": "art5"}
                     ],
                     "vulnerabilities": [
                         {

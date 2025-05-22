@@ -336,6 +336,8 @@ derived(t6_attack_step(_pod)).
 interaction_rule(
 	(t6_attack_step(Pod) :-
 		podTargetable(Pod, t6),
+		not hasCountermeasure(Pod, d3),
+		not hasCountermeasure(Pod, d5),
 		codeExec(Pod)),
 	rule_desc('TECHNIQUE t6 - technique6',
 	0.0)).

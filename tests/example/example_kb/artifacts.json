@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "artifacts": [
+    {"id": "art1",
+     "name": "artifact1",
+     "da_to_off": ["t1", "t2", "t3"],
+     "da_to_def": []
+     },
+    {"id": "art2",
+     "name": "artifact2",
+     "da_to_off": ["t6"],
+     "da_to_def": ["Countermeasure 5"]
+     },
+    {"id": "art3",
+     "name": "artifact3",
+     "da_to_off": [],
+     "da_to_def": ["Countermeasure 3"]
+     },
+    {"id": "art4",
+     "name": "artifact4",
+     "da_to_off": [],
+     "da_to_def": []
+     },
+    {"id": "art5",
+     "name": "artifact5",
+     "da_to_off": [],
+     "da_to_def": ["Countermeasure 7"]
+     },
+    {"id": "art6",
+     "name": "artifact6",
+     "da_to_off": [],
+     "da_to_def": []
+     },
+    {"id": "art7",
+     "name": "artifact7",
+     "da_to_off": [],
+     "da_to_def": []
+     },
+    {"id": "art8",
+     "name": "artifact8",
+     "da_to_off": [],
+     "da_to_def": []
+     },
+    {"id": "art9",
+     "name": "artifact9",
+     "da_to_off": [],
+     "da_to_def": []
+     },
+    {"id": "art10",
+     "name": "artifact10",
+     "da_to_off": [],
+     "da_to_def": []
+     },
+    {"id": "art11",
+     "name": "artifact11",
+     "da_to_off": [],
+     "da_to_def": []
+     },
+    {"id": "art12",
+     "name": "artifact12",
+     "da_to_off": [],
+     "da_to_def": []
+     },
+    {"id": "art13",
+     "name": "artifact13",
+     "da_to_off": [],
+     "da_to_def": []
+     }
+  ]
+}
