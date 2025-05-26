@@ -2,13 +2,14 @@ import os
 import argparse
 import stix2
 
-from kb.techniques import techniques
+from ..helper import get_attack_info
 
 
-def generate_example_cti_bundle(technique_list):
+def generate_example_cti_bundle(technique_list, kb_path):
     attack_patterns = []
     relationships = []
     vulnerabilities = []
+    techniques = get_attack_info(kb_path)
 
     threat_actor = stix2.ThreatActor(
         name = "some threat actor",
@@ -70,6 +71,7 @@ def main():
     parser.add_argument("out_dir", help="path to the directory in which to save the output file")
     args = parser.parse_args()
 
+    KB_PATH = "../tests/example/example_kb"
     out_dir = os.path.join(os.getcwd(), args.out_dir) if args.out_dir else os.getcwd()
     os.makedirs(out_dir, exist_ok=True)
     out_bundle_path = os.path.join(out_dir, "example_bundle.json")
@@ -83,7 +85,7 @@ def main():
         {"id": "t6"}
     ]
 
-    bundle = generate_example_cti_bundle(example_techniques)
+    bundle = generate_example_cti_bundle(example_techniques, KB_PATH)
     with open(out_bundle_path, "w") as f:
         f.write(bundle.serialize(pretty=True))
 

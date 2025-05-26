@@ -1,0 +1,4864 @@
+[
+  {
+    "label": "frontend",
+    "networkProperties": {
+      "service": {
+        "name": "frontend",
+        "protocol": "TCP",
+        "port": 80,
+        "artifacts": []
+      },
+      "restrictions": {
+        "enforcement_behavior": "default-allow",
+        "rules": []
+      }
+    },
+    "libraries": [
+      {
+        "name": "cloud.google.com/go/compute/metadata",
+        "version": "v0.6.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/profiler",
+        "version": "v0.4.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/go-playground/validator/v10",
+        "version": "v10.25.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/google/uuid",
+        "version": "v1.6.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/gorilla/mux",
+        "version": "v1.8.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/pkg/errors",
+        "version": "v0.9.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/sirupsen/logrus",
+        "version": "v1.9.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc",
+        "version": "v0.60.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+        "version": "v0.60.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/sdk",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/grpc",
+        "version": "v1.71.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/protobuf",
+        "version": "v1.36.6",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go",
+        "version": "v0.116.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/auth",
+        "version": "v0.11.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/auth/oauth2adapt",
+        "version": "v0.2.6",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/cenkalti/backoff/v4",
+        "version": "v4.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/felixge/httpsnoop",
+        "version": "v1.0.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/gabriel-vasile/mimetype",
+        "version": "v1.4.8",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/go-logr/logr",
+        "version": "v1.4.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/go-logr/stdr",
+        "version": "v1.2.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/go-playground/locales",
+        "version": "v0.14.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/go-playground/universal-translator",
+        "version": "v0.18.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/golang/groupcache",
+        "version": "v0.0.0-20210331224755-41bb18bfe9da",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/google/pprof",
+        "version": "v0.0.0-20240903155634-a8630aee4ab9",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/google/s2a-go",
+        "version": "v0.1.8",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/googleapis/enterprise-certificate-proxy",
+        "version": "v0.3.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/googleapis/gax-go/v2",
+        "version": "v2.14.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/grpc-ecosystem/grpc-gateway/v2",
+        "version": "v2.26.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/leodido/go-urn",
+        "version": "v1.4.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opencensus.io",
+        "version": "v0.24.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/auto/sdk",
+        "version": "v1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/metric",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/trace",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/proto/otlp",
+        "version": "v1.5.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/crypto",
+        "version": "v0.33.0",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-22869"
+          }
+        ]
+      },
+      {
+        "name": "golang.org/x/net",
+        "version": "v0.35.0",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-22870"
+          },
+          {
+            "id": "CVE-2025-22872"
+          }
+        ]
+      },
+      {
+        "name": "golang.org/x/oauth2",
+        "version": "v0.26.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/sync",
+        "version": "v0.11.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/sys",
+        "version": "v0.30.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/text",
+        "version": "v0.22.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/time",
+        "version": "v0.8.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/api",
+        "version": "v0.210.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/genproto",
+        "version": "v0.0.0-20241118233622-e639e219e697",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/genproto/googleapis/api",
+        "version": "v0.0.0-20250218202821-56aae31c358a",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/genproto/googleapis/rpc",
+        "version": "v0.0.0-20250218202821-56aae31c358a",
+        "artifacts": [],
+        "vulnerabilities": []
+      }
+    ],
+    "serviceDependencies": [
+      {
+        "label": "cartservice"
+      },
+      {
+        "label": "productcatalogservice"
+      },
+      {
+        "label": "recommendationservice"
+      },
+      {
+        "label": "shippingservice"
+      },
+      {
+        "label": "paymentservice"
+      },
+      {
+        "label": "emailservice"
+      },
+      {
+        "label": "currencyservice"
+      },
+      {
+        "label": "adservice"
+      }
+    ],
+    "mounts": [],
+    "countermeasures": []
+  },
+  {
+    "label": "cartservice",
+    "networkProperties": {
+      "service": {
+        "name": "cartservice",
+        "protocol": "TCP",
+        "port": 7070,
+        "artifacts": []
+      },
+      "restrictions": {
+        "enforcement_behavior": "default-deny",
+        "rules": []
+      }
+    },
+    "libraries": [
+      {
+        "name": "Redis",
+        "version": "6",
+        "artifacts": [],
+        "vulnerabilities": []
+      }
+    ],
+    "serviceDependencies": [],
+    "mounts": [],
+    "countermeasures": []
+  },
+  {
+    "label": "productcatalogservice",
+    "networkProperties": {
+      "service": {
+        "name": "productcatalogservice",
+        "protocol": "TCP",
+        "port": 3550,
+        "artifacts": []
+      },
+      "restrictions": {
+        "enforcement_behavior": "default-deny",
+        "rules": []
+      }
+    },
+    "libraries": [
+      {
+        "name": "cloud.google.com/go/alloydbconn",
+        "version": "v1.15.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/profiler",
+        "version": "v0.4.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/secretmanager",
+        "version": "v1.14.6",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/golang/protobuf",
+        "version": "v1.5.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/jackc/pgx/v5",
+        "version": "v5.7.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/pkg/errors",
+        "version": "v0.9.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/sirupsen/logrus",
+        "version": "v1.9.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc",
+        "version": "v0.60.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/sdk",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/grpc",
+        "version": "v1.71.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/protobuf",
+        "version": "v1.36.6",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go",
+        "version": "v0.118.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/alloydb",
+        "version": "v1.14.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/auth",
+        "version": "v0.15.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/auth/oauth2adapt",
+        "version": "v0.2.7",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/compute/metadata",
+        "version": "v0.6.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/iam",
+        "version": "v1.4.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/longrunning",
+        "version": "v0.6.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/monitoring",
+        "version": "v1.24.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric",
+        "version": "v0.51.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/resourcemapping",
+        "version": "v0.51.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/cenkalti/backoff/v4",
+        "version": "v4.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/felixge/httpsnoop",
+        "version": "v1.0.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/go-logr/logr",
+        "version": "v1.4.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/go-logr/stdr",
+        "version": "v1.2.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/golang/groupcache",
+        "version": "v0.0.0-20210331224755-41bb18bfe9da",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/google/pprof",
+        "version": "v0.0.0-20240903155634-a8630aee4ab9",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/google/s2a-go",
+        "version": "v0.1.9",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/google/uuid",
+        "version": "v1.6.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/googleapis/enterprise-certificate-proxy",
+        "version": "v0.3.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/googleapis/gax-go/v2",
+        "version": "v2.14.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/grpc-ecosystem/grpc-gateway/v2",
+        "version": "v2.26.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/jackc/pgpassfile",
+        "version": "v1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/jackc/pgservicefile",
+        "version": "v0.0.0-20240606120523-5a60cdf6a761",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/jackc/puddle/v2",
+        "version": "v2.2.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opencensus.io",
+        "version": "v0.24.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/auto/sdk",
+        "version": "v1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+        "version": "v0.59.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/metric",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/sdk/metric",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/trace",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/proto/otlp",
+        "version": "v1.5.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/crypto",
+        "version": "v0.36.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/net",
+        "version": "v0.37.0",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-22872"
+          }
+        ]
+      },
+      {
+        "name": "golang.org/x/oauth2",
+        "version": "v0.28.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/sync",
+        "version": "v0.12.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/sys",
+        "version": "v0.31.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/text",
+        "version": "v0.23.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/time",
+        "version": "v0.11.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/api",
+        "version": "v0.224.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/genproto",
+        "version": "v0.0.0-20250303144028-a0af3efb3deb",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/genproto/googleapis/api",
+        "version": "v0.0.0-20250303144028-a0af3efb3deb",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/genproto/googleapis/rpc",
+        "version": "v0.0.0-20250303144028-a0af3efb3deb",
+        "artifacts": [],
+        "vulnerabilities": []
+      }
+    ],
+    "serviceDependencies": [],
+    "mounts": [],
+    "countermeasures": []
+  },
+  {
+    "label": "recommendationservice",
+    "networkProperties": {
+      "service": {
+        "name": "recommendationservice",
+        "protocol": "TCP",
+        "port": 8080,
+        "artifacts": []
+      },
+      "restrictions": {
+        "enforcement_behavior": "default-deny",
+        "rules": []
+      }
+    },
+    "libraries": [
+      {
+        "name": "cachetools",
+        "version": "5.3.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "certifi",
+        "version": "2023.7.22",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2024-39689"
+          }
+        ]
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.3.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "deprecated",
+        "version": "1.2.14",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-api-core",
+        "version": "2.12.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-api-python-client",
+        "version": "2.107.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-auth",
+        "version": "2.23.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-auth-httplib2",
+        "version": "0.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-cloud-profiler",
+        "version": "4.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "googleapis-common-protos",
+        "version": "1.61.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "grpcio",
+        "version": "1.59.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "grpcio-health-checking",
+        "version": "1.59.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "httplib2",
+        "version": "0.22.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "idna",
+        "version": "3.4",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2024-3651"
+          }
+        ]
+      },
+      {
+        "name": "importlib-metadata",
+        "version": "6.8.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-api",
+        "version": "1.20.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-distro",
+        "version": "0.41b0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-exporter-otlp-proto-common",
+        "version": "1.20.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-exporter-otlp-proto-grpc",
+        "version": "1.20.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-instrumentation",
+        "version": "0.41b0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-instrumentation-grpc",
+        "version": "0.41b0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-proto",
+        "version": "1.20.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-sdk",
+        "version": "1.20.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-semantic-conventions",
+        "version": "0.41b0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "protobuf",
+        "version": "4.25.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pyasn1",
+        "version": "0.5.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pyasn1-modules",
+        "version": "0.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pyparsing",
+        "version": "3.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "python-json-logger",
+        "version": "2.0.7",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "requests",
+        "version": "2.31.0",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2024-35195"
+          }
+        ]
+      },
+      {
+        "name": "rsa",
+        "version": "4.9",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "typing-extensions",
+        "version": "4.8.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "uritemplate",
+        "version": "4.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "urllib3",
+        "version": "2.0.7",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2024-37891"
+          }
+        ]
+      },
+      {
+        "name": "wrapt",
+        "version": "1.16.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "zipp",
+        "version": "3.17.0",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2024-5569"
+          }
+        ]
+      }
+    ],
+    "serviceDependencies": [
+      {
+        "label": "productcatalogservice"
+      }
+    ],
+    "mounts": [],
+    "countermeasures": []
+  },
+  {
+    "label": "checkoutservice",
+    "networkProperties": {
+      "service": {
+        "name": "checkoutservice",
+        "protocol": "TCP",
+        "port": 5050,
+        "artifacts": []
+      },
+      "restrictions": {
+        "enforcement_behavior": "default-deny",
+        "rules": []
+      }
+    },
+    "libraries": [
+      {
+        "name": "cloud.google.com/go/profiler",
+        "version": "v0.4.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/google/uuid",
+        "version": "v1.6.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/pkg/errors",
+        "version": "v0.9.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/sirupsen/logrus",
+        "version": "v1.9.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc",
+        "version": "v0.60.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/sdk",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/grpc",
+        "version": "v1.71.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/protobuf",
+        "version": "v1.36.6",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go",
+        "version": "v0.116.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/auth",
+        "version": "v0.11.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/auth/oauth2adapt",
+        "version": "v0.2.6",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/compute/metadata",
+        "version": "v0.6.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/cenkalti/backoff/v4",
+        "version": "v4.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/go-logr/logr",
+        "version": "v1.4.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/go-logr/stdr",
+        "version": "v1.2.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/golang/groupcache",
+        "version": "v0.0.0-20210331224755-41bb18bfe9da",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/google/pprof",
+        "version": "v0.0.0-20240903155634-a8630aee4ab9",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/google/s2a-go",
+        "version": "v0.1.8",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/googleapis/enterprise-certificate-proxy",
+        "version": "v0.3.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/googleapis/gax-go/v2",
+        "version": "v2.14.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/grpc-ecosystem/grpc-gateway/v2",
+        "version": "v2.26.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opencensus.io",
+        "version": "v0.24.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/auto/sdk",
+        "version": "v1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/metric",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/trace",
+        "version": "v1.35.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/proto/otlp",
+        "version": "v1.5.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/crypto",
+        "version": "v0.33.0",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-22869"
+          }
+        ]
+      },
+      {
+        "name": "golang.org/x/net",
+        "version": "v0.35.0",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-22870"
+          },
+          {
+            "id": "CVE-2025-22872"
+          }
+        ]
+      },
+      {
+        "name": "golang.org/x/oauth2",
+        "version": "v0.26.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/sync",
+        "version": "v0.11.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/sys",
+        "version": "v0.30.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/text",
+        "version": "v0.22.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/time",
+        "version": "v0.8.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/api",
+        "version": "v0.210.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/genproto",
+        "version": "v0.0.0-20241118233622-e639e219e697",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/genproto/googleapis/api",
+        "version": "v0.0.0-20250218202821-56aae31c358a",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/genproto/googleapis/rpc",
+        "version": "v0.0.0-20250218202821-56aae31c358a",
+        "artifacts": [],
+        "vulnerabilities": []
+      }
+    ],
+    "serviceDependencies": [
+      {
+        "label": "cartservice"
+      },
+      {
+        "label": "shippingservice"
+      },
+      {
+        "label": "paymentservice"
+      },
+      {
+        "label": "emailservice"
+      },
+      {
+        "label": "productcatalogservice"
+      }
+    ],
+    "mounts": [],
+    "countermeasures": []
+  },
+  {
+    "label": "shippingservice",
+    "networkProperties": {
+      "service": {
+        "name": "shippingservice",
+        "protocol": "TCP",
+        "port": 50051,
+        "artifacts": []
+      },
+      "restrictions": {
+        "enforcement_behavior": "default-deny",
+        "rules": []
+      }
+    },
+    "libraries": [
+      {
+        "name": "cloud.google.com/go/profiler",
+        "version": "v0.4.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/sirupsen/logrus",
+        "version": "v1.9.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/net",
+        "version": "v0.35.0",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-22870"
+          },
+          {
+            "id": "CVE-2025-22872"
+          }
+        ]
+      },
+      {
+        "name": "google.golang.org/grpc",
+        "version": "v1.71.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/protobuf",
+        "version": "v1.36.6",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go",
+        "version": "v0.116.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/auth",
+        "version": "v0.11.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/auth/oauth2adapt",
+        "version": "v0.2.6",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cloud.google.com/go/compute/metadata",
+        "version": "v0.6.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/go-logr/logr",
+        "version": "v1.4.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/go-logr/stdr",
+        "version": "v1.2.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/golang/groupcache",
+        "version": "v0.0.0-20210331224755-41bb18bfe9da",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/google/pprof",
+        "version": "v0.0.0-20240903155634-a8630aee4ab9",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/google/s2a-go",
+        "version": "v0.1.8",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/googleapis/enterprise-certificate-proxy",
+        "version": "v0.3.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "github.com/googleapis/gax-go/v2",
+        "version": "v2.14.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opencensus.io",
+        "version": "v0.24.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/auto/sdk",
+        "version": "v1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc",
+        "version": "v0.54.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel",
+        "version": "v1.34.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/metric",
+        "version": "v1.34.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "go.opentelemetry.io/otel/trace",
+        "version": "v1.34.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/crypto",
+        "version": "v0.33.0",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-22869"
+          }
+        ]
+      },
+      {
+        "name": "golang.org/x/oauth2",
+        "version": "v0.25.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/sync",
+        "version": "v0.11.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/sys",
+        "version": "v0.30.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/text",
+        "version": "v0.22.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "golang.org/x/time",
+        "version": "v0.8.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/api",
+        "version": "v0.210.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/genproto",
+        "version": "v0.0.0-20241118233622-e639e219e697",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/genproto/googleapis/api",
+        "version": "v0.0.0-20250106144421-5f5ef82da422",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google.golang.org/genproto/googleapis/rpc",
+        "version": "v0.0.0-20250115164207-1a7da9e5054f",
+        "artifacts": [],
+        "vulnerabilities": []
+      }
+    ],
+    "serviceDependencies": [],
+    "mounts": [],
+    "countermeasures": []
+  },
+  {
+    "label": "paymentservice",
+    "networkProperties": {
+      "service": {
+        "name": "paymentservice",
+        "protocol": "TCP",
+        "port": 50051,
+        "artifacts": []
+      },
+      "restrictions": {
+        "enforcement_behavior": "default-deny",
+        "rules": []
+      }
+    },
+    "libraries": [
+      {
+        "name": "@grpc/grpc-js",
+        "version": "1.13.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@grpc/proto-loader",
+        "version": "0.7.13",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/api",
+        "version": "1.9.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-otlp-grpc",
+        "version": "0.26.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/instrumentation-grpc",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/resources",
+        "version": "1.30.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-node",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-trace-base",
+        "version": "1.30.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/semantic-conventions",
+        "version": "1.30.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pino",
+        "version": "9.6.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "simple-card-validator",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "uuid",
+        "version": "11.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@google-cloud/common",
+        "version": "5.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@google-cloud/logging-min",
+        "version": "11.2.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@google-cloud/paginator",
+        "version": "5.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@google-cloud/projectify",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@google-cloud/promisify",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@grpc/proto-loader",
+        "version": "0.6.13",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@js-sdsl/ordered-map",
+        "version": "4.4.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@mapbox/node-pre-gyp",
+        "version": "1.0.10",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/api-logs",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/api-metrics",
+        "version": "0.26.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/context-async-hooks",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/core",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/core",
+        "version": "1.30.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/core",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-logs-otlp-grpc",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-logs-otlp-http",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-logs-otlp-proto",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-metrics-otlp-grpc",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-metrics-otlp-http",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-metrics-otlp-proto",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-otlp-http",
+        "version": "0.26.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-prometheus",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-trace-otlp-grpc",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-trace-otlp-http",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-trace-otlp-proto",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-zipkin",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/instrumentation",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/otlp-exporter-base",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/otlp-grpc-exporter-base",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/otlp-transformer",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/propagator-b3",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/propagator-jaeger",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/resources",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/resources",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-logs",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-metrics",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-metrics-base",
+        "version": "0.26.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-trace-base",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-trace-base",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-trace-node",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/semantic-conventions",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/semantic-conventions",
+        "version": "1.28.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/aspromise",
+        "version": "1.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/base64",
+        "version": "1.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/codegen",
+        "version": "2.0.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/eventemitter",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/fetch",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/float",
+        "version": "1.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/inquire",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/path",
+        "version": "1.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/pool",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/utf8",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@tootallnate/once",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/caseless",
+        "version": "0.12.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/console-log-level",
+        "version": "1.4.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/long",
+        "version": "4.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/node",
+        "version": "18.11.9",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/request",
+        "version": "2.48.12",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/semver",
+        "version": "7.3.13",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/shimmer",
+        "version": "1.2.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/tough-cookie",
+        "version": "4.0.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "abbrev",
+        "version": "1.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "abort-controller",
+        "version": "3.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "acorn",
+        "version": "8.10.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "acorn-import-attributes",
+        "version": "1.9.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "agent-base",
+        "version": "6.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "agent-base",
+        "version": "7.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "ansi-regex",
+        "version": "5.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "ansi-styles",
+        "version": "4.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "aproba",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "are-we-there-yet",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "arrify",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "asynckit",
+        "version": "0.4.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "atomic-sleep",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "balanced-match",
+        "version": "1.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "base64-js",
+        "version": "1.5.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "bignumber.js",
+        "version": "9.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "bindings",
+        "version": "1.5.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "brace-expansion",
+        "version": "1.1.11",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "buffer-equal-constant-time",
+        "version": "1.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "chownr",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cjs-module-lexer",
+        "version": "1.3.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cliui",
+        "version": "7.0.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cliui",
+        "version": "8.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "color-convert",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "color-name",
+        "version": "1.1.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "color-support",
+        "version": "1.1.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "combined-stream",
+        "version": "1.0.8",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "concat-map",
+        "version": "0.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "console-control-strings",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "console-log-level",
+        "version": "1.4.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "debug",
+        "version": "4.3.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "delay",
+        "version": "5.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "delayed-stream",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "delegates",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "detect-libc",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "dot-prop",
+        "version": "6.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "duplexify",
+        "version": "4.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "ecdsa-sig-formatter",
+        "version": "1.0.11",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "ee-first",
+        "version": "1.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "emoji-regex",
+        "version": "8.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "end-of-stream",
+        "version": "1.4.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "escalade",
+        "version": "3.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "event-target-shim",
+        "version": "5.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "eventid",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "extend",
+        "version": "3.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "fast-redact",
+        "version": "3.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "file-uri-to-path",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "findit2",
+        "version": "2.2.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "form-data",
+        "version": "2.5.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "fs-minipass",
+        "version": "2.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "fs.realpath",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "function-bind",
+        "version": "1.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "gauge",
+        "version": "3.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "gaxios",
+        "version": "6.7.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "gcp-metadata",
+        "version": "6.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "get-caller-file",
+        "version": "2.0.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "glob",
+        "version": "7.2.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-auth-library",
+        "version": "9.14.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-gax",
+        "version": "4.4.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "gtoken",
+        "version": "7.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "has",
+        "version": "1.0.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "has-unicode",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "html-entities",
+        "version": "2.5.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "http-proxy-agent",
+        "version": "5.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "https-proxy-agent",
+        "version": "5.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "https-proxy-agent",
+        "version": "7.0.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "import-in-the-middle",
+        "version": "1.8.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "inflight",
+        "version": "1.0.6",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "is-core-module",
+        "version": "2.13.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "is-fullwidth-code-point",
+        "version": "3.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "is-obj",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "is-stream",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "json-bigint",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "jwa",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "jws",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "lodash.camelcase",
+        "version": "4.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "lodash.merge",
+        "version": "4.6.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "lodash.sortby",
+        "version": "4.7.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "long",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "long",
+        "version": "5.2.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "lru-cache",
+        "version": "6.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "make-dir",
+        "version": "3.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "mime-db",
+        "version": "1.52.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "mime-types",
+        "version": "2.1.35",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "minimatch",
+        "version": "3.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "minipass",
+        "version": "3.3.6",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "minizlib",
+        "version": "2.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "mkdirp",
+        "version": "1.0.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "module-details-from-path",
+        "version": "1.0.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "ms",
+        "version": "2.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "nan",
+        "version": "2.17.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "node-fetch",
+        "version": "2.7.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "nopt",
+        "version": "5.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "npmlog",
+        "version": "5.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "object-assign",
+        "version": "4.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "object-hash",
+        "version": "3.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "on-exit-leak-free",
+        "version": "2.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "on-finished",
+        "version": "2.4.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "once",
+        "version": "1.4.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "p-limit",
+        "version": "3.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "parse-duration",
+        "version": "1.0.2",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-25283"
+          }
+        ]
+      },
+      {
+        "name": "parse-ms",
+        "version": "2.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "path-is-absolute",
+        "version": "1.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "path-parse",
+        "version": "1.0.7",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pino-abstract-transport",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pino-std-serializers",
+        "version": "7.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pprof",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pretty-ms",
+        "version": "7.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "process-warning",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "proto3-json-serializer",
+        "version": "2.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "protobufjs",
+        "version": "6.11.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "protobufjs",
+        "version": "7.2.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "protobufjs",
+        "version": "7.4.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pump",
+        "version": "3.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pumpify",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "punycode",
+        "version": "2.3.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "quick-format-unescaped",
+        "version": "4.0.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "readable-stream",
+        "version": "3.6.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "real-require",
+        "version": "0.2.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "require-directory",
+        "version": "2.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "require-in-the-middle",
+        "version": "7.2.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "resolve",
+        "version": "1.22.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "retry-request",
+        "version": "7.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "rimraf",
+        "version": "3.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "safe-buffer",
+        "version": "5.2.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "safe-stable-stringify",
+        "version": "2.4.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "semver",
+        "version": "6.3.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "semver",
+        "version": "7.5.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "set-blocking",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "shimmer",
+        "version": "1.2.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "signal-exit",
+        "version": "3.0.7",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "sonic-boom",
+        "version": "4.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "source-map",
+        "version": "0.8.0-beta.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "split",
+        "version": "1.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "split2",
+        "version": "4.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "stream-events",
+        "version": "1.0.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "stream-shift",
+        "version": "1.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "string-width",
+        "version": "4.2.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "string_decoder",
+        "version": "1.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "strip-ansi",
+        "version": "6.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "stubs",
+        "version": "3.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "supports-preserve-symlinks-flag",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "tar",
+        "version": "6.1.12",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2024-28863"
+          }
+        ]
+      },
+      {
+        "name": "teeny-request",
+        "version": "9.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "thread-stream",
+        "version": "3.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "through",
+        "version": "2.3.8",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "tr46",
+        "version": "0.0.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "tr46",
+        "version": "1.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "util-deprecate",
+        "version": "1.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "uuid",
+        "version": "8.3.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "uuid",
+        "version": "9.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "webidl-conversions",
+        "version": "3.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "webidl-conversions",
+        "version": "4.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "whatwg-url",
+        "version": "5.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "whatwg-url",
+        "version": "7.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "wide-align",
+        "version": "1.1.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "wrap-ansi",
+        "version": "7.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "wrappy",
+        "version": "1.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "y18n",
+        "version": "5.0.8",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "yallist",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "yargs",
+        "version": "16.2.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "yargs",
+        "version": "17.7.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "yargs-parser",
+        "version": "20.2.9",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "yargs-parser",
+        "version": "21.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "yocto-queue",
+        "version": "0.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      }
+    ],
+    "serviceDependencies": [],
+    "mounts": [],
+    "countermeasures": []
+  },
+  {
+    "label": "emailservice",
+    "networkProperties": {
+      "service": {
+        "name": "emailservice",
+        "protocol": "TCP",
+        "port": 5000,
+        "artifacts": []
+      },
+      "restrictions": {
+        "enforcement_behavior": "default-deny",
+        "rules": []
+      }
+    },
+    "libraries": [
+      {
+        "name": "cachetools",
+        "version": "5.3.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "certifi",
+        "version": "2023.7.22",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2024-39689"
+          }
+        ]
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.3.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "deprecated",
+        "version": "1.2.14",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-api-core",
+        "version": "2.12.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-api-python-client",
+        "version": "2.107.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-auth",
+        "version": "2.23.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-auth-httplib2",
+        "version": "0.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-cloud-profiler",
+        "version": "4.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-cloud-trace",
+        "version": "1.11.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "googleapis-common-protos",
+        "version": "1.61.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "grpcio",
+        "version": "1.59.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "grpcio-health-checking",
+        "version": "1.59.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "grpcio-status",
+        "version": "1.59.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "httplib2",
+        "version": "0.22.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "idna",
+        "version": "3.4",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2024-3651"
+          }
+        ]
+      },
+      {
+        "name": "importlib-metadata",
+        "version": "6.8.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "jinja2",
+        "version": "3.1.2",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2024-22195"
+          },
+          {
+            "id": "CVE-2024-34064"
+          },
+          {
+            "id": "CVE-2024-56201"
+          },
+          {
+            "id": "CVE-2024-56326"
+          },
+          {
+            "id": "CVE-2025-27516"
+          }
+        ]
+      },
+      {
+        "name": "markupsafe",
+        "version": "2.1.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-api",
+        "version": "1.20.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-distro",
+        "version": "0.41b0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-exporter-otlp-proto-common",
+        "version": "1.20.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-exporter-otlp-proto-grpc",
+        "version": "1.20.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-instrumentation",
+        "version": "0.41b0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-instrumentation-grpc",
+        "version": "0.41b0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-proto",
+        "version": "1.20.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-sdk",
+        "version": "1.20.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "opentelemetry-semantic-conventions",
+        "version": "0.41b0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "proto-plus",
+        "version": "1.22.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "protobuf",
+        "version": "4.25.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pyasn1",
+        "version": "0.5.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pyasn1-modules",
+        "version": "0.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pyparsing",
+        "version": "3.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "python-json-logger",
+        "version": "2.0.7",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "requests",
+        "version": "2.31.0",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2024-35195"
+          }
+        ]
+      },
+      {
+        "name": "rsa",
+        "version": "4.9",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "typing-extensions",
+        "version": "4.8.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "uritemplate",
+        "version": "4.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "urllib3",
+        "version": "2.0.7",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2024-37891"
+          }
+        ]
+      },
+      {
+        "name": "wrapt",
+        "version": "1.16.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "zipp",
+        "version": "3.17.0",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2024-5569"
+          }
+        ]
+      }
+    ],
+    "serviceDependencies": [],
+    "mounts": [],
+    "countermeasures": []
+  },
+  {
+    "label": "currencyservice",
+    "networkProperties": {
+      "service": {
+        "name": "currencyservice",
+        "protocol": "TCP",
+        "port": 7000,
+        "artifacts": []
+      },
+      "restrictions": {
+        "enforcement_behavior": "default-deny",
+        "rules": []
+      }
+    },
+    "libraries": [
+      {
+        "name": "@google-cloud/trace-agent",
+        "version": "8.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@grpc/grpc-js",
+        "version": "1.13.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@grpc/proto-loader",
+        "version": "0.7.13",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/api",
+        "version": "1.9.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-otlp-grpc",
+        "version": "0.26.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/instrumentation-grpc",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/resources",
+        "version": "1.30.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-node",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-trace-base",
+        "version": "1.30.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/semantic-conventions",
+        "version": "1.30.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "async",
+        "version": "3.2.6",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-protobuf",
+        "version": "3.21.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pino",
+        "version": "9.6.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "xml2js",
+        "version": "0.6.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@google-cloud/common",
+        "version": "5.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@google-cloud/logging-min",
+        "version": "11.2.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@google-cloud/paginator",
+        "version": "5.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@google-cloud/projectify",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@google-cloud/promisify",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@grpc/proto-loader",
+        "version": "0.6.13",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@js-sdsl/ordered-map",
+        "version": "4.4.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@mapbox/node-pre-gyp",
+        "version": "1.0.10",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opencensus/core",
+        "version": "0.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opencensus/propagation-stackdriver",
+        "version": "0.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/api-logs",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/api-metrics",
+        "version": "0.26.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/context-async-hooks",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/core",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/core",
+        "version": "1.30.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/core",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-logs-otlp-grpc",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-logs-otlp-http",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-logs-otlp-proto",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-metrics-otlp-grpc",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-metrics-otlp-http",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-metrics-otlp-proto",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-otlp-http",
+        "version": "0.26.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-prometheus",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-trace-otlp-grpc",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-trace-otlp-http",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-trace-otlp-proto",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/exporter-zipkin",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/instrumentation",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/otlp-exporter-base",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/otlp-grpc-exporter-base",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/otlp-transformer",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/propagator-b3",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/propagator-jaeger",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/resources",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/resources",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-logs",
+        "version": "0.200.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-metrics",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-metrics-base",
+        "version": "0.26.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-trace-base",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-trace-base",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/sdk-trace-node",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/semantic-conventions",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@opentelemetry/semantic-conventions",
+        "version": "1.28.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/aspromise",
+        "version": "1.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/base64",
+        "version": "1.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/codegen",
+        "version": "2.0.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/eventemitter",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/fetch",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/float",
+        "version": "1.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/inquire",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/path",
+        "version": "1.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/pool",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@protobufjs/utf8",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@tootallnate/once",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/caseless",
+        "version": "0.12.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/console-log-level",
+        "version": "1.4.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/long",
+        "version": "4.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/node",
+        "version": "18.11.9",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/request",
+        "version": "2.48.12",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/semver",
+        "version": "7.3.13",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/shimmer",
+        "version": "1.2.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "@types/tough-cookie",
+        "version": "4.0.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "abbrev",
+        "version": "1.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "abort-controller",
+        "version": "3.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "acorn",
+        "version": "8.10.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "acorn-import-attributes",
+        "version": "1.9.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "agent-base",
+        "version": "6.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "agent-base",
+        "version": "7.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "ansi-regex",
+        "version": "5.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "ansi-styles",
+        "version": "4.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "aproba",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "are-we-there-yet",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "arrify",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "async-listener",
+        "version": "0.6.10",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "asynckit",
+        "version": "0.4.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "atomic-sleep",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "balanced-match",
+        "version": "1.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "base64-js",
+        "version": "1.5.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "bignumber.js",
+        "version": "9.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "bindings",
+        "version": "1.5.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "brace-expansion",
+        "version": "1.1.11",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "buffer-equal-constant-time",
+        "version": "1.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "buffer-from",
+        "version": "1.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "builtin-modules",
+        "version": "3.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "chownr",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cjs-module-lexer",
+        "version": "1.3.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cliui",
+        "version": "7.0.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "cliui",
+        "version": "8.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "color-convert",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "color-name",
+        "version": "1.1.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "color-support",
+        "version": "1.1.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "combined-stream",
+        "version": "1.0.8",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "concat-map",
+        "version": "0.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "console-control-strings",
+        "version": "1.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "console-log-level",
+        "version": "1.4.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "continuation-local-storage",
+        "version": "3.2.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "debug",
+        "version": "4.3.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "delay",
+        "version": "5.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "delayed-stream",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "delegates",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "detect-libc",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "dot-prop",
+        "version": "6.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "duplexify",
+        "version": "4.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "ecdsa-sig-formatter",
+        "version": "1.0.11",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "ee-first",
+        "version": "1.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "emitter-listener",
+        "version": "1.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "emoji-regex",
+        "version": "8.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "end-of-stream",
+        "version": "1.4.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "escalade",
+        "version": "3.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "event-target-shim",
+        "version": "5.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "eventid",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "extend",
+        "version": "3.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "fast-redact",
+        "version": "3.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "file-uri-to-path",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "findit2",
+        "version": "2.2.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "form-data",
+        "version": "2.5.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "fs-minipass",
+        "version": "2.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "fs.realpath",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "function-bind",
+        "version": "1.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "gauge",
+        "version": "3.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "gaxios",
+        "version": "6.7.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "gcp-metadata",
+        "version": "6.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "get-caller-file",
+        "version": "2.0.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "glob",
+        "version": "7.2.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-auth-library",
+        "version": "9.14.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "google-gax",
+        "version": "4.4.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "gtoken",
+        "version": "7.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "has",
+        "version": "1.0.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "has-unicode",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "hex2dec",
+        "version": "1.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "html-entities",
+        "version": "2.5.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "http-proxy-agent",
+        "version": "5.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "https-proxy-agent",
+        "version": "5.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "https-proxy-agent",
+        "version": "7.0.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "import-in-the-middle",
+        "version": "1.8.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "inflight",
+        "version": "1.0.6",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "is",
+        "version": "3.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "is-core-module",
+        "version": "2.11.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "is-fullwidth-code-point",
+        "version": "3.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "is-obj",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "is-stream",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "json-bigint",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "jwa",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "jws",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "lodash.camelcase",
+        "version": "4.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "lodash.merge",
+        "version": "4.6.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "lodash.sortby",
+        "version": "4.7.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "log-driver",
+        "version": "1.2.7",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "long",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "long",
+        "version": "5.2.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "lru-cache",
+        "version": "6.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "make-dir",
+        "version": "3.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "methods",
+        "version": "1.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "mime-db",
+        "version": "1.52.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "mime-types",
+        "version": "2.1.35",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "minimatch",
+        "version": "3.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "minipass",
+        "version": "3.3.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "minipass",
+        "version": "5.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "minizlib",
+        "version": "2.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "mkdirp",
+        "version": "1.0.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "module-details-from-path",
+        "version": "1.0.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "ms",
+        "version": "2.1.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "nan",
+        "version": "2.17.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "node-fetch",
+        "version": "2.7.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "nopt",
+        "version": "5.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "npmlog",
+        "version": "5.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "object-assign",
+        "version": "4.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "object-hash",
+        "version": "3.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "on-exit-leak-free",
+        "version": "2.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "on-finished",
+        "version": "2.4.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "once",
+        "version": "1.4.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "p-limit",
+        "version": "3.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "parse-duration",
+        "version": "1.0.2",
+        "artifacts": [],
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-25283"
+          }
+        ]
+      },
+      {
+        "name": "parse-ms",
+        "version": "2.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "path-is-absolute",
+        "version": "1.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "path-parse",
+        "version": "1.0.7",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pino-abstract-transport",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pino-std-serializers",
+        "version": "7.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pprof",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pretty-ms",
+        "version": "7.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "process-warning",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "proto3-json-serializer",
+        "version": "2.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "protobufjs",
+        "version": "6.11.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "protobufjs",
+        "version": "7.2.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "protobufjs",
+        "version": "7.4.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pump",
+        "version": "3.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "pumpify",
+        "version": "2.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "punycode",
+        "version": "2.3.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "quick-format-unescaped",
+        "version": "4.0.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "readable-stream",
+        "version": "3.6.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "real-require",
+        "version": "0.2.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "require-directory",
+        "version": "2.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "require-in-the-middle",
+        "version": "7.2.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "resolve",
+        "version": "1.22.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "retry-request",
+        "version": "7.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "rimraf",
+        "version": "3.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "safe-buffer",
+        "version": "5.2.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "safe-stable-stringify",
+        "version": "2.4.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "sax",
+        "version": "1.2.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "semver",
+        "version": "5.7.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "semver",
+        "version": "6.3.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "semver",
+        "version": "7.5.4",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "set-blocking",
+        "version": "2.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "shimmer",
+        "version": "1.2.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "signal-exit",
+        "version": "3.0.7",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "sonic-boom",
+        "version": "4.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "source-map",
+        "version": "0.6.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "source-map",
+        "version": "0.8.0-beta.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "source-map-support",
+        "version": "0.5.21",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "split",
+        "version": "1.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "split2",
+        "version": "4.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "stream-events",
+        "version": "1.0.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "stream-shift",
+        "version": "1.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "string-width",
+        "version": "4.2.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "string_decoder",
+        "version": "1.3.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "strip-ansi",
+        "version": "6.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "stubs",
+        "version": "3.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "supports-preserve-symlinks-flag",
+        "version": "1.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "tar",
+        "version": "6.2.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "teeny-request",
+        "version": "9.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "thread-stream",
+        "version": "3.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "through",
+        "version": "2.3.8",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "tr46",
+        "version": "0.0.3",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "tr46",
+        "version": "1.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "util-deprecate",
+        "version": "1.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "uuid",
+        "version": "8.3.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "uuid",
+        "version": "9.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "webidl-conversions",
+        "version": "3.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "webidl-conversions",
+        "version": "4.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "whatwg-url",
+        "version": "5.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "whatwg-url",
+        "version": "7.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "wide-align",
+        "version": "1.1.5",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "wrap-ansi",
+        "version": "7.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "wrappy",
+        "version": "1.0.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "xmlbuilder",
+        "version": "11.0.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "y18n",
+        "version": "5.0.8",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "yallist",
+        "version": "4.0.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "yargs",
+        "version": "16.2.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "yargs",
+        "version": "17.7.2",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "yargs-parser",
+        "version": "20.2.9",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "yargs-parser",
+        "version": "21.1.1",
+        "artifacts": [],
+        "vulnerabilities": []
+      },
+      {
+        "name": "yocto-queue",
+        "version": "0.1.0",
+        "artifacts": [],
+        "vulnerabilities": []
+      }
+    ],
+    "serviceDependencies": [],
+    "mounts": [],
+    "countermeasures": []
+  },
+  {
+    "label": "adservice",
+    "networkProperties": {
+      "service": {
+        "name": "adservice",
+        "protocol": "TCP",
+        "port": 9555,
+        "artifacts": []
+      },
+      "restrictions": {
+        "enforcement_behavior": "default-deny",
+        "rules": []
+      }
+    },
+    "libraries": [
+      {
+        "name": "Protobuf",
+        "version": "3.13",
+        "artifacts": [],
+        "vulnerabilities": []
+      }
+    ],
+    "serviceDependencies": [],
+    "mounts": [],
+    "countermeasures": []
+  }
+]

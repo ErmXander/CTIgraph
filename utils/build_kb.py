@@ -147,17 +147,17 @@ def main():
     parser.add_argument("-a", "--attack", action="store_true", help="retrieve ATT&CK techniques info")
     parser.add_argument("-d", "--defend", action="store_true", help="retrieve D3FEND techniques info")
     parser.add_argument("-r", "--artifacts", action="store_true", help="retrieve DAO artifacts info")
-    parser.add_argument("-f", "--full", action="store_true", help="retrieve artifacts, offensive and defensive techniques")
     args = parser.parse_args()
 
+    full = not args.attack and not args.defend and not args.artifacts
     kb_path = os.path.join(os.getcwd(), args.out_dir, "kb")
-    if args.attack or args.full:
+    if args.attack or full:
         os.makedirs(kb_path, exist_ok=True)
         fetch_attack_techniques(kb_path)
-    if args.defend or args.full:
+    if args.defend or full:
         os.makedirs(kb_path, exist_ok=True)
         fetch_defend_techniques(kb_path)
-    if args.artifacts or args.full:
+    if args.artifacts or full:
         os.makedirs(kb_path, exist_ok=True)
         fetch_artifacts(kb_path)
 

@@ -120,11 +120,11 @@ class MulValInputExtractor:
             for artid, tids in self.a2t.items():
                 if t["id"] in tids:
                     # extract technique artifacts
-                    technique_facts.append(f"techniqueArtifact({t['id']}, {artid.replace(':','-').lower()}).")
+                    technique_facts.append(f"techniqueArtifact({t['id']}, \'{artid.lower()}\').")
             if "vulns" in t:
                 for v in t["vulns"]:
                     # extract techique exploited vulnerabilities
-                    technique_facts.append(f"techniqueExploits({t['id']}, {v}).")
+                    technique_facts.append(f"techniqueExploits({t['id']}, \'{v}\').")
                 if t["vulns"]:
                     rule += f"\n\t\tpodExploitable(Pod, {t['id']})"  # add condition on artifacts+vulns if vulns present
                 else: 
@@ -134,7 +134,7 @@ class MulValInputExtractor:
             # require that the pod doesn't employ countermeasures against the technique
             if t["id"] in self.t2c:
                 for dID in self.t2c[t["id"]]:
-                    rule += f",\n\t\tnot hasCountermeasure(Pod, {dID.replace(':','-').lower()})"
+                    rule += f",\n\t\tnot hasCountermeasure(Pod, \'{dID.lower()}\')"
             # extract the various preconditions
             if t["id"] in self.t_pre:
                 for pre in self.t_pre[t["id"]]:
@@ -146,7 +146,7 @@ class MulValInputExtractor:
                         rule += f",\n\t\tcodeExec(Pod)"
                     if pre["type"] == "fileAccess":
                         perm = "_" if "perm" not in pre or pre["perm"] == "*" else pre["perm"].lower()
-                        file = "_" if "file" not in pre or pre["file"] == "*" else f'{pre["file"].lower()}'
+                        file = "_" if "file" not in pre or pre["file"] == "*" else f"\'{pre['file']}\'"
                         rule += f",\n\t\tfileAccess(Pod, {file}, {perm})"
                     if pre["type"] == "privilege":
                         level = "_" if "level" not in pre or pre["level"] == "*" else pre["level"].lower()
@@ -156,7 +156,7 @@ class MulValInputExtractor:
                         rule += f",\n\t\tcredentialAccess({account})"
                     if pre["type"] == "mounts":
                         kind = "_" if "kind" not in pre or pre["kind"] == "*" else pre["kind"].lower()
-                        path = "_" if "path" not in pre or pre["path"] == "*" else f"{pre['path'].replace('/','-')}"
+                        path = "_" if "path" not in pre or pre["path"] == "*" else f"\'{pre['path']}\'"
                         rule += f",\n\t\tmounts(Pod, {kind}, {path})"
             else:
                 rule += f",\n\t\tunachievable({t['id']})"
@@ -177,7 +177,7 @@ class MulValInputExtractor:
                     if post["type"] == "fileAccess":
                         goals.add(f"attackGoal(fileAccess(_, _, _)).")
                         perm = "_" if "perm" not in post or post["perm"] == "*" else post["perm"].lower()
-                        file = "_" if "file" not in post or post["file"] == "*" else f'{post["file"].replace("/","-")}'
+                        file = "_" if "file" not in post or post["file"] == "*" else f"\'{post['file']}\'"
                         ruleDesc = "COMPROMISED - fileAccess" if perm != "_" else f"COMPROMISED - fileAccess ({perm})"
                         rule = f"interaction_rule(\n\t(fileAccess(Pod, {file}, {perm}) :-\n\t{t['id']}_attack_step(Pod)),\n\trule_desc('{ruleDesc}',\n\t0.0))."
                     if post["type"] == "dos":
@@ -236,13 +236,13 @@ class MulValInputExtractor:
                     # and the presence of a vulnerability in a given library version
                     if "libraries" in pod:
                         for lib in pod["libraries"]:
-                            facts.append(f'hasLibrary({pod["label"].lower()}, {lib["name"].lower()}, {lib["version"]}).')
+                            facts.append(f"hasLibrary({pod['label'].lower()}, \'{lib['name'].lower()}\', \'{lib['version']}\').")
                             if "artifacts" in lib:
                                 for art in lib["artifacts"]:
-                                    facts.append(f'hasArtifact({lib["name"].lower()}, {art["id"].replace(":","-").lower()}).')
+                                    facts.append(f"hasArtifact(\'{lib['name'].lower()}\', \'{art['id'].lower()}\').")
                             if "vulnerabilities" in lib:
                                 for vul in lib["vulnerabilities"]:
-                                    facts.append(f'vulExists({lib["name"].lower()}, {lib["version"]}, {vul["id"].lower()}).')
+                                    facts.append(f"vulExists(\'{lib['name'].lower()}\', \'{lib['version']}\', \'{vul['id'].lower()}\').")
                     # Extract the service dependencies of a pod
                     if "serviceDependencies" in pod:
                         for dep in pod["serviceDependencies"]:
@@ -257,7 +257,7 @@ class MulValInputExtractor:
                             facts.append(f'exposesService({pod["label"].lower()}, {service["name"].lower()}, {service["protocol"].lower()}, {service["port"]}).')
                             if "artifacts" in service:
                                 for art in service["artifacts"]:
-                                    facts.append(f'hasArtifact({service["name"].lower()}, {art["id"].replace(":","-").lower()}).')
+                                    facts.append(f"hasArtifact({service['name'].lower()}, \'{art['id'].lower()}\').")
                         if "restrictions" in pod["networkProperties"]:
                             default_action = pod["networkProperties"]["restrictions"]["enforcement_behavior"]
                             if "rules" in pod["networkProperties"]["restrictions"]:
@@ -279,11 +279,11 @@ class MulValInputExtractor:
                     # Extract information about the mounted volumes
                     if "mounts" in pod:
                         for m in pod["mounts"]:
-                            facts.append(f'mounts({pod["label"].lower()}, {m["type"].lower()}, {m["path"].replace("/","-")}).')
+                            facts.append(f"mounts({pod['label'].lower()}, {m['type'].lower()}, \'{m['path']}\').")
                     # Extract information on the employed countermeasures
                     if "countermeasures" in pod:
                         for dID in pod["countermeasures"]:
-                            facts.append(f'hasCountermeasure({pod["label"]}, {dID.replace(":","-").lower()}).')
+                            facts.append(f"hasCountermeasure({pod['label']}, \'{dID.lower()}\').")
                 return facts  
         except FileNotFoundError:
             print(f"File not found at {self.infrastructure_path}")

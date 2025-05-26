@@ -1,6 +1,6 @@
 {
     "type": "bundle",
-    "id": "bundle--1b015ce5-9cfb-4e2e-9cf2-7cf9fecbd378",
+    "id": "bundle--7acd01ca-42e7-4c07-a8eb-fead0ac1a1d5",
     "objects": [
         {
             "type": "extension-definition",
@@ -20,14 +20,14 @@
         {
             "type": "attack-flow",
             "spec_version": "2.1",
-            "id": "attack-flow--86aee18b-c4ef-4128-9a85-d82225455ddf",
-            "created": "2025-05-22T15:47:40.403176Z",
-            "modified": "2025-05-22T15:47:40.403176Z",
+            "id": "attack-flow--062dd1d0-a709-4f7d-8ced-939c96c89bdb",
+            "created": "2025-05-25T13:06:17.96398Z",
+            "modified": "2025-05-25T13:06:17.96398Z",
             "name": "Flow-ized AttackGraph",
             "scope": "attack-tree",
             "start_refs": [
-                "attack-action--53ef26f9-c5b4-4c4b-88c7-047725857e39",
-                "attack-action--f9bacb80-2158-4764-83cb-82c26f4c8bd9"
+                "attack-action--bb270ab7-3d47-42ec-8230-4eca3e029216",
+                "attack-action--b9929d54-fa0c-4b1e-804a-9112853d8a20"
             ],
             "extensions": {
                 "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
@@ -38,9 +38,9 @@
         {
             "type": "attack-asset",
             "spec_version": "2.1",
-            "id": "attack-asset--8229d8c5-a45c-48e7-8c73-8fcf28fa5460",
-            "created": "2025-05-22T15:47:40.401221Z",
-            "modified": "2025-05-22T15:47:40.401221Z",
+            "id": "attack-asset--b07b7dea-c6d6-45a9-af8c-409e09b39b04",
+            "created": "2025-05-25T13:06:17.959386Z",
+            "modified": "2025-05-25T13:06:17.959386Z",
             "name": "p1",
             "extensions": {
                 "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
@@ -51,14 +51,14 @@
         {
             "type": "attack-action",
             "spec_version": "2.1",
-            "id": "attack-action--2cc33e61-cd50-4751-9e47-2ff87079f778",
-            "created": "2025-05-22T15:47:40.401405Z",
-            "modified": "2025-05-22T15:47:40.401405Z",
+            "id": "attack-action--2939b2f3-1ff7-407f-a57d-243efc85cd80",
+            "created": "2025-05-25T13:06:17.959843Z",
+            "modified": "2025-05-25T13:06:17.959843Z",
             "name": "technique6",
             "description": "COMPROMISED - Privilege Esclation\nConsequences of the technique:\n",
             "technique_id": "t6",
             "asset_refs": [
-                "attack-asset--8229d8c5-a45c-48e7-8c73-8fcf28fa5460"
+                "attack-asset--b07b7dea-c6d6-45a9-af8c-409e09b39b04"
             ],
             "extensions": {
                 "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
@@ -69,9 +69,9 @@
         {
             "type": "attack-asset",
             "spec_version": "2.1",
-            "id": "attack-asset--06c07629-bcc0-47c5-afc4-c3b515b3c316",
-            "created": "2025-05-22T15:47:40.401623Z",
-            "modified": "2025-05-22T15:47:40.401623Z",
+            "id": "attack-asset--94ce3cfb-bf04-4b16-8a6d-e25f2e0ebc12",
+            "created": "2025-05-25T13:06:17.960333Z",
+            "modified": "2025-05-25T13:06:17.960333Z",
             "name": "p1",
             "extensions": {
                 "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
@@ -82,14 +82,14 @@
         {
             "type": "attack-action",
             "spec_version": "2.1",
-            "id": "attack-action--53ef26f9-c5b4-4c4b-88c7-047725857e39",
-            "created": "2025-05-22T15:47:40.40177Z",
-            "modified": "2025-05-22T15:47:40.40177Z",
+            "id": "attack-action--bb270ab7-3d47-42ec-8230-4eca3e029216",
+            "created": "2025-05-25T13:06:17.960673Z",
+            "modified": "2025-05-25T13:06:17.960673Z",
             "name": "technique1",
             "description": "COMPROMISED - Code Execution\nConsequences of the technique:\n",
             "technique_id": "t1",
             "asset_refs": [
-                "attack-asset--06c07629-bcc0-47c5-afc4-c3b515b3c316"
+                "attack-asset--94ce3cfb-bf04-4b16-8a6d-e25f2e0ebc12"
             ],
             "extensions": {
                 "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
@@ -97,33 +97,33 @@
                 }
             },
             "effects_refs": [
-                "attack-action--2cc33e61-cd50-4751-9e47-2ff87079f778"
+                "attack-action--2939b2f3-1ff7-407f-a57d-243efc85cd80"
             ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--83dd7542-1bf8-47eb-94f0-6a7863d7e195",
-            "created": "2025-05-22T15:47:40.401965Z",
-            "modified": "2025-05-22T15:47:40.401965Z",
+            "id": "relationship--71f60bd9-5734-47ba-9a26-c363f13015f4",
+            "created": "2025-05-25T13:06:17.961122Z",
+            "modified": "2025-05-25T13:06:17.961122Z",
             "relationship_type": "related_to",
-            "source_ref": "vulnerability--b2aeb063-d808-48a7-9072-d38e07a542d0",
-            "target_ref": "attack-action--53ef26f9-c5b4-4c4b-88c7-047725857e39"
+            "source_ref": "vulnerability--267562c9-0467-4f1e-93ef-bf6f7e4f3a46",
+            "target_ref": "attack-action--bb270ab7-3d47-42ec-8230-4eca3e029216"
         },
         {
             "type": "vulnerability",
             "spec_version": "2.1",
-            "id": "vulnerability--b2aeb063-d808-48a7-9072-d38e07a542d0",
-            "created": "2025-05-22T15:47:40.400966Z",
-            "modified": "2025-05-22T15:47:40.400966Z",
+            "id": "vulnerability--267562c9-0467-4f1e-93ef-bf6f7e4f3a46",
+            "created": "2025-05-25T13:06:17.958831Z",
+            "modified": "2025-05-25T13:06:17.958831Z",
             "name": "vul1"
         },
         {
             "type": "attack-asset",
             "spec_version": "2.1",
-            "id": "attack-asset--af436865-63b0-4617-901d-f92cfe9a67be",
-            "created": "2025-05-22T15:47:40.402346Z",
-            "modified": "2025-05-22T15:47:40.402346Z",
+            "id": "attack-asset--4089fdda-adc1-4c19-bbd1-a3cc48bd6dfb",
+            "created": "2025-05-25T13:06:17.962059Z",
+            "modified": "2025-05-25T13:06:17.962059Z",
             "name": "p2",
             "extensions": {
                 "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
@@ -134,14 +134,14 @@
         {
             "type": "attack-action",
             "spec_version": "2.1",
-            "id": "attack-action--f9bacb80-2158-4764-83cb-82c26f4c8bd9",
-            "created": "2025-05-22T15:47:40.402492Z",
-            "modified": "2025-05-22T15:47:40.402492Z",
+            "id": "attack-action--b9929d54-fa0c-4b1e-804a-9112853d8a20",
+            "created": "2025-05-25T13:06:17.962391Z",
+            "modified": "2025-05-25T13:06:17.962391Z",
             "name": "technique1",
             "description": "COMPROMISED - Code Execution\nConsequences of the technique:\n",
             "technique_id": "t1",
             "asset_refs": [
-                "attack-asset--af436865-63b0-4617-901d-f92cfe9a67be"
+                "attack-asset--4089fdda-adc1-4c19-bbd1-a3cc48bd6dfb"
             ],
             "extensions": {
                 "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
@@ -152,40 +152,40 @@
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--1dfffd7a-2b87-4980-ba1d-524304f7c34c",
-            "created": "2025-05-22T15:47:40.402672Z",
-            "modified": "2025-05-22T15:47:40.402672Z",
+            "id": "relationship--821c720d-7e08-4a05-8890-aa5781574e63",
+            "created": "2025-05-25T13:06:17.962808Z",
+            "modified": "2025-05-25T13:06:17.962808Z",
             "relationship_type": "related_to",
-            "source_ref": "vulnerability--85f03e22-5adf-453d-af27-2cb5fb5a3ebf",
-            "target_ref": "attack-action--f9bacb80-2158-4764-83cb-82c26f4c8bd9"
+            "source_ref": "vulnerability--d456722d-8c91-4ca9-b39e-3f1421a7bf27",
+            "target_ref": "attack-action--b9929d54-fa0c-4b1e-804a-9112853d8a20"
         },
         {
             "type": "vulnerability",
             "spec_version": "2.1",
-            "id": "vulnerability--85f03e22-5adf-453d-af27-2cb5fb5a3ebf",
-            "created": "2025-05-22T15:47:40.40219Z",
-            "modified": "2025-05-22T15:47:40.40219Z",
+            "id": "vulnerability--d456722d-8c91-4ca9-b39e-3f1421a7bf27",
+            "created": "2025-05-25T13:06:17.961629Z",
+            "modified": "2025-05-25T13:06:17.961629Z",
             "name": "vul1"
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--388415ee-a149-4e37-bbb0-522ca7a3c847",
-            "created": "2025-05-22T15:47:40.402857Z",
-            "modified": "2025-05-22T15:47:40.402857Z",
+            "id": "relationship--c6afd6d9-9bbb-4a03-81f9-ba164f1ee6a3",
+            "created": "2025-05-25T13:06:17.963186Z",
+            "modified": "2025-05-25T13:06:17.963186Z",
             "relationship_type": "related_to",
-            "source_ref": "threat-actor--78f64ec8-e77b-4c1f-8c5f-fc7b78b07bd2",
-            "target_ref": "attack-action--53ef26f9-c5b4-4c4b-88c7-047725857e39"
+            "source_ref": "threat-actor--23ab77cf-b6d3-4ed9-9123-b059200e8a73",
+            "target_ref": "attack-action--bb270ab7-3d47-42ec-8230-4eca3e029216"
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--3fa1af36-0d59-4303-9d03-57303283a241",
-            "created": "2025-05-22T15:47:40.403023Z",
-            "modified": "2025-05-22T15:47:40.403023Z",
+            "id": "relationship--de6c4d88-a896-4d01-b483-a854f7ce4b35",
+            "created": "2025-05-25T13:06:17.963551Z",
+            "modified": "2025-05-25T13:06:17.963551Z",
             "relationship_type": "related_to",
-            "source_ref": "threat-actor--78f64ec8-e77b-4c1f-8c5f-fc7b78b07bd2",
-            "target_ref": "attack-action--f9bacb80-2158-4764-83cb-82c26f4c8bd9"
+            "source_ref": "threat-actor--23ab77cf-b6d3-4ed9-9123-b059200e8a73",
+            "target_ref": "attack-action--b9929d54-fa0c-4b1e-804a-9112853d8a20"
         }
     ]
 }

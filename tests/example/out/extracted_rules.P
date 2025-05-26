@@ -226,8 +226,8 @@ derived(t1_attack_step(_pod)).
 interaction_rule(
 	(t1_attack_step(Pod) :-
 		podExploitable(Pod, t1),
-		not hasCountermeasure(Pod, d1),
-		not hasCountermeasure(Pod, d7),
+		not hasCountermeasure(Pod, 'd1'),
+		not hasCountermeasure(Pod, 'd7'),
 		reachable(Pod, _, _)),
 	rule_desc('TECHNIQUE t1 - technique1',
 	0.0)).
@@ -246,7 +246,7 @@ derived(t2_attack_step(_pod)).
 interaction_rule(
 	(t2_attack_step(Pod) :-
 		podTargetable(Pod, t2),
-		not hasCountermeasure(Pod, d2),
+		not hasCountermeasure(Pod, 'd2'),
 		reachable(Pod, _, _),
 		privilege(Pod, root)),
 	rule_desc('TECHNIQUE t2 - technique2',
@@ -336,8 +336,8 @@ derived(t6_attack_step(_pod)).
 interaction_rule(
 	(t6_attack_step(Pod) :-
 		podTargetable(Pod, t6),
-		not hasCountermeasure(Pod, d3),
-		not hasCountermeasure(Pod, d5),
+		not hasCountermeasure(Pod, 'd3'),
+		not hasCountermeasure(Pod, 'd5'),
 		codeExec(Pod)),
 	rule_desc('TECHNIQUE t6 - technique6',
 	0.0)).
