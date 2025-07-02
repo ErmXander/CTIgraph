@@ -10,6 +10,12 @@ def fetch_attack_techniques(kb_path):
     """
     Retrieves information for about all ATT&CK Techniques
     """
+    if os.path.isfile(os.path.join(kb_path, "attack-conditions.json")):
+        with open(os.path.join(kb_path, "attack-conditions.json")) as f:
+            conditions = json.load(f)["mappings"]
+    else:
+        print("No pre/post-conditions technique mappings available")
+
     try:
         # Get the version of the D3FEND Ontology
         r = requests.get(BASE_URL+"/api/version.json")
@@ -47,6 +53,12 @@ def fetch_attack_techniques(kb_path):
                 t["countermeasures"] = list(def_techniques)
             else:
                 t["countermeasures"] = []
+            #Get pre-post conditions for the technique if available
+            if conditions is not None:
+                c = next((cond for cond in conditions if cond["id"]==t["id"]), None)
+                if c is not None:
+                    t["preconditions"] = c["preconditions"]
+                    t["postconditions"] = c["postconditions"]
         # Save all in the Knowledge Base
         with open(os.path.join(kb_path, "attack-techniques.json"), "w") as f:
             json.dump({"version": version, "techniques": off_techniques}, f, indent=2)

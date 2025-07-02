@@ -1,0 +1,1034 @@
+{
+    "mappings":[
+        {
+            "id": "T1595",
+            "preconditions": [],
+            "postconditions": [
+                {
+                "type": "reachable"
+                }
+            ]
+        },
+        {
+            "id": "T1595.002",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": []
+        },
+        {
+            "id": "T1586",
+            "preconditions": [],
+            "postconditions": [
+                {
+                "type": "credentialAccess"
+                },
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "remoteAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1586.001",
+            "preconditions": [],
+            "postconditions": [
+                {
+                "type": "credentialAccess"
+                },
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "remoteAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1586.002",
+            "preconditions": [],
+            "postconditions": [
+                {
+                "type": "credentialAccess"
+                },
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "remoteAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1586.003",
+            "preconditions": [],
+            "postconditions": [
+                {
+                "type": "credentialAccess"
+                },
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "remoteAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1190",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "codeExecution"
+                },
+                {
+                "type": "remoteAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1133",
+            "preconditions": [
+                {
+                "type": "credentialAccess"
+                },
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "privilege"
+                }
+            ]
+        },
+        {
+            "id": "T1078",
+            "preconditions": [
+                {
+                "type": "credentialAccess"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1078.001",
+            "preconditions": [
+                {
+                "type": "credentialAccess"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1078.002",
+            "preconditions": [
+                {
+                "type": "credentialAccess"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1078.003",
+            "preconditions": [
+                {
+                "type": "credentialAccess"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1078.004",
+            "preconditions": [
+                {
+                "type": "credentialAccess"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1651",
+            "preconditions": [
+                {
+                "type": "credentialAccess",
+                "account": "admin"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "dataManipulation"
+                }
+            ]
+        },
+        {
+            "id": "T1059",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1059.001",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1059.002",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1059.003",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1059.004",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1059.005",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1059.006",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1059.007",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1059.008",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1059.009",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1059.010",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1059.011",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1059.012",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1609",
+            "preconditions": [
+                {
+                "type": "credentialAccess",
+                "account": "admin"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "codeExecution"
+                },
+                {
+                "type": "dataManipulation"
+                }
+            ]
+        },
+        {
+            "id": "T1569",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "codeExecution"
+                },
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "privilege"
+                }
+            ]
+        },
+        {
+            "id": "T1569.001",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "codeExecution"
+                },
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "privilege"
+                }
+            ]
+        },        
+        {
+            "id": "T1569.002",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "codeExecution"
+                },
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "privilege"
+                }
+            ]
+        }, 
+        {
+            "id": "T1569.003",
+            "preconditions": [
+                {
+                "type": "remoteAccess"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "codeExecution"
+                },
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "privilege"
+                }
+            ]
+        }, 
+        {
+            "id": "T1098",
+            "preconditions": [
+                {
+                "type": "privilege"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1098.001",
+            "preconditions": [
+                {
+                "type": "privilege"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1098.003",
+            "preconditions": [
+                {
+                "type": "privilege"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1098.004",
+            "preconditions": [
+                {
+                "type": "privilege"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1098.006",
+            "preconditions": [
+                {
+                "type": "privilege"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1136",
+            "preconditions": [
+                {
+                "type": "privilege"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1136.001",
+            "preconditions": [
+                {
+                "type": "privilege"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1136.002",
+            "preconditions": [
+                {
+                "type": "privilege"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1136.003",
+            "preconditions": [
+                {
+                "type": "privilege"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "persistence"
+                },
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1068",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "privilege",
+                "level": "root"
+                }
+            ]
+        },
+        {
+            "id": "T1555",
+            "preconditions": [
+                {
+                "type": "fileAccess",
+                "perm": "read"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1555.006",
+            "preconditions": [
+                {
+                "type": "fileAccess",
+                "perm": "read"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1212",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1003",
+            "preconditions": [
+                {
+                "type": "privilege"
+                },
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1552",
+            "preconditions": [
+                {
+                "type": "fileAccess",
+                "perm": "read"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "credentialAccess"
+                }
+            ]
+        },
+        {
+            "id": "T1531",
+            "preconditions": [
+                {
+                "type": "privilege",
+                "level": "root"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dos"
+                }
+            ]
+        },
+        {
+            "id": "T1485",
+            "preconditions": [
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dataManipulation"
+                }
+            ]
+        },
+        {
+            "id": "T1486",
+            "preconditions": [
+                {
+                "type": "codeExecution"
+                },
+                {
+                "type": "fileAccess",
+                "perm": "write"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dataManipulation"
+                }
+            ]
+        },
+        {
+            "id": "T1565",
+            "preconditions": [
+                {
+                "type": "codeExecution"
+                },
+                {
+                "type": "fileAccess",
+                "perm": "write"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dataManipulation"
+                }
+            ]
+        },
+        {
+            "id": "T1565.001",
+            "preconditions": [
+                {
+                "type": "codeExecution"
+                },
+                {
+                "type": "fileAccess",
+                "perm": "write"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dataManipulation"
+                }
+            ]
+        },
+        {
+            "id": "T1499",
+            "preconditions": [
+                {
+                "type": "codeExecution"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dos"
+                }
+            ]
+        },
+        {
+            "id": "T1499",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dos"
+                }
+            ]
+        },
+        {
+            "id": "T1499.001",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dos"
+                }
+            ]
+        },
+        {
+            "id": "T1499.002",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dos"
+                }
+            ]
+        },
+        {
+            "id": "T1499.003",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dos"
+                }
+            ]
+        },
+        {
+            "id": "T1499.004",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dos"
+                }
+            ]
+        },
+        {
+            "id": "T1498",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dos"
+                }
+            ]
+        },
+        {
+            "id": "T1499.001",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dos"
+                }
+            ]
+        },
+        {
+            "id": "T1498.002",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dos"
+                }
+            ]
+        },
+        {
+            "id": "T1489",
+            "preconditions": [
+                {
+                "type": "privilege"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dos"
+                }
+            ]
+        },
+        {
+            "id": "T1529",
+            "preconditions": [
+                {
+                "type": "privilege"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "dos"
+                }
+            ]
+        }
+    ]
+}
