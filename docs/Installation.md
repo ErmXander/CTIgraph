@@ -43,3 +43,13 @@ make
 #### 3.5 Replace graph generation script:
 In order to allow the generation of Attack Graphs using negated predicates MulVAL's graph_gen.sh (the graph generation script) was slightly modified.
 The modified version is found in  ```CTIgraph/utils ``` and should be used to replace the one used by MulVAL (found in ```$MULVALROOT/utils```).
+
+## Docker Setup
+A Dockerfile is provided in ```build/```. This Dockerfile can be used to build an image:
+```bash
+git clone https://github.com/ErmXander/CTIgraph.git
+cd CTIgraph
+sudo docker build -t ctigraph:latest -f ./build/Dockerfile .
+```
+
+The script ```utils/docker_run.sh``` can be used to run a container using this image and interact with the tool via CLI.

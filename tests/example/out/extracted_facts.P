@@ -1,8 +1,8 @@
 attackerLocated(internet).
-attackGoal(dos(_)).
-attackGoal(privilege(_, _)).
 attackGoal(codeExec(_)).
 attackGoal(remoteAccess(_)).
+attackGoal(privilege(_, _)).
+attackGoal(dos(_)).
 hasLibrary(p1, 'lib1', 'lib1_ver1').
 hasArtifact('lib1', 'art3').
 vulExists('lib1', 'lib1_ver1', 'vul1').

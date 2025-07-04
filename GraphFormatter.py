@@ -99,19 +99,19 @@ class AGFormatter:
             # Check if the current node is a technique rule derivation
             if "TECHNIQUE" in n[1]["label"]:
                 # Extract technique info
-                if t_match := re.search('\(TECHNIQUE (.*) - (.*)\)', n[1]["label"]):
+                if t_match := re.search(r'\(TECHNIQUE (.*) - (.*)\)', n[1]["label"]):
                     tid = t_match.group(1)
                     tname = t_match.group(2)
                 # Extract compromised pod label
                 out_n = list(self.AG.out_edges(n[0]))[0][1]
                 out_n = [n for n in self.AG.nodes.data() if n[0]==out_n][0]
-                if pod := re.search('step\((.*)\)', out_n[1]["label"]):
+                if pod := re.search(r'step\((.*)\)', out_n[1]["label"]):
                     pod = pod.group(1)
                 # Extract attack_step consequences
                 cons_desc = ""
                 for _, cons_n in self.AG.out_edges(out_n[0]):
                     cons_n = [n for n in self.AG.nodes.data() if n[0]==cons_n][0]
-                    if consequence := re.search('\((.*)\)' ,cons_n[1]["label"]):
+                    if consequence := re.search(r'\((.*)\)' ,cons_n[1]["label"]):
                         consequence = consequence.group(1)
                         cons_desc += f"{consequence}\n"
                 if cons_desc:
@@ -121,7 +121,7 @@ class AGFormatter:
                 for in_n, _ in self.AG.in_edges(n[0]):
                     in_n = [n for n in self.AG.nodes.data() if n[0]==in_n][0]
                     if "vulExists" in in_n[1]["label"]:
-                        if vul_id := re.search('vulExists\(.*,(.*)\)', in_n[1]["label"]):
+                        if vul_id := re.search(r'vulExists\(.*,(.*)\)', in_n[1]["label"]):
                             vul_id = vul_id.group(1)
                         vuls.append(stix2.Vulnerability(name=vul_id))
                 # Proceed downsream using current node as prev_n appending any found techniques to attack_effects
@@ -179,7 +179,7 @@ class AGFormatter:
         
         # Find the 1st node, attackerLocated, and create a ThreatActor SDO for it
         location_node = [n for n in self.AG.nodes.data() if "attackerLocated" in n[1]["label"]][0]
-        if location := re.search('attackerLocated\((.*)\)', location_node[1]["label"]):
+        if location := re.search(r'attackerLocated\((.*)\)', location_node[1]["label"]):
             location = location.group(1)
         attacker_node = stix2.ThreatActor(name="Attacker", description=f"Located in {location}")
         # Store the Attack FLOW objects
@@ -229,7 +229,7 @@ class AGFormatter:
             # Check if the current node is a technique rule derivation
             if "TECHNIQUE" in n[1]["label"]:
                 # Extract technique info
-                if t_match := re.search('\(TECHNIQUE (.*) - (.*)\)', n[1]["label"]):
+                if t_match := re.search(r'\(TECHNIQUE (.*) - (.*)\)', n[1]["label"]):
                     tid = t_match.group(1)
                     tname = t_match.group(2)
                     technique_nodes.append((n[0], f"{tname}<br>&lt{tid}&gt"))
@@ -237,12 +237,12 @@ class AGFormatter:
                 # Extract compromised pod label
                 out_n = list(self.AG.out_edges(n[0]))[0][1]
                 out_n = [n for n in self.AG.nodes.data() if n[0]==out_n][0]
-                if pod := re.search('step\((.*)\)', out_n[1]["label"]):
+                if pod := re.search(r'step\((.*)\)', out_n[1]["label"]):
                     pod = pod.group(1)
                 # Extract attack_step consequences
                 for _, cons_n in self.AG.out_edges(out_n[0]):
                     cons_n = [n for n in self.AG.nodes.data() if n[0]==cons_n][0]
-                    if consequence := re.search('\(COMPROMISED - (.*)\)' ,cons_n[1]["label"]):
+                    if consequence := re.search(r'\(COMPROMISED - (.*)\)' ,cons_n[1]["label"]):
                         consequence = consequence.group(1)
                         consequence_nodes.append((cons_n[0], f"{consequence}<br>&lt{pod}&gt"))
                         edges.append(f"{n[0]}-->|compromise|{cons_n[0]}\n")
@@ -250,7 +250,7 @@ class AGFormatter:
                 for in_n, _ in self.AG.in_edges(n[0]):
                     in_n = [n for n in self.AG.nodes.data() if n[0]==in_n][0]
                     if "vulExists" in in_n[1]["label"]:
-                        if vul_id := re.search('vulExists\(.*,(.*)\)', in_n[1]["label"]):
+                        if vul_id := re.search(r'vulExists\(.*,(.*)\)', in_n[1]["label"]):
                             vul_id = vul_id.group(1)
                             vuln_nodes.append((in_n[0],f"{vul_id}<br>&lt{pod}&gt"))
                             edges.append(f"{in_n[0]}-->{n[0]}\n")
@@ -272,7 +272,7 @@ class AGFormatter:
 
         # Find the 1st node, attackerLocated
         location_node = [n for n in self.AG.nodes.data() if "attackerLocated" in n[1]["label"]][0]
-        if location := re.search('attackerLocated\((.*)\)', location_node[1]["label"]):
+        if location := re.search(r'attackerLocated\((.*)\)', location_node[1]["label"]):
             location = location.group(1)
         # For each node store its id and a label
         attacker_node = (location_node[0], f"ATTACKER<br>&lt{location}&gt")

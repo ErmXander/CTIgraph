@@ -78,7 +78,7 @@ class DefenseAdvisor:
             out_nodes = [out_n for out_n in G.nodes.data() if out_n[0] in out_nodes]
             if "attack_" in n[1]["label"]:
                 # Technique Execution node found
-                if t_match := re.search(':(.*)_attack_step\((.*)\)', n[1]["label"]):
+                if t_match := re.search(r':(.*)_attack_step\((.*)\)', n[1]["label"]):
                     tid = t_match.group(1)
                     pod = t_match.group(2)
                 # Check if this node is reachable:
@@ -126,7 +126,7 @@ class DefenseAdvisor:
         # Get the set of suggested defensive techniques for each pod
         suggestions = {}
         for n, counters in countermeasures.items():
-            if t_match := re.search(':(.*)_attack_step\((.*)\)', AG.nodes[n]["label"]):
+            if t_match := re.search(r':(.*)_attack_step\((.*)\)', AG.nodes[n]["label"]):
                     pod = t_match.group(2)
             if pod not in suggestions:
                 suggestions[pod] = []
