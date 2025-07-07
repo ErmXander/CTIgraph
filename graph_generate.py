@@ -2,6 +2,7 @@ import argparse
 import os.path
 import CTIgraph
 from DefenseAdvisor import DefenseAdvisor
+from BayesianGraph import BayesianGraph, random_exploitability, get_epss
 
 def main():
     desc = "Parse the JSON reprsentation on the Kubernetes infrastructure and" \
@@ -19,6 +20,7 @@ def main():
     parser.add_argument("-m", "--mermaid", action="store_true", help="generete a mermaid representation of the Attack Graph")
     parser.add_argument("--kb", help="specify a different folder to consider as the Knowledge Base")
     parser.add_argument("-d", "--defend", action="store_true", help="get d3fend technique suggestions to mitigate the attack paths")
+    parser.add_argument("-b", "--bayes", help="generate a bayesian attack graph", action="store_true")
     args = parser.parse_args()
 
     out_dir = os.path.join(os.getcwd(), args.out) if args.out else os.getcwd()
@@ -48,6 +50,13 @@ def main():
                 kb_path=args.kb,
                 output_dir=out_dir)
             da.getCountermeasures(AG)
+    
+    if args.bayes:
+        if not args.graph:
+            print("Cannot ask to generate a Bayesian Graph without generating an Attack Graph")
+        else:
+            BG = BayesianGraph(AG, exp_prob_fn=random_exploitability)
+            BG.print_bayesian_graph(out_dir)
 
 if __name__ == "__main__":
     main()

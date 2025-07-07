@@ -1,0 +1,65 @@
+strict digraph G {
+	graph [name=G];
+	1	[label="1:codeExec(p1):0.25",
+		shape=diamond];
+	47	[label="47:RULE 30 (TECHNIQUE t6 - technique6):0.25",
+		shape=ellipse];
+	1 -> 47;
+	2	[label="2:RULE 20 (COMPROMISED - Code Execution):0.25",
+		shape=ellipse];
+	2 -> 1;
+	3	[label="3:t1_attack_step(p1):0.25",
+		shape=diamond];
+	3 -> 2;
+	4	[label="4:RULE 19 (TECHNIQUE t1 - technique1):0.25",
+		shape=ellipse];
+	4 -> 3;
+	5	[label="5:reachable(p1,_,_):1.00",
+		shape=diamond];
+	5 -> 4;
+	6	[label="6:RULE 6 (directly reachable):1.00",
+		shape=ellipse];
+	6 -> 5;
+	10	[label="10:attackerLocated(internet):1.00",
+		shape=box];
+	10 -> 6;
+	29	[label="29:RULE 6 (directly reachable):1.00",
+		shape=ellipse];
+	10 -> 29;
+	14	[label="14:vulExists(p1,vul1):0.25",
+		shape=diamond];
+	14 -> 4;
+	17	[label="17:vulExists(lib1,lib1_ver1,vul1):0.25",
+		shape=box];
+	17 -> 14;
+	24	[label="24:codeExec(p2):0.03",
+		shape=diamond];
+	25	[label="25:RULE 20 (COMPROMISED - Code Execution):0.03",
+		shape=ellipse];
+	25 -> 24;
+	26	[label="26:t1_attack_step(p2):0.03",
+		shape=diamond];
+	26 -> 25;
+	27	[label="27:RULE 19 (TECHNIQUE t1 - technique1):0.03",
+		shape=ellipse];
+	27 -> 26;
+	28	[label="28:reachable(p2,_,_):1.00",
+		shape=diamond];
+	28 -> 27;
+	29 -> 28;
+	35	[label="35:vulExists(p2,vul1):0.03",
+		shape=diamond];
+	35 -> 27;
+	38	[label="38:vulExists(lib1,lib1_ver2,vul1):0.03",
+		shape=box];
+	38 -> 35;
+	44	[label="44:privilege(p1,root):0.25",
+		shape=diamond];
+	45	[label="45:RULE 31 (COMPROMISED - Privilege Esclation):0.25",
+		shape=ellipse];
+	45 -> 44;
+	46	[label="46:t6_attack_step(p1):0.25",
+		shape=diamond];
+	46 -> 45;
+	47 -> 46;
+}

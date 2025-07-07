@@ -1,6 +1,9 @@
 networkx==3.4.2
 pygraphviz==1.14.0
+numpy==2.2.6
 openai==1.93.0
+pgmpy==1.0.0
+scipy==1.15.3
 Requests==2.32.4
 stix2==3.0.1
 tqdm==4.67.1
