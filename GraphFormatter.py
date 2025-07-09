@@ -113,9 +113,9 @@ class AGFormatter:
                     cons_n = [n for n in self.AG.nodes.data() if n[0]==cons_n][0]
                     if consequence := re.search(r'\((.*)\)' ,cons_n[1]["label"]):
                         consequence = consequence.group(1)
-                        cons_desc += f"{consequence}\n"
+                        cons_desc += f"\n{consequence}"
                 if cons_desc:
-                    cons_desc += "Consequences of the technique:\n"
+                    cons_desc = f"Consequences of the technique:{cons_desc}"
                 # Extract exploited vulnerabilities
                 vuls = []
                 for in_n, _ in self.AG.in_edges(n[0]):
@@ -207,6 +207,7 @@ class AGFormatter:
                 }
             }
         )
+        flow_objects.insert(0, attacker_node)
         flow_objects.insert(0, attack_flow)
         flow_objects.insert(0, _AttackFlowExtentionDefinition)
         bundle = stix2.Bundle(flow_objects)

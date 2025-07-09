@@ -369,7 +369,7 @@ class AttackGraphGenerator:
         """
         ag_path = os.path.join(self.output_dir, "AttackGraph.dot")
         if no_prune:
-            p = subprocess.Popen(["graph_gen.sh", "extracted_facts.P", "-r", "extracted_rules.P", "-v", "-p"], 
+            p = subprocess.Popen(["graph_gen.sh", "extracted_facts.P", "-r", "extracted_rules.P", "-v", "-p", "--nometric"], 
                                 cwd=self.output_dir, 
                                 stdout=subprocess.DEVNULL)
             p.wait()
