@@ -1,0 +1,7 @@
+{
+	"name": "Python Dev (Docker)",
+	"build": {
+		"context": "../",
+		"dockerfile": "../build/Dockerfile"
+	}
+}

@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "techniques": [
       {
-        "id": "t1",
+        "id": "T1",
         "name": "technique1",
         "definition": "definition for technique1",
         "tactic": "Execution",
@@ -14,7 +14,7 @@
         "postconditions": [{"type": "codeExec"}]
     },
     {
-        "id": "t2",
+        "id": "T2",
         "name": "technique2",
         "definition": "definition for technique2",
         "tactic": "Execution",
@@ -25,7 +25,7 @@
         "postconditions": [{"type": "codeExec"}]
     },
     {
-        "id": "t3",
+        "id": "T3",
         "name": "technique3",
         "definition": "definition for technique3",
         "tactic": "Execution",
@@ -34,7 +34,7 @@
         "postconditions": [{"type": "codeExec"}]
     },
     {
-        "id": "t4",
+        "id": "T4",
         "name": "technique4",
         "definition": "definition for technique4",
         "tactic": "Persistence",
@@ -43,7 +43,7 @@
         "postconditions": [{"type": "persistence"}]
     },
     {
-        "id": "t5",
+        "id": "T5",
         "name": "technique5",
         "definition": "definition for technique5",
         "tactic": "Persistence",
@@ -52,7 +52,7 @@
         "postconditions": [{"type": "persistence"}]
     },
     {
-        "id": "t6",
+        "id": "T6",
         "name": "technique6",
         "definition": "definition for technique6",
         "tactic": "Privilege Escalation",
@@ -61,7 +61,7 @@
         "postconditions": [{"type": "privEscalation", "level": "root"}]
     },
     {
-        "id": "t7",
+        "id": "T7",
         "name": "technique7",
         "definition": "definition for technique7",
         "tactic": "Privilege Escalation",
@@ -70,7 +70,7 @@
         "postconditions": [{"type": "privEscalation", "level": "root"}]
     }, 
     {
-        "id": "t8",
+        "id": "T8",
         "name": "technique8",
         "definition": "definition for technique8",
         "tactic": "Privilege Escalation",
@@ -79,7 +79,7 @@
         "postconditions": [{"type": "privEscalation", "level": "root"}]
     },
     {
-        "id": "t9",
+        "id": "T9",
         "name": "technique9",
         "definition": "definition for technique9",
         "tactic": "Credential Access",
@@ -88,7 +88,7 @@
         "postconditions": [{"type": "credentialAccess", "account": "admin"}]
     },
     {
-        "id": "t10",
+        "id": "T10",
         "name": "technique10",
         "definition": "definition for technique10",
         "tactic": "Credential Access",
@@ -97,7 +97,7 @@
         "postconditions": [{"type": "credentialAccess", "account": "user"}]
     },
     {
-        "id": "t13",
+        "id": "T13",
         "name": "technique13",
         "definition": "definition for technique13",
         "tactic": "Lateral Movement",
@@ -106,7 +106,7 @@
         "postconditions": [{"type": "remoteAccess"}]
     }, 
     {
-        "id": "t14",
+        "id": "T14",
         "name": "technique14",
         "definition": "definition for technique14",
         "tactic": "Lateral Movement",
@@ -115,7 +115,7 @@
         "postconditions": [{"type": "remoteAccess"}]
     },
     {
-        "id": "t15",
+        "id": "T15",
         "name": "technique15",
         "definition": "definition for technique15",
         "tactic": "Collection",
@@ -123,7 +123,7 @@
         "preconditions": [{"type": "fileAccess", "perm": "read"}]
     },
     {
-        "id": "t17",
+        "id": "T17",
         "name": "technique17",
         "definition": "definition for technique17",
         "tactic": "Impact",
@@ -132,7 +132,7 @@
         "postconditions": [{"type": "dataManipulation"}]
     }, 
         {
-        "id": "t18",
+        "id": "T18",
         "name": "technique18",
         "definition": "definition for technique18",
         "tactic": "Impact",

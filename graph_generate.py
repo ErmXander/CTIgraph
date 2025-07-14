@@ -41,22 +41,23 @@ def main():
             output_dir=out_dir)
         AG = ag_generator.gen_graph(no_prune=args.unpruned, cleanup=not args.all, to_flow=args.flow, to_mermaid=args.mermaid)
 
-    if args.defend:
-        if not args.graph:
-            print("Cannot ask to find countermeasures without generating an Attack Graph")
-        else:
-            da = DefenseAdvisor(
-                infrastructure_path=args.infrastructure_path,
-                kb_path=args.kb,
-                output_dir=out_dir)
-            da.getCountermeasures(AG)
-    
-    if args.bayes:
-        if not args.graph:
-            print("Cannot ask to generate a Bayesian Graph without generating an Attack Graph")
-        else:
-            BG = BayesianGraph(AG, exp_prob_fn=random_exploitability)
-            BG.print_bayesian_graph(out_dir)
+    if AG is not None:
+        if args.defend:
+            if not args.graph:
+                print("Cannot ask to find countermeasures without generating an Attack Graph")
+            else:
+                da = DefenseAdvisor(
+                    infrastructure_path=args.infrastructure_path,
+                    kb_path=args.kb,
+                    output_dir=out_dir)
+                da.getCountermeasures(AG)
+        
+        if args.bayes:
+            if not args.graph:
+                print("Cannot ask to generate a Bayesian Graph without generating an Attack Graph")
+            else:
+                BG = BayesianGraph(AG, exp_prob_fn=random_exploitability)
+                BG.print_bayesian_graph(out_dir)
 
 if __name__ == "__main__":
     main()

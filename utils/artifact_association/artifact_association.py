@@ -58,10 +58,21 @@ class LLM_associator:
         """   
         example_json = {
             "artifacts": [
-                {"id": "artifact1"},
-                {"id": "artifact2"},
-                {"id": "artifact3"}
+                {"id": "d3f:SecurityToken"},
+                {"id": "d3f:LoginSession"},
+                {"id": "d3f:AuthenticateUser"},
+                {"id": "d3f:SystemCall"},
+                {"id": "d3f:ImpersonateUser"},
+                {"id": "d3f:StackFrame"},
+                {"id": "d3f:GetSystemTime"},
+                {"id": "d3f:SoftwarePackage"},
+                {"id": "d3f:CloudUserAccount"},
+                {"id": "d3f:Credential"},
+                {"id": "d3f:URL"},
+                {"id": "d3f:SoftwareLibrary"},
+                {"id": "d3f:AuthenticationFunction"},
             ]}
+        
         query=f"""
             Given the library {lib_name}, use your knowledge of MITRE's Digital Artifact Ontology
             to map the library to the appropriate artifacts.
@@ -70,7 +81,8 @@ class LLM_associator:
             You are a cybersecurity analyst with extensive knowledge of MITRE's Digital Artifact Ontology.
             Limit your web search only to the official websites of the libraries and Github.
             Associate as many artifacts as you think appropriate.
-            The output must include only the JSON following the example: {json.dumps(example_json)}.
+            The output must include only JSON.
+            Example with library cloud.google.com/go/auth: {json.dumps(example_json)}.
         """
         response = self.client.responses.create(
             model="gpt-4o-mini",

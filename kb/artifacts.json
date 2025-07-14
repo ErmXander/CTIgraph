@@ -5082,6 +5082,7 @@
         "Inbound Internet Network Traffic"
       ],
       "da_to_off": [
+        "T1498",
         "T1498.001",
         "T1499.002",
         "T1566.002",

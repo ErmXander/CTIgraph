@@ -2,7 +2,8 @@ import re
 import stix2
 import os.path
 from networkx.drawing import nx_agraph
-
+from helper import get_logger
+logger = get_logger(__name__)
 
 #---------Custom Object definitions for ATTACK FLOW
 
@@ -91,13 +92,13 @@ class AGFormatter:
         """
         Generate the ATTACK FLOW representation from the attack graph
         """
-
+        logger.info("Converting Graph to AttackFlow")
         def _rec_build(n, prev_n, next_nodes):
             """
             Recursively find the technique nodes and build the ATTACK FLOW Graph
             """
             # Check if the current node is a technique rule derivation
-            if "TECHNIQUE" in n[1]["label"]:
+            if "TECHNIQUE" in n[1]["label"] and n[0] not in added_nodes:
                 # Extract technique info
                 if t_match := re.search(r'\(TECHNIQUE (.*) - (.*)\)', n[1]["label"]):
                     tid = t_match.group(1)
@@ -162,6 +163,8 @@ class AGFormatter:
                     flow_objects.append(relationship)
                 flow_objects.extend(vuls)
 
+                added_nodes.append(n[0])
+
                 # If there's no prior attack_action node add this as a start node
                 # Otherwise append the current attack_action.id to the previous one's next attack_action
                 if prev_n is None:
@@ -176,7 +179,7 @@ class AGFormatter:
                 for _, out_n in self.AG.out_edges(n[0]):
                     out_n = [n for n in self.AG.nodes.data() if n[0]==out_n][0]
                     _rec_build(out_n, prev_n, next_nodes)
-        
+
         # Find the 1st node, attackerLocated, and create a ThreatActor SDO for it
         location_node = [n for n in self.AG.nodes.data() if "attackerLocated" in n[1]["label"]][0]
         if location := re.search(r'attackerLocated\((.*)\)', location_node[1]["label"]):
@@ -186,6 +189,8 @@ class AGFormatter:
         flow_objects = []
         # Store the entrypoints of FLOW
         start_nodes = []
+        #Keep track of already inserted nodes to avoid considering a technique twice when recurring
+        added_nodes = []
         # Recursively build the Attack FLoW graph starting from attackerLocation
         _rec_build(location_node, prev_n=None, next_nodes=None)
         # Link the attacker to the first attack_actions
@@ -223,12 +228,13 @@ class AGFormatter:
         Generate a mermaid representation of the Attack Graph
         """
 
+        logger.info("Converting Graph to AttackFlow")
         def _rec_build(n, prev_n):
             """
             Recursively find the technique nodes and build the ATTACK FLOW Graph
             """
             # Check if the current node is a technique rule derivation
-            if "TECHNIQUE" in n[1]["label"]:
+            if "TECHNIQUE" in n[1]["label"] and n[0] not in added_nodes:
                 # Extract technique info
                 if t_match := re.search(r'\(TECHNIQUE (.*) - (.*)\)', n[1]["label"]):
                     tid = t_match.group(1)
@@ -255,6 +261,7 @@ class AGFormatter:
                             vul_id = vul_id.group(1)
                             vuln_nodes.append((in_n[0],f"{vul_id}<br>&lt{pod}&gt"))
                             edges.append(f"{in_n[0]}-->{n[0]}\n")
+                added_nodes.append(n[0])
                 # Proceed downstram with the current node as prev_n
                 for _, out_n in self.AG.out_edges(n[0]):
                     out_n = [n for n in self.AG.nodes.data() if n[0]==out_n][0]
@@ -281,6 +288,8 @@ class AGFormatter:
         vuln_nodes = []
         consequence_nodes = []
         edges = []
+        #Keep track of already inserted nodes to avoid considering a technique twice when recurring
+        added_nodes = []
         # Recursively build the mermaid graph starting from attackerLocation
         _rec_build(location_node, location_node)
 

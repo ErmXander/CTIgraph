@@ -1,4 +1,5 @@
 # Countermeasure Suggestions
+![image](./defense-advisor-flow.svg)
 The class ```DefenseAdvisor``` is responsible for the suggestion of D3FEND Techniques to counter the ATT&CK Techniques in an Attack Graph with the aim of minimizing the attack surface of the infrastructure.  
 DefenseAdvisor is initialized by passing it the path to the description of the Kubernetes Infrastructure, the path to the Knowledge Base (*./kb* by default) and the output directory (*working directory* by default).  
 The method  ```getCountermeasures()``` takes an Attack Graph (NetworkX Graph) as input and traverses it recursively starting from its root (*attackerLocated* node). Whenever a Technique attack_step node is found the method will check if the node is still reachable: a technique node is reachable if each of the nodes used for the Technique's rule derivation are reachable (in_degree > 0).

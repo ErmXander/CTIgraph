@@ -1,6 +1,8 @@
 import networkx as nx
 import os
 import json
+import sys
+import logging
 
 #----- Helper functions for graphs
 
@@ -16,7 +18,14 @@ def decycle(AG):
         return
     for cycle in cycles:
         if cycle:
-            AG.remove_edge(cycle[0], cycle[1])
+            for i in range(len(cycle)):
+                id1 = int(cycle[i])
+                id2 = int(cycle[(i+1)%len(cycle)])
+                if id1 > id2 and id1 != id2+1 and "multi-hop" in AG.nodes.data()[f'{id2}']["label"]:
+                    if AG.has_edge(cycle[i], cycle[(i+1)%len(cycle)]):
+                        AG.remove_edge(cycle[i], cycle[(i+1)%len(cycle)])
+                    break
+        
 
 def prune_graph(AG, inplace=False):
     """
@@ -31,8 +40,9 @@ def prune_graph(AG, inplace=False):
     """
     keep_labels = ["TECHNIQUE", "COMPROMISED", "attack_step", "attackerLocated", "vulExists",
                     "reachable", "codeExec", "fileAccess", "privilege", "credentialAccess", "mounts",
-                    "remoteAccess", "codeExec", "dos", "persistence"]
+                    "remoteAccess", "dos", "persistence"]
     AG = AG if inplace else AG.copy()
+    decycle(AG)
     def _rec_pruning(n, in_n, nodes_to_keep, edges):
         for _, out_n in AG.out_edges(n):
             if out_n not in nodes_to_keep:
@@ -120,3 +130,35 @@ def get_artifacts_info(kb_path):
     except FileNotFoundError as e:
         print(f"Unable to DAO artifacts information from the Knowledge Base:\n {e}")
         return None, None
+
+#-------Logger
+
+LOG_COLORS = {
+    logging.DEBUG: "\033[36m",     # Cyan
+    logging.INFO: "\033[32m",      # Green
+    logging.WARNING: "\033[33m",   # Yellow
+    logging.ERROR: "\033[31m",     # Red
+    logging.CRITICAL: "\033[41m",  # Red background
+}
+RESET_COLOR = "\033[0m"
+
+class ColoredFormatter(logging.Formatter):
+    def format(self, record):
+        color = LOG_COLORS.get(record.levelno, "")
+        message = super().format(record)
+        return f"{color}{message}{RESET_COLOR}"
+
+def format_logger(logger):
+    consoleHandler = logging.StreamHandler(sys.stdout)
+    consoleHandler.setLevel(logging.DEBUG)
+    formatter = ColoredFormatter('%(asctime)s [%(name)s] %(levelname)s %(message)s')
+    consoleHandler.setFormatter(formatter)
+    logger.setLevel(logging.DEBUG)
+    logger.handlers.clear()
+    logger.addHandler(consoleHandler)
+    logger.propagate = False
+
+def get_logger(name: str) -> logging.Logger:
+    logger = logging.getLogger(name)
+    format_logger(logger)
+    return logger

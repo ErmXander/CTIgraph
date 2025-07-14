@@ -3,203 +3,205 @@
     "$id": "https://github.com/ErmXander/CTIgraph/docs/k8infrastructure-schema.json",
     "title": "Kubernetes Infrastructure",
     "description": "Representation of a K8s infrastructure",
-    "type": "array",
-    "items": {
-        "title": "Pod",
-        "description": "Representation of a Pod",
-        "type": "object",
-        "properties": {
-            "label": {
-                "description": "Identifier of the Pod",
-                "type": "string"
-            },
-            "networkProperties": {
-                "description": "Network-level properties of the pod",
-                "type": "object",
-                "properties": {
-                    "service": {
-                        "description": "Service exposed by the pod",
+    "pods": {
+        "type": "array",
+        "items": {
+            "title": "Pod",
+            "description": "Representation of a Pod",
+            "type": "object",
+            "properties": {
+                "label": {
+                    "description": "Identifier of the Pod",
+                    "type": "string"
+                },
+                "networkProperties": {
+                    "description": "Network-level properties of the pod",
+                    "type": "object",
+                    "properties": {
+                        "service": {
+                            "description": "Service exposed by the pod",
+                            "type": "object",
+                            "properties": {
+                                "name": {"type": "string"},
+                                "protocol": {"type": "string"},
+                                "port": {"type": "number"},
+                                "artifacts": {
+                                    "description": "Artifact from D3FEND DAO related to the service",
+                                    "type": "array",
+                                    "items": {
+                                        "title": "artifact",
+                                        "type": "object",
+                                        "properties": {
+                                            "description": "identifier of the artifact",
+                                            "id": "string"
+                                        },
+                                        "required": ["id"]
+                                    },
+                                    "minItems": 0
+                                },
+                                "required": ["name", "protocol", "port"]
+                            }
+                        },
+                        "restrictions": {
+                            "title": "Network restrictions",
+                            "description": "Representation of the network policies of the pod",
+                            "type": "object",
+                            "properties": {
+                                "enforcement_behavior": {
+                                    "description": "default policy",
+                                    "type": "string",
+                                    "enum": ["default-allow", "default-deny"]
+                                },
+                                "rules": {
+                                    "description": "Network rules for the Pod",
+                                    "type": "array",
+                                    "items": {
+                                        "oneOf": [
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "direction": {
+                                                        "type": "string",
+                                                        "enum": ["Ingress", "Egress", "ingress", "egress"]
+                                                    },
+                                                    "action": {
+                                                        "type": "string",
+                                                        "enum": ["allow", "deny"]
+                                                    },
+                                                    "proto": {
+                                                        "type": "array",
+                                                        "items": {"type": "string"}
+                                                    },
+                                                    "port": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "oneOf": [
+                                                                {"type": "string", "enum": ["*"]},
+                                                                {"type": "number"}
+                                                            ]
+                                                        }
+                                                    },
+                                                    "type": {"type": "string", "enum": ["pod"]},
+                                                    "label": {"type": "string"}
+                                                },
+                                                "required": ["direction", "action", "proto", "port", "type", "label"]
+                                            },
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "direction": {
+                                                        "type": "string",
+                                                        "enum": ["Ingress", "Egress", "ingress", "egress"]
+                                                    },
+                                                    "action": {
+                                                        "type": "string",
+                                                        "enum": ["allow", "deny"]
+                                                    },
+                                                    "proto": {
+                                                        "type": "array",
+                                                        "items": {"type": "string"}
+                                                    },
+                                                    "port": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "oneOf": [
+                                                                {"type": "string", "enum": ["*"]},
+                                                                {"type": "number"}
+                                                            ]
+                                                        }
+                                                    },
+                                                    "type": {"type": "string", "not": { "enum": ["pod"]}}
+                                                },
+                                                "required": ["direction", "action", "proto", "port", "type"]
+                                            }                                        
+                                        ]
+                                    },
+                                    "minItems": 0
+                                },
+                                "required": ["enforcement_behavior"]
+                            }
+                        }
+                    },
+                    "required": ["service", "restrictions"]
+                },
+                "libraries": {
+                    "description": "libraries used by the pod",
+                    "type": "array",
+                    "items": {
                         "type": "object",
                         "properties": {
                             "name": {"type": "string"},
-                            "protocol": {"type": "string"},
-                            "port": {"type": "number"},
+                            "version": {"type": "string"},
                             "artifacts": {
-                                "description": "Artifact from D3FEND DAO related to the service",
+                                "description": "Artifact from D3FEND DAO related to the library",
                                 "type": "array",
                                 "items": {
-                                    "title": "artifact",
                                     "type": "object",
                                     "properties": {
                                         "description": "identifier of the artifact",
-                                        "id": "string"
+                                        "id": {"type": "string"}
                                     },
                                     "required": ["id"]
                                 },
                                 "minItems": 0
                             },
-                            "required": ["name", "protocol", "port"]
-                        }
-                    },
-                    "restrictions": {
-                        "title": "Network restrictions",
-                        "description": "Representation of the network policies of the pod",
-                        "type": "object",
-                        "properties": {
-                            "enforcement_behavior": {
-                                "description": "default policy",
-                                "type": "string",
-                                "enum": ["default-allow", "default-deny"]
-                            },
-                            "rules": {
-                                "description": "Network rules for the Pod",
+                            "vulnerabilities": {
+                                "description": "vulnerabilities present in the version of the library",
                                 "type": "array",
                                 "items": {
-                                    "oneOf": [
-                                        {
-                                            "type": "object",
-                                            "properties": {
-                                                "direction": {
-                                                    "type": "string",
-                                                    "enum": ["Ingress", "Egress", "ingress", "egress"]
-                                                },
-                                                "action": {
-                                                    "type": "string",
-                                                    "enum": ["allow", "deny"]
-                                                },
-                                                "proto": {
-                                                    "type": "array",
-                                                    "items": {"type": "string"}
-                                                },
-                                                "port": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "oneOf": [
-                                                            {"type": "string", "enum": ["*"]},
-                                                            {"type": "number"}
-                                                        ]
-                                                    }
-                                                },
-                                                "type": {"type": "string", "enum": ["pod"]},
-                                                "label": {"type": "string"}
-                                            },
-                                            "required": ["direction", "action", "proto", "port", "type", "label"]
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "description": "CVE ID of the vulnerability",
+                                            "type": "string"
                                         },
-                                        {
-                                            "type": "object",
-                                            "properties": {
-                                                "direction": {
-                                                    "type": "string",
-                                                    "enum": ["Ingress", "Egress", "ingress", "egress"]
-                                                },
-                                                "action": {
-                                                    "type": "string",
-                                                    "enum": ["allow", "deny"]
-                                                },
-                                                "proto": {
-                                                    "type": "array",
-                                                    "items": {"type": "string"}
-                                                },
-                                                "port": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "oneOf": [
-                                                            {"type": "string", "enum": ["*"]},
-                                                            {"type": "number"}
-                                                        ]
-                                                    }
-                                                },
-                                                "type": {"type": "string", "not": { "enum": ["pod"]}}
-                                            },
-                                            "required": ["direction", "action", "proto", "port", "type"]
-                                        }                                        
-                                    ]
-                                },
-                                "minItems": 0
-                            },
-                            "required": ["enforcement_behavior"]
-                        }
-                    }
-                },
-                "required": ["service", "restrictions"]
-            },
-            "libraries": {
-                "description": "libraries used by the pod",
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "name": {"type": "string"},
-                        "version": {"type": "string"},
-                        "artifacts": {
-                            "description": "Artifact from D3FEND DAO related to the library",
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "description": "identifier of the artifact",
-                                    "id": {"type": "string"}
-                                },
-                                "required": ["id"]
-                            },
-                            "minItems": 0
-                        },
-                        "vulnerabilities": {
-                            "description": "vulnerabilities present in the version of the library",
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "id": {
-                                        "description": "CVE ID of the vulnerability",
-                                        "type": "string"
+                                        "cvss2.x": {"type": "number"},
+                                        "cvss3.x": {"type": "number"},
+                                        "cvss4.x": {"type": "number"},
+                                        "description": {"type": "string"}
                                     },
-                                    "cvss2.x": {"type": "number"},
-                                    "cvss3.x": {"type": "number"},
-                                    "cvss4.x": {"type": "number"},
-                                    "description": {"type": "string"}
-                                },
-                                "required": ["id"]
+                                    "required": ["id"]
+                                }
                             }
-                        }
+                        },
+                        "required": ["name", "version"]
                     },
-                    "required": ["name", "version"]
+                    "minItems": 1
                 },
-                "minItems": 1
-            },
-            "serviceDependencies": {
-                "description": "dependencies of the pod to the other pods",
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "label": {"type": "string"}
+                "serviceDependencies": {
+                    "description": "dependencies of the pod to the other pods",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "label": {"type": "string"}
+                        },
+                        "required": ["label"]
                     },
-                    "required": ["label"]
+                    "minItems": 0
                 },
-                "minItems": 0
-            },
-            "mounts": {
-                "description": "mounted volumes",
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "type": {"type": "string"},
-                        "path": {"type": "string"}
+                "mounts": {
+                    "description": "mounted volumes",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": {"type": "string"},
+                            "path": {"type": "string"}
+                        },
+                        "required": ["type", "path"]
                     },
-                    "required": ["type", "path"]
+                    "minItems": 0
                 },
-                "minItems": 0
+                "countermeasures": {
+                    "description": "D3FEND Techniques applied to the pod",
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "minItems": 0
+                }
             },
-            "countermeasures": {
-                "description": "D3FEND Techniques applied to the pod",
-                "type": "array",
-                "items": { "type": "string" },
-                "minItems": 0
-            }
+            "required": ["label", "networkProperties", "libraries"]
         },
-        "required": ["label", "networkProperties", "libraries"]
-    },
-    "minItems": 1
+        "minItems": 1
+    }
 }

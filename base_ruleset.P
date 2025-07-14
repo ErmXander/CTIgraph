@@ -6,7 +6,8 @@ primitive(attackerLocated(_pod)).
 
 primitive(vulExists(_library, _libVer, _vulID)).
 primitive(hasLibrary(_pod, _library, _libVer)).
-primitive(hasArtifact(_component, _artID)).
+primitive(libraryHasArtifact(_library, _artID)).
+primitive(serviceHasArtifact(_servName, _artID)).
 primitive(exposesService(_pod, _servName, _proto, _port)).
 primitive(mounts(_pod, _type, _path)).
 primitive(dependsOn(_pod1, _pod2)).
@@ -85,15 +86,15 @@ interaction_rule(
 interaction_rule(
   (podArtifact(Pod, ArtID) :-
 	hasLibrary(Pod, Lib, LibVer),
-    hasArtifact(Lib, ArtID)),
-  rule_desc('',
+    libraryHasArtifact(Lib, ArtID)),
+  rule_desc('pod artifact from library',
   0.0)).
 
 interaction_rule(
   (podArtifact(Pod, ArtID) :-
 	exposesService(Pod, ServName, Proto, Port),
-    hasArtifact(ServName, ArtID)),
-  rule_desc('',
+    serviceHasArtifact(ServName, ArtID)),
+  rule_desc('pod artifact from service',
   0.0)).
 
 
@@ -105,7 +106,7 @@ interaction_rule(
 	netRule(Pdst, Psrc, Protocol, Port, ingress, allow),
   not netRule(Psrc, Pdst, Protocol, Port, egress, deny),
   not netRule(Pdst, Psrc, Protocol, Port, ingress, deny)),
-  rule_desc('',
+  rule_desc('valid hacl',
   0.0)).
 
 interaction_rule(
@@ -138,7 +139,8 @@ interaction_rule(
 interaction_rule(
   (reachable(P2, Protocol, Port) :-
 	codeExec(P1),
-  allowedFlow(P1, P2, Protocol, Port)),
+  allowedFlow(P1, P2, Protocol, Port),
+  not dependsOn(P2, P1)),
   rule_desc('pod reached via multi-hop',
   0.0)).
 

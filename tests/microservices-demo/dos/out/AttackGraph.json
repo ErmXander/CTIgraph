@@ -1,0 +1,192 @@
+{
+    "type": "bundle",
+    "id": "bundle--75e67ba0-6de5-453f-9624-d0ab3bfb0f44",
+    "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4",
+            "created_by_ref": "identity--fb9c968a-745b-4ade-9b25-c324172197f4",
+            "created": "2022-08-02T19:34:35.143Z",
+            "modified": "2022-08-02T19:34:35.143Z",
+            "name": "Attack Flow",
+            "description": "Extends STIX 2.1 with features to create Attack Flows.",
+            "schema": "https://center-for-threat-informed-defense.github.io/attack-flow/stix/attack-flow-schema-2.0.0.json",
+            "version": "2.0.0",
+            "extension_types": [
+                "new-sdo"
+            ]
+        },
+        {
+            "type": "attack-flow",
+            "spec_version": "2.1",
+            "id": "attack-flow--40a5c820-be4d-4c22-8daa-b4fe07ef2d7e",
+            "created": "2025-07-13T13:05:52.22924Z",
+            "modified": "2025-07-13T13:05:52.22924Z",
+            "name": "Flow-ized AttackGraph",
+            "scope": "attack-tree",
+            "start_refs": [
+                "attack-action--d1db37a0-6b45-42e4-93d9-21ba1a0697fd"
+            ],
+            "extensions": {
+                "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
+                    "extension_type": "new-sdo"
+                }
+            }
+        },
+        {
+            "type": "threat-actor",
+            "spec_version": "2.1",
+            "id": "threat-actor--7aec6392-e4ee-4f07-a0cd-079eaa95b697",
+            "created": "2025-07-13T13:05:52.22392Z",
+            "modified": "2025-07-13T13:05:52.22392Z",
+            "name": "Attacker",
+            "description": "Located in internet"
+        },
+        {
+            "type": "attack-asset",
+            "spec_version": "2.1",
+            "id": "attack-asset--4b5d6363-3240-43f6-bc14-89aac979c3fe",
+            "created": "2025-07-13T13:05:52.226537Z",
+            "modified": "2025-07-13T13:05:52.226537Z",
+            "name": "productcatalogservice",
+            "extensions": {
+                "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
+                    "extension_type": "new-sdo"
+                }
+            }
+        },
+        {
+            "type": "attack-action",
+            "spec_version": "2.1",
+            "id": "attack-action--36249dea-eaed-47cf-9ea4-5aaea169852c",
+            "created": "2025-07-13T13:05:52.226859Z",
+            "modified": "2025-07-13T13:05:52.226859Z",
+            "name": "Network Denial of Service",
+            "description": "Consequences of the technique:\nCOMPROMISED - Denial of Service",
+            "technique_id": "t1498",
+            "asset_refs": [
+                "attack-asset--4b5d6363-3240-43f6-bc14-89aac979c3fe"
+            ],
+            "extensions": {
+                "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
+                    "extension_type": "new-sdo"
+                }
+            }
+        },
+        {
+            "type": "attack-asset",
+            "spec_version": "2.1",
+            "id": "attack-asset--5c09b90b-9fc2-4568-bd89-056059bdb5a1",
+            "created": "2025-07-13T13:05:52.22723Z",
+            "modified": "2025-07-13T13:05:52.22723Z",
+            "name": "checkoutservice",
+            "extensions": {
+                "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
+                    "extension_type": "new-sdo"
+                }
+            }
+        },
+        {
+            "type": "attack-action",
+            "spec_version": "2.1",
+            "id": "attack-action--5556b8b0-bcc4-410b-8a26-283474f9a27c",
+            "created": "2025-07-13T13:05:52.227464Z",
+            "modified": "2025-07-13T13:05:52.227464Z",
+            "name": "Exploit Public-Facing Application",
+            "description": "Consequences of the technique:\nCOMPROMISED - Code Execution\nCOMPROMISED - Remote Access",
+            "technique_id": "t1190",
+            "asset_refs": [
+                "attack-asset--5c09b90b-9fc2-4568-bd89-056059bdb5a1"
+            ],
+            "extensions": {
+                "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
+                    "extension_type": "new-sdo"
+                }
+            },
+            "effects_refs": [
+                "attack-action--36249dea-eaed-47cf-9ea4-5aaea169852c"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f4c4ed23-f917-4b32-9114-620512831f62",
+            "created": "2025-07-13T13:05:52.22777Z",
+            "modified": "2025-07-13T13:05:52.22777Z",
+            "relationship_type": "related_to",
+            "source_ref": "vulnerability--d80cdbe8-8b78-4dce-b597-9583e6b082b1",
+            "target_ref": "attack-action--5556b8b0-bcc4-410b-8a26-283474f9a27c"
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--d80cdbe8-8b78-4dce-b597-9583e6b082b1",
+            "created": "2025-07-13T13:05:52.226142Z",
+            "modified": "2025-07-13T13:05:52.226142Z",
+            "name": "'cve-2025-22870'"
+        },
+        {
+            "type": "attack-asset",
+            "spec_version": "2.1",
+            "id": "attack-asset--83a91641-769f-4702-ad4e-109235db67f9",
+            "created": "2025-07-13T13:05:52.228149Z",
+            "modified": "2025-07-13T13:05:52.228149Z",
+            "name": "frontend",
+            "extensions": {
+                "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
+                    "extension_type": "new-sdo"
+                }
+            }
+        },
+        {
+            "type": "attack-action",
+            "spec_version": "2.1",
+            "id": "attack-action--d1db37a0-6b45-42e4-93d9-21ba1a0697fd",
+            "created": "2025-07-13T13:05:52.228383Z",
+            "modified": "2025-07-13T13:05:52.228383Z",
+            "name": "Exploit Public-Facing Application",
+            "description": "Consequences of the technique:\nCOMPROMISED - Code Execution\nCOMPROMISED - Remote Access",
+            "technique_id": "t1190",
+            "asset_refs": [
+                "attack-asset--83a91641-769f-4702-ad4e-109235db67f9"
+            ],
+            "extensions": {
+                "extension-definition--fb9c968a-745b-4ade-9b25-c324172197f4": {
+                    "extension_type": "new-sdo"
+                }
+            },
+            "effects_refs": [
+                "attack-action--5556b8b0-bcc4-410b-8a26-283474f9a27c"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c444779e-68f3-418f-ba49-692c17ab3678",
+            "created": "2025-07-13T13:05:52.22872Z",
+            "modified": "2025-07-13T13:05:52.22872Z",
+            "relationship_type": "related_to",
+            "source_ref": "vulnerability--287247ed-9cd6-492b-a19b-205cc710587a",
+            "target_ref": "attack-action--d1db37a0-6b45-42e4-93d9-21ba1a0697fd"
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--287247ed-9cd6-492b-a19b-205cc710587a",
+            "created": "2025-07-13T13:05:52.225709Z",
+            "modified": "2025-07-13T13:05:52.225709Z",
+            "name": "'cve-2025-22870'"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2aed9fca-5f81-4507-b612-3f1f6e325075",
+            "created": "2025-07-13T13:05:52.228993Z",
+            "modified": "2025-07-13T13:05:52.228993Z",
+            "relationship_type": "related_to",
+            "source_ref": "threat-actor--7aec6392-e4ee-4f07-a0cd-079eaa95b697",
+            "target_ref": "attack-action--d1db37a0-6b45-42e4-93d9-21ba1a0697fd"
+        }
+    ]
+}

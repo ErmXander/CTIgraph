@@ -95,6 +95,19 @@
             ]
         },
         {
+            "id": "T1210",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "codeExecution"
+                }
+            ]
+        },
+        {
             "id": "T1133",
             "preconditions": [
                 {
@@ -735,6 +748,32 @@
                 {
                 "type": "privilege",
                 "level": "root"
+                }
+            ]
+        },
+        {
+            "id": "T1553",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "persistence"
+                }
+            ]
+        },
+        {
+            "id": "T1553.004",
+            "preconditions": [
+                {
+                "type": "reachable"
+                }
+            ],
+            "postconditions": [
+                {
+                "type": "persistence"
                 }
             ]
         },

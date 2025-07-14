@@ -1,10 +1,10 @@
 import os
 import json
 import re
-
 import networkx as nx
 
-from helper import get_attack_info, get_defend_info, get_artifacts_info, decycle, prune_graph
+from helper import get_attack_info, get_defend_info, get_artifacts_info, decycle, prune_graph, get_logger
+logger = get_logger(__name__)
 
 
 class DefenseAdvisor:
@@ -72,7 +72,9 @@ class DefenseAdvisor:
             exclusion_map (dict<string,list<string>>): dict listing the D3FEND Techniques which should not be
                 considered when looking for the countermeasures to apply to specific pods
         """
-        def _rec_counter(n, countermeasures, G):
+
+        logger.info("Retrieving countermeasures")
+        def _rec_counter(n, countermeasures, G, DG):
             # Get next nodes
             out_nodes = [out_n for _, out_n in G.out_edges(n[0])]
             out_nodes = [out_n for out_n in G.nodes.data() if out_n[0] in out_nodes]
@@ -85,20 +87,17 @@ class DefenseAdvisor:
                 # the node is not reachable if at least of the conditions 
                 # for the derivation of this node is not reachable
                 reachable = True
-                derivation_node = next((in_n for in_n, _ in G.in_edges(n[0])), None)
-                for in_n, _ in G.in_edges(derivation_node):
-                    if G.in_degree(in_n) == 0:
-                        reachable = False
-                        break
+                if n[0] not in DG or root_node[0] not in nx.ancestors(DG, n[0]):
+                    reachable = False
                 if not reachable:
-                    G.remove_node(n[0]) # Remove unreachable node
+                    DG.remove_nodes_from([n[0]]) # Remove unreachable node
                     if n[0] in countermeasures: 
                         # Remove any countermeasure that may have been added on a previous visit of the node
                         countermeasures.pop(n[0])
                 elif pod not in excluded_pods: # Do not consider the pod if it needs to be excluded
                     # Get available countermeasures for the technique to apply to the pod
                     pod_arts = self._get_pod_artifacts(pod)
-                    tech_counters = self.t2c[tid]
+                    tech_counters = self.t2c[tid.upper()]
                     available_counters = []
                     for a in pod_arts:
                         counters = self.a2c[a] # Get the countermeasures applicable to the pod given its artifacts
@@ -110,27 +109,31 @@ class DefenseAdvisor:
                     available_counters = [ac for ac in available_counters if pod not in exclusion_map or ac not in exclusion_map[pod]]
                     if available_counters:
                         # If the step can be countered remove the node
-                        G.remove_node(str(n[0]))
+                        DG.remove_nodes_from([n[0]])
                         countermeasures[n[0]] = list(set(available_counters))
             for out_node in out_nodes:
-                _rec_counter(out_node, countermeasures, G)
+                _rec_counter(out_node, countermeasures, G, DG)
 
         # Preprocess graph
         G = prune_graph(AG)
         decycle(G)
+        # Keep a graph after defenses are applied
+        DG = G.copy()
         # Find attackerLocation node
         root_node = next((n for n in G.nodes.data() if "attackerLocated" in n[1]["label"]), None)
         countermeasures = {}
         # Recursively get the countermeasures for each node
-        _rec_counter(root_node, countermeasures, G)
+        _rec_counter(root_node, countermeasures, G, DG)
         # Get the set of suggested defensive techniques for each pod
         suggestions = {}
         for n, counters in countermeasures.items():
             if t_match := re.search(r':(.*)_attack_step\((.*)\)', AG.nodes[n]["label"]):
                     pod = t_match.group(2)
             if pod not in suggestions:
-                suggestions[pod] = []
-            suggestions[pod].extend(counters)
+                suggestions[pod] = set()
+            suggestions[pod].update(counters)
+        for pod in suggestions:
+            suggestions[pod] = list(suggestions[pod])
         # Write the results to file
         with open(os.path.join(self.output_dir, "d3fend_suggestions.json"), "w") as f:
-            json.dump(suggestions, f, indent=3)
+            json.dump(suggestions, f, indent=2)

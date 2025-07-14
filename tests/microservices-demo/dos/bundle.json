@@ -1,0 +1,89 @@
+{
+    "type": "bundle",
+    "id": "bundle--1b786358-fac9-4b44-a3c0-83170c067eca",
+    "objects": [
+        {
+            "type": "threat-actor",
+            "spec_version": "2.1",
+            "id": "threat-actor--251443ae-3824-4253-b2e5-15b0cec456dd",
+            "created": "2025-07-13T11:58:22.678505Z",
+            "modified": "2025-07-13T11:58:22.678505Z",
+            "name": "some threat actor",
+            "description": "very bad guys"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--5e57ed1a-ff3d-43a0-be7f-260223e0e3eb",
+            "created": "2025-07-13T11:58:22.678928Z",
+            "modified": "2025-07-13T11:58:22.678928Z",
+            "name": "Exploit Public-Facing Application",
+            "description": "Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network. The weakness in the system can be a software bug, a temporary glitch, or a misconfiguration.",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1190"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--2c2f41ed-e28f-4146-81d2-c77a05efcd6f",
+            "created": "2025-07-13T11:58:22.680248Z",
+            "modified": "2025-07-13T11:58:22.680248Z",
+            "name": "Network Denial of Service",
+            "description": "Adversaries may perform Network Denial of Service (DoS) attacks to degrade or block the availability of targeted resources to users. Network DoS can be performed by exhausting the network bandwidth services rely on. Example resources include specific websites, email services, DNS, and web-based applications. Adversaries have been observed conducting network DoS attacks for political purposes(Citation: FireEye OpPoisonedHandover February 2016) and to support other malicious activities, including distraction(Citation: FSISAC FraudNetDoS September 2012), hacktivism, and extortion.(Citation: Symantec DDoS October 2014)",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1498"
+                }
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--8e45ba75-3043-4a08-a25e-f5f9a5bdf7ae",
+            "created": "2025-07-13T11:58:22.679849Z",
+            "modified": "2025-07-13T11:58:22.679849Z",
+            "name": "CVE-2025-22870",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2025-22870"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--16f2783a-0ff4-439f-9f6c-30348aab7912",
+            "created": "2025-07-13T11:58:22.679285Z",
+            "modified": "2025-07-13T11:58:22.679285Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--251443ae-3824-4253-b2e5-15b0cec456dd",
+            "target_ref": "attack-pattern--5e57ed1a-ff3d-43a0-be7f-260223e0e3eb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fb5e77c5-ec5c-43ce-9160-44ce336a9d4c",
+            "created": "2025-07-13T11:58:22.679993Z",
+            "modified": "2025-07-13T11:58:22.679993Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--5e57ed1a-ff3d-43a0-be7f-260223e0e3eb",
+            "target_ref": "vulnerability--8e45ba75-3043-4a08-a25e-f5f9a5bdf7ae"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ec15e168-6deb-44ad-9e61-8949dbe42ed6",
+            "created": "2025-07-13T11:58:22.680386Z",
+            "modified": "2025-07-13T11:58:22.680386Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--251443ae-3824-4253-b2e5-15b0cec456dd",
+            "target_ref": "attack-pattern--2c2f41ed-e28f-4146-81d2-c77a05efcd6f"
+        }
+    ]
+}

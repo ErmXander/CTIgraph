@@ -13,16 +13,12 @@ RUN ./configure && \
     ./makexsb && ./makexsb install
 ENV PATH="$PATH:/root/XSB/bin/"
 
+WORKDIR /root
+COPY ./build/mulval/ /root/mulval
 ENV MULVALROOT=/root/mulval
 ENV PATH=$PATH:"$MULVALROOT/bin":"$MULVALROOT/utils"
-
-WORKDIR /root
-RUN git clone https://github.com/risksense/mulval.git
 WORKDIR /root/mulval
-RUN wget "https://patch-diff.githubusercontent.com/raw/risksense/mulval/pull/9.patch" -O - | git apply - && \
-    make
-COPY ./utils/graph_gen.sh ./utils
-RUN chmod +x ./utils/graph_gen.sh
+RUN make && chmod +x ./utils/graph_gen.sh
 
 WORKDIR /root/CTIgraph
 COPY requirements.txt ./

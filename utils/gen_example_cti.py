@@ -2,20 +2,19 @@ import os
 import argparse
 import stix2
 
-from ..helper import get_attack_info
+from helper import get_attack_info
 
 
 def generate_example_cti_bundle(technique_list, kb_path):
     attack_patterns = []
     relationships = []
     vulnerabilities = []
-    techniques = get_attack_info(kb_path)
+    techniques, _, _, _ = get_attack_info(kb_path)
 
     threat_actor = stix2.ThreatActor(
         name = "some threat actor",
         description = "very bad guys"
     )
-
     for t in technique_list:
         technique = next((tech for tech in techniques if tech["id"] == t["id"]), None)
         if technique is None:
@@ -23,10 +22,6 @@ def generate_example_cti_bundle(technique_list, kb_path):
         attack_pattern = stix2.AttackPattern(
             name = technique["name"],
             description = technique["definition"],
-            kill_chain_phases = [
-                stix2.KillChainPhase(
-                    kill_chain_name = "mitre-attack",
-                    phase_name = technique["tactic"])],
             external_references = [
                 stix2.ExternalReference(
                     source_name = "mitre-attack",
@@ -71,18 +66,13 @@ def main():
     parser.add_argument("out_dir", help="path to the directory in which to save the output file")
     args = parser.parse_args()
 
-    KB_PATH = "../tests/example/example_kb"
+    KB_PATH = os.path.join(os.path.dirname(__file__),"../kb")
     out_dir = os.path.join(os.getcwd(), args.out_dir) if args.out_dir else os.getcwd()
     os.makedirs(out_dir, exist_ok=True)
-    out_bundle_path = os.path.join(out_dir, "example_bundle.json")
+    out_bundle_path = os.path.join(out_dir, "bundle.json")
     example_techniques = [
-        {"id": "t1", "vulns":["vul1"]}, 
-        {"id": "t2"}, 
-        {"id": "t3"}, 
-        {"id": "t14"}, 
-        {"id": "t15"}, 
-        {"id": "t18"}, 
-        {"id": "t6"}
+        {"id": "T1190", "vulns":["CVE-2025-22870"]}, 
+        {"id": "T1498", "vulns": []}
     ]
 
     bundle = generate_example_cti_bundle(example_techniques, KB_PATH)

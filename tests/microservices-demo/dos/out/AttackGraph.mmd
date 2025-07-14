@@ -1,0 +1,25 @@
+flowchart TD
+	classDef attacker fill:#faa ,stroke:#f21,stroke-width:2px;
+	classDef technique fill:#fca ,stroke:#f81,stroke-width:2px;
+	classDef vulnerability fill:#fea ,stroke:#fd2,stroke-width:2px;
+	20:::attacker@{ shape: stadium, label: "ATTACKER<br>&ltinternet&gt" }
+	14:::technique@{ shape: rounded, label: "Exploit Public-Facing Application<br>&ltt1190&gt" }
+	4:::technique@{ shape: rounded, label: "Exploit Public-Facing Application<br>&ltt1190&gt" }
+	58:::technique@{ shape: rounded, label: "Network Denial of Service<br>&ltt1498&gt" }
+	24:::vulnerability@{ shape: circle, label: "'cve-2025-22870'<br>&ltfrontend&gt" }
+	45:::vulnerability@{ shape: circle, label: "'cve-2025-22870'<br>&ltcheckoutservice&gt" }
+	12:::vulnerability@{ shape: stadium, label: "Code Execution<br>&ltfrontend&gt" }
+	90:::vulnerability@{ shape: stadium, label: "Remote Access<br>&ltfrontend&gt" }
+	2:::vulnerability@{ shape: stadium, label: "Code Execution<br>&ltcheckoutservice&gt" }
+	88:::vulnerability@{ shape: stadium, label: "Remote Access<br>&ltcheckoutservice&gt" }
+	56:::vulnerability@{ shape: stadium, label: "Denial of Service<br>&ltproductcatalogservice&gt" }
+20--->14
+14-->|compromise|12
+14-->|compromise|90
+24-->14
+12--->4
+4-->|compromise|2
+4-->|compromise|88
+45-->4
+2--->58
+58-->|compromise|56

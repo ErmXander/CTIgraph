@@ -3,12 +3,12 @@
   "artifacts": [
     {"id": "art1",
      "name": "artifact1",
-     "da_to_off": ["t1", "t2", "t3"],
+     "da_to_off": ["T1", "T2", "T3"],
      "da_to_def": []
      },
     {"id": "art2",
      "name": "artifact2",
-     "da_to_off": ["t6"],
+     "da_to_off": ["T6"],
      "da_to_def": ["Countermeasure 5"]
      },
     {"id": "art3",

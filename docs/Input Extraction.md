@@ -3,6 +3,9 @@ The class ```CTIgraph.MulValInputExtractor``` is responsible for the derivation 
 MulValInputExtractor is initialized by passing it the path to the infrastructure description, the path to the CTI, the directory in which to save the output facts and rules (*working directory* by default), the attacker's location (*internet* by default) and the path to the Knowledge Base (*./kb* by default).  
 MulVAL input extraction is divided into two parts:
 the extraction of infrastructure facts and the extraction of techniques facts and rules.
+## Datamodel of k8s Infrastructure
+![image](./k8s-datamodel.svg)
+
 ## Extraction of Infrastructure Facts
 The method ```extract_infrastructure_inputs()``` parses the JSON file containing the description of the infrastructure which was passed on the initialization of the input extractor. The format of the representation must be compliant with the JSON-schema defined by ```k8infrastructure-schema.json```.  
 The method iterates over each pod in described infrastructure extracting relevant facts from their properties; these include:
@@ -29,6 +32,7 @@ The method iterates over each pod in described infrastructure extracting relevan
  the pod with label *pod* uses a countermeasure having D3FEND ID *d3fendID*.
 
 ## Extraction of Techniques' Facts and Rules
+![image](./technique-applicability.svg)
 The method ```_parse_cti()``` parses a STIX2.X Bundle; the bundle can contain any SDO, SRO and SCO but should contain at least one SDO of type *attack-pattern* describing an ATT&CK Technique (having an *external-reference* with *source*==*mitre-attack*). The attack-pattern can be linked to zero or more *vulnerability* SDOs via SROs. After parsing the Bundle the method returns a list of Techniques and related targeted Vulnerabilitites in the form:
 ```python
 [

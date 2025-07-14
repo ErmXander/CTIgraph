@@ -11,8 +11,10 @@ from networkx.drawing import nx_agraph
 from pgmpy.models import DiscreteBayesianNetwork
 from pgmpy.factors.discrete import TabularCPD
 from pgmpy.inference import VariableElimination
+import time
 
-from helper import decycle, prune_graph
+from helper import decycle, prune_graph, get_logger
+logger = get_logger(__name__)
 
 
 def random_exploitability(vulID):
@@ -77,6 +79,10 @@ class BayesianGraph:
         self.tech_prob_fn = tech_prob_fn
         self.exp_fn_args = exp_fn_args
         self.tech_fn_args = tech_fn_args
+
+        logger.info("Beginning Bayesian Graph generation")
+        start_time = time.time()
+
         prune_graph(self.AG)
         decycle(self.AG)
 
@@ -95,7 +101,12 @@ class BayesianGraph:
         # Let Pgmpy compute the probabilities of each node
         infer = VariableElimination(self.model)
         for n in self.AG.nodes(data=True):
-            n[1]["label"] = f"{n[1]['label']}:{infer.query([n[0]]).values[1]:.2f}"
+            probability = infer.query([n[0]]).values[1]
+            n[1]["probability"] = probability
+            n[1]["label"] = f"{n[1]['label']}:{probability:.4f}"
+
+        elapsed_time = time.time() - start_time
+        logger.info(f"Bayesian Graph generation completed in {elapsed_time} seconds")
 
 
 

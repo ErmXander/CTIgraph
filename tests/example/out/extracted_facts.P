@@ -1,20 +1,20 @@
 attackerLocated(internet).
-attackGoal(privilege(_, _)).
-attackGoal(dos(_)).
 attackGoal(codeExec(_)).
+attackGoal(dos(_)).
+attackGoal(privilege(_, _)).
 attackGoal(remoteAccess(_)).
 hasLibrary(p1, 'lib1', 'lib1_ver1').
-hasArtifact('lib1', 'art3').
+libraryHasArtifact('lib1', 'art3').
 vulExists('lib1', 'lib1_ver1', 'vul1').
 hasLibrary(p1, 'lib2', 'lib2_ver1').
-hasArtifact('lib2', 'art4').
+libraryHasArtifact('lib2', 'art4').
 vulExists('lib2', 'lib2_ver1', 'vul2').
 dependsOn(p1, p3).
 dependsOn(p1, p4).
 dependsOn(p1, p5).
 exposesService(p1, ps1, tcp, 80).
-hasArtifact(ps1, 'art1').
-hasArtifact(ps1, 'art2').
+serviceHasArtifact(ps1, 'art1').
+serviceHasArtifact(ps1, 'art2').
 netRule(p1, _, _, _, _, allow).
 netRule(p1, p2, _, _, egress, deny).
 netRule(p1, p2, _, _, ingress, deny).
@@ -27,40 +27,40 @@ netRule(p1, p8, _, _, ingress, deny).
 netRule(p1, p9, _, _, egress, deny).
 netRule(p1, p9, _, _, ingress, deny).
 hasLibrary(p2, 'lib1', 'lib1_ver2').
-hasArtifact('lib1', 'art5').
+libraryHasArtifact('lib1', 'art5').
 vulExists('lib1', 'lib1_ver2', 'vul1').
 dependsOn(p2, p5).
 dependsOn(p2, p6).
 exposesService(p2, ps2, tcp, 8080).
-hasArtifact(ps2, 'art1').
+serviceHasArtifact(ps2, 'art1').
 netRule(p2, _, _, _, _, allow).
 netRule(p2, p6, tcp, 60, egress, deny).
 hasLibrary(p3, 'lib3', 'lib3_ver1').
-hasArtifact('lib3', 'art6').
+libraryHasArtifact('lib3', 'art6').
 vulExists('lib3', 'lib3_ver1', 'vul3').
 exposesService(p3, ps3, tcp, 3030).
-hasArtifact(ps3, 'art4').
-hasArtifact(ps3, 'art5').
+serviceHasArtifact(ps3, 'art4').
+serviceHasArtifact(ps3, 'art5').
 netRule(p3, p1, tcp, 80, egress, allow).
 netRule(p3, p1, tcp, 3030, ingress, allow).
 hasLibrary(p4, 'lib3', 'lib3_ver1').
-hasArtifact('lib3', 'art6').
+libraryHasArtifact('lib3', 'art6').
 vulExists('lib3', 'lib3_ver1', 'vul3').
 dependsOn(p4, p7).
 exposesService(p4, ps4, tcp, 4040).
-hasArtifact(ps4, 'art4').
+serviceHasArtifact(ps4, 'art4').
 netRule(p4, p1, tcp, 80, egress, allow).
 netRule(p4, p7, tcp, 7070, egress, allow).
 netRule(p4, p7, tcp, 4040, ingress, allow).
 netRule(p4, p1, tcp, 4040, ingress, allow).
 hasLibrary(p5, 'lib4', 'lib4_ver1').
-hasArtifact('lib4', 'art9').
+libraryHasArtifact('lib4', 'art9').
 vulExists('lib4', 'lib4_ver1', 'vul4').
 dependsOn(p5, p7).
 dependsOn(p5, p8).
 exposesService(p5, ps5, tcp, 5050).
-hasArtifact(ps5, 'art7').
-hasArtifact(ps5, 'art8').
+serviceHasArtifact(ps5, 'art7').
+serviceHasArtifact(ps5, 'art8').
 netRule(p5, p1, tcp, 80, egress, allow).
 netRule(p5, p7, tcp, 7070, egress, allow).
 netRule(p5, p8, tcp, 8888, egress, allow).
@@ -71,40 +71,40 @@ netRule(p5, p8, tcp, 5050, ingress, allow).
 netRule(p5, p2, tcp, 5050, ingress, allow).
 mounts(p5, hostpath, '/some/path').
 hasLibrary(p6, 'lib5', 'lib5_ver1').
-hasArtifact('lib5', 'art10').
+libraryHasArtifact('lib5', 'art10').
 dependsOn(p6, p9).
 exposesService(p6, ps6, tcp, 6060).
-hasArtifact(ps6, 'art5').
+serviceHasArtifact(ps6, 'art5').
 netRule(p6, p2, tcp, 8080, egress, allow).
 netRule(p6, p9, tcp, 9090, egress, allow).
 netRule(p6, p2, tcp, 6060, ingress, allow).
 netRule(p6, p9, tcp, 6060, ingress, allow).
 netRule(p6, p2, tcp, 60, ingress, allow).
 hasLibrary(p7, 'lib5', 'lib5_ver2').
-hasArtifact('lib5', 'art10').
+libraryHasArtifact('lib5', 'art10').
 vulExists('lib5', 'lib5_ver2', 'vul5').
 exposesService(p7, ps7, tcp, 7070).
-hasArtifact(ps7, 'art10').
-hasArtifact(ps7, 'art11').
+serviceHasArtifact(ps7, 'art10').
+serviceHasArtifact(ps7, 'art11').
 netRule(p7, p4, tcp, 4040, egress, allow).
 netRule(p7, p5, tcp, 5050, egress, allow).
 netRule(p7, p4, tcp, 7070, ingress, allow).
 netRule(p7, p5, tcp, 7070, ingress, allow).
 hasLibrary(p8, 'lib6', 'lib6_ver1').
-hasArtifact('lib6', 'art13').
+libraryHasArtifact('lib6', 'art13').
 exposesService(p8, ps8, tcp, 8888).
-hasArtifact(ps8, 'art12').
+serviceHasArtifact(ps8, 'art12').
 netRule(p8, p5, tcp, 5050, egress, allow).
 netRule(p8, p5, tcp, 8888, ingress, allow).
 hasLibrary(p9, 'lib3', 'lib3_ver1').
-hasArtifact('lib3', 'art6').
+libraryHasArtifact('lib3', 'art6').
 vulExists('lib3', 'lib3_ver1', 'vul3').
 hasLibrary(p9, 'lib7', 'lib7_ver1').
-hasArtifact('lib7', 'art10').
+libraryHasArtifact('lib7', 'art10').
 vulExists('lib7', 'lib7_ver1', 'vul6').
 vulExists('lib7', 'lib7_ver1', 'vul7').
 exposesService(p9, ps9, tcp, 9090).
-hasArtifact(ps9, 'art4').
+serviceHasArtifact(ps9, 'art4').
 netRule(p9, p6, tcp, 6060, egress, allow).
 netRule(p9, p6, tcp, 9090, ingress, allow).
 techniqueArtifact(t1, 'art1').
