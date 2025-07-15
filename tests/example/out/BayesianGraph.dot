@@ -1,85 +1,106 @@
 strict digraph G {
 	graph [name=G];
-	1	[label="1:codeExec(p1):0.9021",
-		probability=0.9020731155610687,
+	1	[label="1:codeExec(p1)
+p:0.6276",
+		probability=0.6276079154263433,
 		shape=diamond];
-	45	[label="45:RULE 30 (TECHNIQUE t6 - technique6):0.9021",
-		probability=0.9020731155610687,
+	45	[label="45:RULE 30 (TECHNIQUE t6 - technique6)
+p:0.6276",
+		probability=0.6276079154263433,
 		shape=ellipse];
 	1 -> 45;
-	2	[label="2:RULE 20 (COMPROMISED - Code Execution):0.9021",
-		probability=0.9020731155610687,
+	2	[label="2:RULE 20 (COMPROMISED - Code Execution)
+p:0.6276",
+		probability=0.6276079154263433,
 		shape=ellipse];
 	2 -> 1;
-	3	[label="3:t1_attack_step(p1):0.9021",
-		probability=0.9020731155610687,
+	3	[label="3:t1_attack_step(p1)
+p:0.6276",
+		probability=0.6276079154263433,
 		shape=diamond];
 	3 -> 2;
-	4	[label="4:RULE 19 (TECHNIQUE t1 - technique1):0.9021",
-		probability=0.9020731155610687,
+	4	[label="4:RULE 19 (TECHNIQUE t1 - technique1)
+p:0.6276",
+		probability=0.6276079154263433,
 		shape=ellipse];
 	4 -> 3;
-	5	[label="5:reachable(p1,_,_):1.0000",
+	5	[label="5:reachable(p1,_,_)
+p:1.0000",
 		probability=1.0,
 		shape=diamond];
 	5 -> 4;
-	6	[label="6:RULE 6 (directly reachable):1.0000",
+	6	[label="6:RULE 6 (directly reachable)
+p:1.0000",
 		probability=1.0,
 		shape=ellipse];
 	6 -> 5;
-	10	[label="10:attackerLocated(internet):1.0000",
+	10	[label="10:attackerLocated(internet)
+p:1.0000",
 		probability=1.0,
 		shape=box];
 	10 -> 6;
-	28	[label="28:RULE 6 (directly reachable):1.0000",
+	28	[label="28:RULE 6 (directly reachable)
+p:1.0000",
 		probability=1.0,
 		shape=ellipse];
 	10 -> 28;
-	14	[label="14:vulExists(p1,vul1):0.9021",
-		probability=0.9020731155610687,
+	14	[label="14:vulExists(p1,vul1)
+p:0.6276",
+		probability=0.6276079154263433,
 		shape=diamond];
 	14 -> 4;
-	17	[label="17:vulExists(lib1,lib1_ver1,vul1):0.9021",
-		probability=0.9020731155610687,
+	17	[label="17:vulExists(lib1,lib1_ver1,vul1)
+p:0.6276",
+		probability=0.6276079154263433,
 		shape=box];
 	17 -> 14;
-	23	[label="23:codeExec(p2):0.5919",
-		probability=0.5918737796788212,
+	23	[label="23:codeExec(p2)
+p:0.2786",
+		probability=0.2786341881740869,
 		shape=diamond];
-	24	[label="24:RULE 20 (COMPROMISED - Code Execution):0.5919",
-		probability=0.5918737796788212,
+	24	[label="24:RULE 20 (COMPROMISED - Code Execution)
+p:0.2786",
+		probability=0.2786341881740869,
 		shape=ellipse];
 	24 -> 23;
-	25	[label="25:t1_attack_step(p2):0.5919",
-		probability=0.5918737796788212,
+	25	[label="25:t1_attack_step(p2)
+p:0.2786",
+		probability=0.2786341881740869,
 		shape=diamond];
 	25 -> 24;
-	26	[label="26:RULE 19 (TECHNIQUE t1 - technique1):0.5919",
-		probability=0.5918737796788212,
+	26	[label="26:RULE 19 (TECHNIQUE t1 - technique1)
+p:0.2786",
+		probability=0.2786341881740869,
 		shape=ellipse];
 	26 -> 25;
-	27	[label="27:reachable(p2,_,_):1.0000",
+	27	[label="27:reachable(p2,_,_)
+p:1.0000",
 		probability=1.0,
 		shape=diamond];
 	27 -> 26;
 	28 -> 27;
-	34	[label="34:vulExists(p2,vul1):0.5919",
-		probability=0.5918737796788212,
+	34	[label="34:vulExists(p2,vul1)
+p:0.2786",
+		probability=0.2786341881740869,
 		shape=diamond];
 	34 -> 26;
-	37	[label="37:vulExists(lib1,lib1_ver2,vul1):0.5919",
-		probability=0.5918737796788212,
+	37	[label="37:vulExists(lib1,lib1_ver2,vul1)
+p:0.2786",
+		probability=0.2786341881740869,
 		shape=box];
 	37 -> 34;
-	42	[label="42:privilege(p1,root):0.9021",
-		probability=0.9020731155610687,
+	42	[label="42:privilege(p1,root)
+p:0.6276",
+		probability=0.6276079154263433,
 		shape=diamond];
-	43	[label="43:RULE 31 (COMPROMISED - Privilege Esclation):0.9021",
-		probability=0.9020731155610687,
+	43	[label="43:RULE 31 (COMPROMISED - Privilege Esclation)
+p:0.6276",
+		probability=0.6276079154263433,
 		shape=ellipse];
 	43 -> 42;
-	44	[label="44:t6_attack_step(p1):0.9021",
-		probability=0.9020731155610687,
+	44	[label="44:t6_attack_step(p1)
+p:0.6276",
+		probability=0.6276079154263433,
 		shape=diamond];
 	44 -> 43;
 	45 -> 44;

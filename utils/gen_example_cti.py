@@ -70,12 +70,21 @@ def main():
     out_dir = os.path.join(os.getcwd(), args.out_dir) if args.out_dir else os.getcwd()
     os.makedirs(out_dir, exist_ok=True)
     out_bundle_path = os.path.join(out_dir, "bundle.json")
-    example_techniques = [
+    mock_example = [
+        {"id": "T1", "vulns":["VUL1"], "targets": ["p1"], "sightings": 4},
+        {"id": "T6", "vulns":[], "sightings": 2}
+    ]
+    vul_example = [
+        {"id": "T1190", "vulns":["CVE-2025-22870"], "targets":["frontend"], "sightings": 2},
+        {"id": "T1210", "vulns":["CVE-2025-22872"], "sightings": 5},
+        {"id": "T1068", "vulns":["CVE-2025-22869"], "targets":["checkoutservice"], "sightings": 3}
+    ]
+    dos_example = [
         {"id": "T1190", "vulns":["CVE-2025-22870"]}, 
         {"id": "T1498", "vulns": []}
     ]
 
-    bundle = generate_example_cti_bundle(example_techniques, KB_PATH)
+    bundle = generate_example_cti_bundle(vul_example, KB_PATH)
     with open(out_bundle_path, "w") as f:
         f.write(bundle.serialize(pretty=True))
 

@@ -1,0 +1,15 @@
+{
+    "type": "bundle",
+    "id": "bundle--b3bbbe49-976a-49ea-b8f3-130f98627530",
+    "objects": [
+        {
+            "type": "threat-actor",
+            "spec_version": "2.1",
+            "id": "threat-actor--acc82d11-67ba-4051-96f0-a1fffd929731",
+            "created": "2025-07-15T13:46:51.16004Z",
+            "modified": "2025-07-15T13:46:51.16004Z",
+            "name": "some threat actor",
+            "description": "very bad guys"
+        }
+    ]
+}

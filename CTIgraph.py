@@ -364,7 +364,7 @@ class AttackGraphGenerator:
                 os.remove(file_path)
 
 
-    def gen_graph(self, no_prune=False, to_flow=False, cleanup=True, to_mermaid=False):
+    def gen_graph(self, no_prune=False, to_flow=False, cleanup=True, to_mermaid=False, beautify=False, keeplabel=False):
         """
         Generate the attack graph from the extracted inputs.
 
@@ -422,16 +422,15 @@ class AttackGraphGenerator:
         if cleanup:
             # Remove MulVAL outputs
             self._cleaner()
-        if to_flow:
-            # Read and prune the graph to turn to FLOW
+        if AG is not None:
+            # Read and prune the graph to format
             G = prune_graph(AG)
             decycle(G)
             formatter = AGFormatter(self.output_dir, G)
-            formatter.to_flow()
-        if to_mermaid:
-            # Read and prune the graph to turn to mermaid
-            G = prune_graph(AG)
-            decycle(G)
-            formatter = AGFormatter(self.output_dir, G)
-            formatter.to_mermaid()
-        return AG
+            if to_flow:
+                formatter.to_flow()
+            if to_mermaid:
+                formatter.to_mermaid()
+            if beautify:
+                formatter.viz_beautify(probability=False, fact_label=keeplabel)
+            return AG

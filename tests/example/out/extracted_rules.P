@@ -105,8 +105,7 @@ interaction_rule(
 	netRule(Psrc, Pdst, Protocol, Port, egress, allow),
 	netRule(Pdst, Psrc, Protocol, Port, ingress, allow),
   not netRule(Psrc, Pdst, Protocol, Port, egress, deny),
-  not netRule(Pdst, Psrc, Protocol, Port, ingress, deny),
-  not dependsOn(Pdst, Psrc)),
+  not netRule(Pdst, Psrc, Protocol, Port, ingress, deny)),
   rule_desc('valid hacl',
   0.0)).
 
@@ -140,7 +139,8 @@ interaction_rule(
 interaction_rule(
   (reachable(P2, Protocol, Port) :-
 	codeExec(P1),
-  allowedFlow(P1, P2, Protocol, Port)),
+  allowedFlow(P1, P2, Protocol, Port),
+  not dependsOn(P2, P1)),
   rule_desc('pod reached via multi-hop',
   0.0)).
 

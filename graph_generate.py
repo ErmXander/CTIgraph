@@ -20,7 +20,10 @@ def main():
     parser.add_argument("-m", "--mermaid", action="store_true", help="generete a mermaid representation of the Attack Graph")
     parser.add_argument("--kb", help="specify a different folder to consider as the Knowledge Base")
     parser.add_argument("-d", "--defend", action="store_true", help="get d3fend technique suggestions to mitigate the attack paths")
-    parser.add_argument("-b", "--bayes", help="generate a bayesian attack graph", action="store_true")
+    parser.add_argument("-b", "--bayes", action="store_true", help="generate a bayesian attack graph")
+    parser.add_argument("--epss", action="store_true", help="compute the explotability of vulnerabilities in the bayesian graph by fetching their epss")
+    parser.add_argument("--beautify", action="store_true", help="get a cleaner graphviz representation")
+    parser.add_argument("--keeplabel", action="store_true", help="keeps the original MulVAL label in the beautified Graphviz representation")
     args = parser.parse_args()
 
     out_dir = os.path.join(os.getcwd(), args.out) if args.out else os.getcwd()
@@ -39,25 +42,25 @@ def main():
             input_facts=facts_path,
             input_rules=rules_path,
             output_dir=out_dir)
-        AG = ag_generator.gen_graph(no_prune=args.unpruned, cleanup=not args.all, to_flow=args.flow, to_mermaid=args.mermaid)
+        AG = ag_generator.gen_graph(no_prune=args.unpruned, 
+                                    cleanup=not args.all, 
+                                    to_flow=args.flow, 
+                                    to_mermaid=args.mermaid,
+                                    beautify=args.beautify,
+                                    keeplabel=args.keeplabel)
 
     if AG is not None:
         if args.defend:
-            if not args.graph:
-                print("Cannot ask to find countermeasures without generating an Attack Graph")
-            else:
-                da = DefenseAdvisor(
-                    infrastructure_path=args.infrastructure_path,
-                    kb_path=args.kb,
-                    output_dir=out_dir)
-                da.getCountermeasures(AG)
+            da = DefenseAdvisor(
+                infrastructure_path=args.infrastructure_path,
+                kb_path=args.kb,
+                output_dir=out_dir)
+            da.getCountermeasures(AG)
         
         if args.bayes:
-            if not args.graph:
-                print("Cannot ask to generate a Bayesian Graph without generating an Attack Graph")
-            else:
-                BG = BayesianGraph(AG, exp_prob_fn=random_exploitability)
-                BG.print_bayesian_graph(out_dir)
+            exp_prob_fn = get_epss if args.epss else random_exploitability
+            BG = BayesianGraph(AG, exp_prob_fn=exp_prob_fn)
+            BG.print_bayesian_graph(out_dir, beautify=args.beautify, keeplabel=args.keeplabel)
 
 if __name__ == "__main__":
     main()

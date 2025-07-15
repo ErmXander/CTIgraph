@@ -4,8 +4,7 @@ import re
 import numpy as np
 import random
 from itertools import product
-import json
-import stix2
+import requests
 import networkx as nx
 from networkx.drawing import nx_agraph
 from pgmpy.models import DiscreteBayesianNetwork
@@ -14,6 +13,7 @@ from pgmpy.inference import VariableElimination
 import time
 
 from helper import decycle, prune_graph, get_logger
+from GraphFormatter import AGFormatter
 logger = get_logger(__name__)
 
 
@@ -23,31 +23,33 @@ def random_exploitability(vulID):
     """
     return random.uniform(0, 1)
 
-def get_epss(vulID, cti_path):
+def get_epss(vulID, default_value=1):
     """"
-    Extract the epss for the vulnerability from the CTI if available
+    Fetch the epss for a vulnerability
+    
+    Args:
+        vulID (string): CVE ID of the vulnerability
+        default_value (float): value to use if cannot retrieve epss for a vulnerability
+    Returns:
+        epss (float): epss of the vulnerability if available otherwise the default value
     """
-    if cti_path is not None:
-        try:
-            with open(cti_path, "r") as f:
-                bundle = json.load(f)
-            bundle = stix2.parse(bundle)
-            vulns = [o for o in bundle.objects if isinstance(o, stix2.Vulnerability)]
-            vuln = next(
-                (v for v in vulns if "external_references" in v and v["external_references"]["external_id"] == vulID),
-                None)
-            if  vuln is not None and "epss" in vuln:
-                return float(vuln["epss"])
-            else:
-                return 1
-        except FileNotFoundError:
-            print(f"File not found at {cti_path}")
-            return []   
-        except Exception as e:
-            print(f"Error during CTI parsing: {e}")
-            return []
-    else:
-        return 1
+    API_URL =  "https://api.first.org/data/v1/epss?cve="
+    try:
+        r = requests.get(f"{API_URL}{vulID}")
+        r.raise_for_status()
+        response = r.json()
+        data = response["data"][0]
+        if data:
+            epss = float(data["epss"])
+            logger.debug(f"Fetched epss={epss} for {vulID}")
+            return epss
+        else:
+            logger.debug(f"Assigning default epss value={default_value} to {vulID}")
+            return float(default_value) if 0<=default_value<=1 else 1
+    except requests.exceptions.HTTPError as e:
+        logger.error(f"Error fetching epss of {vulID}: {e}")
+        logger.debug(f"Assigning default epss value={default_value} to {vulID}")
+        return float(default_value) if 0<=default_value<=1 else 1
 
 
 class BayesianGraph:
@@ -103,7 +105,7 @@ class BayesianGraph:
         for n in self.AG.nodes(data=True):
             probability = infer.query([n[0]]).values[1]
             n[1]["probability"] = probability
-            n[1]["label"] = f"{n[1]['label']}:{probability:.4f}"
+            n[1]["label"] = f"{n[1]['label']}\np:{probability:.4f}"
 
         elapsed_time = time.time() - start_time
         logger.info(f"Bayesian Graph generation completed in {elapsed_time} seconds")
@@ -150,7 +152,7 @@ class BayesianGraph:
         if node_type == "LEAF":
             if match := re.search(r'vulExists\(.*,(.*)\)', node[1]["label"]):
                 vulID = match.group(1)
-                p = float(self.exp_prob_fn(vulID, **self.exp_fn_args))
+                p = float(self.exp_prob_fn(vulID.strip("'"), **self.exp_fn_args))
             else:
                 p = float(1)
             cpd = TabularCPD(
@@ -206,10 +208,13 @@ class BayesianGraph:
         return int(all(states))
 
 
-    def print_bayesian_graph(self, out_dir):
+    def print_bayesian_graph(self, out_dir, beautify=False, keeplabel=False):
         out_path = os.path.join(out_dir, "BayesianGraph.dot")
         nx_agraph.write_dot(self.AG, out_path)
         p = subprocess.Popen(["dot", "-Tpdf", "BayesianGraph.dot", "-o", "BayesianGraph.pdf"],
                     cwd=out_dir)
         p.wait()
+        if beautify:
+            formatter = AGFormatter(out_dir, self.AG)
+            formatter.viz_beautify(probability=True, fact_label=keeplabel)
 
